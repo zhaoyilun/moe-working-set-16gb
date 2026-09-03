@@ -1,0 +1,9 @@
+build/
+reproduction-output/
+*.gguf
+*.bin
+*.nsys-rep
+*.sqlite
+*.log
+__pycache__/
+*.pyc

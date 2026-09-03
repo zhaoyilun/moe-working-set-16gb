@@ -1,0 +1,10 @@
+{
+  "evidence": "synthetic fixture",
+  "layers": 2,
+  "experts_per_layer": 64,
+  "experts_selected_per_token": 4,
+  "tokens": 100,
+  "requests": 800,
+  "cache_hit_rate": 0.5,
+  "note": "Format example only; no model prompt or recorded token IDs."
+}

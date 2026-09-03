@@ -1,0 +1,5 @@
+evidence,context,n_ubatch,fixed_gpu_model_mib,attention_kv_mib,indexer_kv_mib,recurrent_mib,cuda_compute_mib,cuda_output_mib,allocator_accounted_mib,allocator_headroom_mib,observed_peak_mib,note
+Measured allocator logs,16K,2048,4459.62,408,153,112.57,2270.28,0.95,7404.42,8971.58,,Device peak not sampled in v2
+Measured allocator logs,16K,4096,4459.62,408,153,112.57,4080,0.95,9214.14,7161.86,,Device peak not sampled in v2
+Measured allocator logs,16K,8192,4459.62,408,153,112.57,8160,0.95,13294.14,3081.86,,Three performance runs completed
+Measured allocator logs,32K,8192,4459.62,792,297,112.57,8160,0.95,13822.14,2553.86,,One context-check run completed

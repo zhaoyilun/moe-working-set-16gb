@@ -1,0 +1,20 @@
+{
+  "evidence": "example configuration",
+  "cuda_graphs": true,
+  "threads": 24,
+  "decode": {
+    "warmup_tokens": 100,
+    "measured_tokens": 500,
+    "promote_threshold": -1,
+    "context_to_safe_pool_gib": {
+      "2027": 8,
+      "8171": 8,
+      "16363": 6,
+      "32747": 6
+    }
+  },
+  "prefill": {
+    "n_batch": 8192,
+    "n_ubatch": 8192
+  }
+}

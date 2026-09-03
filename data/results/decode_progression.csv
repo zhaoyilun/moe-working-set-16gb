@@ -1,0 +1,7 @@
+evidence,configuration,expert_pool_gib,cuda_graph,runs,warmup_tokens,measured_tokens,decode_tok_s_mean,decode_tok_s_min,decode_tok_s_max,decode_ms_per_token_mean,p50_ms_mean,p95_ms_mean,gain_vs_current_native_percent,gain_vs_golden_native_percent,notes
+Measured,Native expert-only CPU offload,0,on,3,100,500,15.134732,15.080680,15.181841,66.073687,63.456367,79.835033,0.000000,-11.299229,canonical 16K same path
+Measured,Hybrid fixed cache,4,on,3,100,500,16.096083,16.039203,16.181482,62.127820,61.058067,74.324833,6.352474,-5.666730,cache plan source is Trace simulation
+Measured,Hybrid fixed cache,6,on,3,100,500,17.274852,17.235386,17.326236,57.887896,56.974633,72.107433,14.140434,1.241594,cache plan source is Trace simulation
+Measured,Hybrid fixed cache,8,on,3,100,500,18.753437,18.748076,18.760776,53.323564,52.344800,67.772267,23.909933,9.907030,cache plan source is Trace simulation
+Measured,Hybrid fixed cache,8,off,1,100,500,13.566714,13.566714,13.566714,73.709819,73.220000,89.292000,-10.362997,-20.490459,single A/B run
+Measured,Golden Native historical,0,on,1,,,17.063000,,,,,,12.739302,0.000000,historical best on prior run

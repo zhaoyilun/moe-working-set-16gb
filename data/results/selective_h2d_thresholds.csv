@@ -1,0 +1,6 @@
+evidence,threshold,pool_gib,cuda_graphs,warmup_tokens,measured_tokens,decode_tok_s,decode_p50_ms,decode_p95_ms,hit_rate,cpu_fallback_layers_per_token,cpu_fallback_experts_per_token,h2d_experts_per_token,h2d_weight_mb_per_token,h2d_metadata_mb_per_token,promotion_ms_per_token
+Measured,0,6,true,100,100,12.7669399579,78.0293,91.9768,0.3110625,47.72,330.69,0,0,0,0
+Measured,1,6,true,100,100,12.2690656649,79.8258,99.5128,0.327333333333,47.08,322.88,1.39,3.533056,0.00854016,0.87447
+Measured,2,6,true,100,100,11.5512727441,83.8755,110,0.398604166667,45.08,288.67,8.48,20.674304,0.03606528,4.82565
+Measured,3,6,true,100,100,12.010387544,82.0121,102.2668,0.5369375,42.08,222.27,26.7,64.381696,0.08779776,13.59788
+Measured,4,6,true,100,100,11.151533686,88.7021,104.9605,0.61775,40.11,183.48,47.55,114.448128,0.1342464,22.89424

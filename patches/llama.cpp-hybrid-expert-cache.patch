@@ -1,0 +1,1121 @@
+diff --git a/ggml/include/ggml-cpu.h b/ggml/include/ggml-cpu.h
+index dc6453c..1381367 100644
+--- a/ggml/include/ggml-cpu.h
++++ b/ggml/include/ggml-cpu.h
+@@ -125,6 +125,11 @@ extern "C" {
+ 
+     GGML_BACKEND_API void ggml_cpu_init(void);
+ 
++    // Lightweight critical-path profiler for CPU graph nodes. Intended for
++    // short, explicitly bounded profiling windows.
++    GGML_BACKEND_API bool ggml_cpu_profile_begin(const char * output_csv);
++    GGML_BACKEND_API void ggml_cpu_profile_end(void);
++
+     //
+     // CPU backend
+     //
+diff --git a/ggml/src/ggml-cpu/ggml-cpu.c b/ggml/src/ggml-cpu/ggml-cpu.c
+index 87ac0a7..8922b3e 100644
+--- a/ggml/src/ggml-cpu/ggml-cpu.c
++++ b/ggml/src/ggml-cpu/ggml-cpu.c
+@@ -59,6 +59,106 @@
+ // and we'll use C++ attribute syntax.
+ #define GGML_CACHE_LINE  64
+ 
++struct ggml_cpu_profile_record {
++    uint64_t graph_id;
++    int node_index;
++    int op;
++    int fused_nodes;
++    int64_t worker_us;
++    int64_t barrier_us;
++    int64_t graph_elapsed_us;
++    const char * name;
++    const char * src0;
++    const char * src1;
++};
++
++static volatile int ggml_cpu_profile_active = 0;
++static uint64_t ggml_cpu_profile_graph_counter = 0;
++static struct ggml_cpu_profile_record * ggml_cpu_profile_records = NULL;
++static size_t ggml_cpu_profile_count = 0;
++static size_t ggml_cpu_profile_capacity = 0;
++static char ggml_cpu_profile_path[1024] = {0};
++
++bool ggml_cpu_profile_begin(const char * output_csv) {
++    if (output_csv == NULL || output_csv[0] == '\0' || ggml_cpu_profile_active) {
++        return false;
++    }
++    ggml_cpu_profile_capacity = 262144;
++    ggml_cpu_profile_records = (struct ggml_cpu_profile_record *) calloc(
++        ggml_cpu_profile_capacity, sizeof(struct ggml_cpu_profile_record));
++    if (ggml_cpu_profile_records == NULL) {
++        ggml_cpu_profile_capacity = 0;
++        return false;
++    }
++    snprintf(ggml_cpu_profile_path, sizeof(ggml_cpu_profile_path), "%s", output_csv);
++    ggml_cpu_profile_count = 0;
++    ggml_cpu_profile_graph_counter = 0;
++    ggml_cpu_profile_active = 1;
++    return true;
++}
++
++void ggml_cpu_profile_end(void) {
++    if (!ggml_cpu_profile_active) {
++        return;
++    }
++    ggml_cpu_profile_active = 0;
++    FILE * file = fopen(ggml_cpu_profile_path, "wb");
++    if (file != NULL) {
++        fprintf(file, "graph_id,node_index,op,fused_nodes,worker_us,barrier_us,graph_elapsed_us,name,src0,src1\n");
++        for (size_t i = 0; i < ggml_cpu_profile_count; ++i) {
++            const struct ggml_cpu_profile_record * record = &ggml_cpu_profile_records[i];
++            fprintf(file, "%" PRIu64 ",%d,%s,%d,%" PRId64 ",%" PRId64 ",%" PRId64 ",\"%s\",\"%s\",\"%s\"\n",
++                record->graph_id, record->node_index, ggml_op_name((enum ggml_op) record->op), record->fused_nodes,
++                record->worker_us, record->barrier_us, record->graph_elapsed_us, record->name, record->src0, record->src1);
++        }
++        fclose(file);
++    }
++    free(ggml_cpu_profile_records);
++    ggml_cpu_profile_records = NULL;
++    ggml_cpu_profile_count = 0;
++    ggml_cpu_profile_capacity = 0;
++    ggml_cpu_profile_path[0] = '\0';
++}
++
++static struct ggml_cpu_profile_record * ggml_cpu_profile_record_node(
++        uint64_t graph_id, int node_index, const struct ggml_tensor * node,
++        int fused_nodes, int64_t worker_us) {
++    if (ggml_cpu_profile_count >= ggml_cpu_profile_capacity) {
++        return NULL;
++    }
++    struct ggml_cpu_profile_record * record = &ggml_cpu_profile_records[ggml_cpu_profile_count++];
++    record->graph_id = graph_id;
++    record->node_index = node_index;
++    record->op = node->op;
++    record->fused_nodes = fused_nodes;
++    record->worker_us = worker_us;
++    record->barrier_us = 0;
++    record->graph_elapsed_us = 0;
++    record->name = node->name;
++    record->src0 = node->src[0] ? node->src[0]->name : "";
++    record->src1 = node->src[1] ? node->src[1]->name : "";
++    return record;
++}
++
++static bool ggml_cpu_profile_is_marker(const struct ggml_tensor * node) {
++    const char * name = node->name;
++    return name[0] != '\0' && (
++        strncmp(name, "model.input_embed", 17) == 0 ||
++        strncmp(name, "attn_norm-", 10) == 0 ||
++        strncmp(name, "attn_output-", 12) == 0 ||
++        strncmp(name, "linear_attn_out-", 16) == 0 ||
++        strncmp(name, "ffn_moe_inp-", 12) == 0 ||
++        strncmp(name, "ffn_moe_topk-", 13) == 0 ||
++        strncmp(name, "ffn_moe_argsort-", 16) == 0 ||
++        strncmp(name, "ffn_moe_out-", 12) == 0 ||
++        strncmp(name, "ffn_shexp-", 10) == 0 ||
++        strncmp(name, "ffn_shexp_gated-", 16) == 0 ||
++        strncmp(name, "ffn_out-", 8) == 0 ||
++        strncmp(name, "post_moe-", 9) == 0 ||
++        strncmp(name, "result_norm", 11) == 0 ||
++        strncmp(name, "result_output", 13) == 0);
++}
++
+ #if defined(__clang__) || defined(__GNUC__)
+ #define GGML_CACHE_ALIGN __attribute__((aligned(GGML_CACHE_LINE)))
+ #endif
+@@ -1582,6 +1682,25 @@ static void ggml_compute_forward_mul_mat_id(
+ 
+     GGML_ASSERT(params->wsize >= (size_t)((char *) wdata_cur - (char *) params->wdata));
+ 
++    // A negative expert id marks a cache hit handled by another backend. Keep
++    // the corresponding output lane at zero so the two paths can be added.
++    // Preserve the original Native path cost when every id is non-negative.
++    bool has_negative_id = false;
++    for (int64_t iid1 = 0; iid1 < ids->ne[1] && !has_negative_id; ++iid1) {
++        for (int id = 0; id < n_ids; ++id) {
++            const int32_t expert = *(const int32_t *) ((const char *) ids->data + iid1*ids->nb[1] + id*ids->nb[0]);
++            if (expert < 0) {
++                has_negative_id = true;
++                break;
++            }
++        }
++    }
++    if (has_negative_id) {
++        for (int64_t i = ith; i < ggml_nelements(dst); i += nth) {
++            ((float *) dst->data)[i] = 0.0f;
++        }
++    }
++
+     if (src1->type != vec_dot_type) {
+         char * wdata = params->wdata;
+ 
+@@ -1628,6 +1747,9 @@ static void ggml_compute_forward_mul_mat_id(
+             for (int id = 0; id < n_ids; ++id) {
+                 const int32_t i02 = *(const int32_t *) ((const char *) ids->data + iid1*ids->nb[1] + id*ids->nb[0]);
+ 
++                if (i02 < 0) {
++                    continue;
++                }
+                 assert(i02 >= 0 && i02 < n_as);
+ 
+                 MMID_MATRIX_ROW(i02, matrix_row_counts[i02]) = (struct mmid_row_mapping) {id, iid1};
+@@ -3084,6 +3206,11 @@ static thread_ret_t ggml_graph_compute_thread(void * data) {
+         /*.use_ref    =*/ cplan->use_ref,
+     };
+ 
++    const bool profile_graph = ggml_cpu_profile_active != 0;
++    const uint64_t profile_graph_id = state->ith == 0 && profile_graph
++        ? ggml_cpu_profile_graph_counter++ : 0;
++    const int64_t profile_graph_begin = state->ith == 0 && profile_graph ? ggml_time_us() : 0;
++
+ #ifdef GGML_USE_OPENMP
+     GGML_PRINT_DEBUG("thread #%d compute-start cplan %p\n", state->ith, (const void *)cplan);
+ #else
+@@ -3104,12 +3231,22 @@ static thread_ret_t ggml_graph_compute_thread(void * data) {
+ 
+         // TODO: move fused-op detection into ggml_graph_plan so fusion decisions are made once at planning time
+         // Try fused ops, fall back to normal compute
++        const int profile_node_index = node_n;
++        const bool profile_marker = state->ith == 0 && profile_graph &&
++            (ggml_cpu_profile_is_marker(node) || node_n + 1 == cgraph->n_nodes);
++        const int64_t profile_worker_begin = profile_marker ? ggml_time_us() : 0;
+         const int n_fused = ggml_cpu_try_fuse_ops(cgraph, node_n, &params, cplan);
+         if (n_fused > 0) {
+             node_n += n_fused;
+         } else {
+             ggml_compute_forward(&params, node);
+         }
++        const int64_t profile_worker_end = profile_marker ? ggml_time_us() : 0;
++        struct ggml_cpu_profile_record * profile_record = NULL;
++        if (profile_marker) {
++            profile_record = ggml_cpu_profile_record_node(profile_graph_id, profile_node_index, node, n_fused,
++                profile_worker_end - profile_worker_begin);
++        }
+ 
+         if (state->ith == 0 && cplan->abort_callback &&
+                 cplan->abort_callback(cplan->abort_callback_data)) {
+@@ -3117,9 +3254,14 @@ static thread_ret_t ggml_graph_compute_thread(void * data) {
+             tp->ec    = GGML_STATUS_ABORTED;
+         }
+ 
+-        if (node_n + 1 < cgraph->n_nodes) {
++        if (node_n + 1 < cgraph->n_nodes || profile_graph) {
+             ggml_barrier(state->threadpool);
+         }
++        if (state->ith == 0 && profile_record != NULL) {
++            const int64_t profile_barrier_end = ggml_time_us();
++            profile_record->barrier_us = profile_barrier_end - profile_worker_end;
++            profile_record->graph_elapsed_us = profile_barrier_end - profile_graph_begin;
++        }
+     }
+ 
+ #ifdef GGML_USE_OPENMP
+@@ -3128,7 +3270,9 @@ static thread_ret_t ggml_graph_compute_thread(void * data) {
+     GGML_PRINT_DEBUG("thread #%d compute-done cplan %p last-graph %d\n", state->ith, (const void *)cplan, state->last_graph);
+ #endif
+ 
+-    ggml_barrier(state->threadpool);
++    if (!profile_graph) {
++        ggml_barrier(state->threadpool);
++    }
+ 
+ #ifdef GGML_USE_CPU_RISCV64_SPACEMIT
+     ggml_backend_cpu_riscv64_spacemit_clear_numa_thread_affinity_threaded(state->ith);
+diff --git a/ggml/src/ggml-cpu/repack.cpp b/ggml/src/ggml-cpu/repack.cpp
+index 9689ca3..8c3e7c5 100644
+--- a/ggml/src/ggml-cpu/repack.cpp
++++ b/ggml/src/ggml-cpu/repack.cpp
+@@ -4437,6 +4437,25 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PAR
+         auto * matrix_row_counts = (int64_t *) (wdata_src1_end);                                        // [n_as]
+         struct mmid_row_mapping * matrix_rows = (struct mmid_row_mapping *) (matrix_row_counts + n_as); // [n_as][ne12]
+ 
++        // Negative ids are lanes already executed by the GPU expert cache.
++        // Avoid touching the output first on the unchanged Native path.
++        bool has_negative_id = false;
++        for (int64_t iid1 = 0; iid1 < ids->ne[1] && !has_negative_id; ++iid1) {
++            for (int id = 0; id < n_ids; ++id) {
++                const int32_t expert =
++                    *(const int32_t *) ((const char *) ids->data + iid1 * ids->nb[1] + id * ids->nb[0]);
++                if (expert < 0) {
++                    has_negative_id = true;
++                    break;
++                }
++            }
++        }
++        if (has_negative_id) {
++            for (int64_t i = ith; i < ggml_nelements(dst); i += nth) {
++                ((float *) dst->data)[i] = 0.0f;
++            }
++        }
++
+         // src1: float32 => param type
+         for (int64_t i12 = 0; i12 < ne12; ++i12) {
+             for (int64_t i11 = ith; i11 < ne11; i11 += nth) {
+@@ -4458,6 +4477,9 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PAR
+                     const int32_t i02 =
+                         *(const int32_t *) ((const char *) ids->data + iid1 * ids->nb[1] + id * ids->nb[0]);
+ 
++                    if (i02 < 0) {
++                        continue;
++                    }
+                     GGML_ASSERT(i02 >= 0 && i02 < n_as);
+ 
+                     MMID_MATRIX_ROW(i02, matrix_row_counts[i02]) = { id, iid1 };
+diff --git a/include/llama.h b/include/llama.h
+index 49a758d..e327b80 100644
+--- a/include/llama.h
++++ b/include/llama.h
+@@ -317,6 +317,15 @@ extern "C" {
+         // NULL-terminated list of buffer types to use for tensors that match a pattern
+         const struct llama_model_tensor_buft_override * tensor_buft_overrides;
+ 
++        // Optional CSV file with "layer,expert" rows for a packed GPU expert cache.
++        // The full expert tensors remain available to the normal CPU execution path.
++        const char * hybrid_expert_cache_plan;
++
++        // -1 keeps the fixed cache path. 0 records exact runtime cache statistics.
++        // 1..10 also promote a layer's complete miss-set after a decode token when
++        // the miss count is at most this value, using it as the next-token predictor.
++        int32_t hybrid_expert_cache_promote_threshold;
++
+         int32_t n_gpu_layers; // number of layers to store in VRAM, a negative value means all layers
+         enum llama_split_mode split_mode; // how to split the model across multiple GPUs
+         enum llama_load_mode  load_mode;  // how to load the model
+@@ -349,6 +358,21 @@ extern "C" {
+         bool load_mtp;        // whether to load MTP layers
+     };
+ 
++    struct llama_hybrid_cache_stats {
++        int32_t promote_threshold;
++        uint64_t decode_tokens;
++        uint64_t layer_decisions;
++        uint64_t expert_requests;
++        uint64_t cache_hits;
++        uint64_t cache_misses;
++        uint64_t cpu_fallback_layers;
++        uint64_t promoted_experts;
++        uint64_t h2d_weight_bytes;
++        uint64_t h2d_metadata_bytes;
++        uint64_t promotion_time_us;
++        uint64_t miss_count_histogram[11];
++    };
++
+     struct llama_sampler_seq_config {
+         llama_seq_id           seq_id;
+         struct llama_sampler * sampler;
+@@ -991,6 +1015,11 @@ extern "C" {
+             struct llama_context * ctx,
+               struct llama_batch   batch);
+ 
++    // Exact counters from the lightweight hybrid cache path. The caller can
++    // reset after warmup so the next measurement window has a clean denominator.
++    LLAMA_API struct llama_hybrid_cache_stats llama_hybrid_cache_stats_get(const struct llama_context * ctx);
++    LLAMA_API void llama_hybrid_cache_stats_reset(struct llama_context * ctx);
++
+     // Set the number of threads used for decoding
+     // n_threads is the number of threads used for generation (single token)
+     // n_threads_batch is the number of threads used for prompt and batch processing (multiple tokens)
+diff --git a/src/llama-context.cpp b/src/llama-context.cpp
+index 179c526..1dc7a21 100644
+--- a/src/llama-context.cpp
++++ b/src/llama-context.cpp
+@@ -17,6 +17,7 @@
+ #include <cmath>
+ #include <cstring>
+ #include <limits>
++#include <numeric>
+ #include <stdexcept>
+ #include <string>
+ 
+@@ -476,6 +477,44 @@ llama_context::llama_context(
+             sampling.token_ids_full_vocab[i] = i;
+         }
+     }
++
++    hybrid_cache_promote_threshold = model.hybrid_cache_promote_threshold();
++    if (hybrid_cache_promote_threshold >= 0) {
++        if (hybrid_cache_promote_threshold > 10) {
++            throw std::runtime_error("hybrid expert cache promotion threshold must be in [-1, 10]");
++        }
++
++        const int n_layer = model.hparams.n_layer();
++        const int n_expert = model.hparams.n_expert;
++        const int n_expert_used = model.hparams.n_expert_used;
++        hybrid_cache_layers.resize(n_layer);
++        hybrid_cache_route_ids.resize(static_cast<size_t>(n_layer) * n_expert_used);
++        hybrid_cache_stats.promote_threshold = hybrid_cache_promote_threshold;
++
++        for (int il = 0; il < n_layer; ++il) {
++            const auto & layer = model.layers[il];
++            if (layer.ffn_exps_cache_ids.empty()) {
++                throw std::runtime_error("hybrid expert cache promotion requires a cache plan for every layer");
++            }
++
++            auto & state = hybrid_cache_layers[il];
++            state.ids = layer.ffn_exps_cache_ids;
++            state.gpu_map.assign(n_expert, 0);
++            state.cpu_map.resize(n_expert);
++            state.hit_mask.assign(n_expert, 0.0f);
++            state.last_touch.assign(state.ids.size(), 0);
++            std::iota(state.cpu_map.begin(), state.cpu_map.end(), 0);
++            for (size_t slot = 0; slot < state.ids.size(); ++slot) {
++                const int32_t expert = state.ids[slot];
++                state.gpu_map[expert] = static_cast<int32_t>(slot);
++                state.cpu_map[expert] = -1;
++                state.hit_mask[expert] = 1.0f;
++            }
++        }
++
++        LLAMA_LOG_INFO("%s: hybrid cache route capture enabled, promotion threshold = %d\n",
++                __func__, hybrid_cache_promote_threshold);
++    }
+ }
+ 
+ llama_context::~llama_context() {
+@@ -1402,6 +1441,130 @@ llm_graph_result * llama_context::process_ubatch(const llama_ubatch & ubatch, ll
+     return res;
+ }
+ 
++llama_hybrid_cache_stats llama_context::hybrid_cache_stats_get() const {
++    return hybrid_cache_stats;
++}
++
++void llama_context::hybrid_cache_stats_reset() {
++    const int32_t threshold = hybrid_cache_stats.promote_threshold;
++    hybrid_cache_stats = {};
++    hybrid_cache_stats.promote_threshold = threshold;
++}
++
++void llama_context::hybrid_cache_process_routes(const llm_graph_result * res, uint32_t n_tokens) {
++    if (hybrid_cache_promote_threshold < 0 || n_tokens != 1) {
++        return;
++    }
++
++    const int n_layer = model.hparams.n_layer();
++    const int n_expert_used = model.hparams.n_expert_used;
++    GGML_ASSERT(hybrid_cache_route_ids.size() == static_cast<size_t>(n_layer) * n_expert_used);
++    ggml_tensor * tensor = res->t_moe_selected_experts_packed;
++    GGML_ASSERT(tensor != nullptr);
++    GGML_ASSERT(tensor->type == GGML_TYPE_I32);
++    GGML_ASSERT(ggml_nelements(tensor) == n_layer * n_expert_used);
++    ggml_backend_t backend = ggml_backend_sched_get_tensor_backend(sched.get(), tensor);
++    GGML_ASSERT(backend != nullptr);
++    ggml_backend_tensor_get_async(
++            backend, tensor, hybrid_cache_route_ids.data(), 0,
++            hybrid_cache_route_ids.size() * sizeof(hybrid_cache_route_ids[0]));
++    ggml_backend_sched_synchronize(sched.get());
++
++    ++hybrid_cache_clock;
++    ++hybrid_cache_stats.decode_tokens;
++    llama_model & mutable_model = const_cast<llama_model &>(model);
++
++    for (int il = 0; il < n_layer; ++il) {
++        auto & layer = mutable_model.layers[il];
++        auto & state = hybrid_cache_layers[il];
++        const int32_t * selected = hybrid_cache_route_ids.data() + static_cast<size_t>(il) * n_expert_used;
++        std::vector<int32_t> misses;
++        misses.reserve(n_expert_used);
++
++        ++hybrid_cache_stats.layer_decisions;
++        for (int i = 0; i < n_expert_used; ++i) {
++            const int32_t expert = selected[i];
++            GGML_ASSERT(expert >= 0 && expert < model.hparams.n_expert);
++            ++hybrid_cache_stats.expert_requests;
++            if (state.cpu_map[expert] < 0) {
++                ++hybrid_cache_stats.cache_hits;
++                const size_t slot = static_cast<size_t>(state.gpu_map[expert]);
++                state.last_touch[slot] = hybrid_cache_clock;
++            } else {
++                ++hybrid_cache_stats.cache_misses;
++                misses.push_back(expert);
++            }
++        }
++
++        const size_t miss_count = misses.size();
++        ++hybrid_cache_stats.miss_count_histogram[(std::min)(size_t(10), miss_count)];
++        if (miss_count > 0) {
++            ++hybrid_cache_stats.cpu_fallback_layers;
++        }
++        if (miss_count == 0 || static_cast<int>(miss_count) > hybrid_cache_promote_threshold) {
++            continue;
++        }
++
++        const int64_t promote_begin_us = ggml_time_us();
++        bool maps_changed = false;
++        for (int32_t expert : misses) {
++            size_t victim = state.ids.size();
++            uint64_t oldest = std::numeric_limits<uint64_t>::max();
++            for (size_t slot = 0; slot < state.ids.size(); ++slot) {
++                const int32_t resident = state.ids[slot];
++                bool selected_now = false;
++                for (int i = 0; i < n_expert_used; ++i) {
++                    selected_now = selected_now || selected[i] == resident;
++                }
++                if (!selected_now && state.last_touch[slot] < oldest) {
++                    oldest = state.last_touch[slot];
++                    victim = slot;
++                }
++            }
++            GGML_ASSERT(victim < state.ids.size());
++
++            const int32_t evicted = state.ids[victim];
++            auto copy_weight = [&](ggml_tensor * destination, const ggml_tensor * source) {
++                GGML_ASSERT(destination->nb[2] == source->nb[2]);
++                const size_t slice_bytes = source->nb[2];
++                hybrid_cache_staging.resize(slice_bytes);
++                ggml_backend_tensor_get(
++                        source, hybrid_cache_staging.data(),
++                        static_cast<size_t>(expert) * source->nb[2], slice_bytes);
++                ggml_backend_tensor_set(
++                        destination, hybrid_cache_staging.data(),
++                        victim * destination->nb[2], slice_bytes);
++                hybrid_cache_stats.h2d_weight_bytes += slice_bytes;
++            };
++
++            copy_weight(layer.ffn_gate_exps_cache, layer.ffn_gate_exps);
++            copy_weight(layer.ffn_up_exps_cache,   layer.ffn_up_exps);
++            copy_weight(layer.ffn_down_exps_cache, layer.ffn_down_exps);
++
++            state.gpu_map[evicted] = 0;
++            state.cpu_map[evicted] = evicted;
++            state.hit_mask[evicted] = 0.0f;
++            state.gpu_map[expert] = static_cast<int32_t>(victim);
++            state.cpu_map[expert] = -1;
++            state.hit_mask[expert] = 1.0f;
++            state.ids[victim] = expert;
++            state.last_touch[victim] = hybrid_cache_clock;
++            ++hybrid_cache_stats.promoted_experts;
++            maps_changed = true;
++        }
++
++        if (maps_changed) {
++            const size_t i32_bytes = state.gpu_map.size() * sizeof(state.gpu_map[0]);
++            const size_t f32_bytes = state.hit_mask.size() * sizeof(state.hit_mask[0]);
++            ggml_backend_tensor_set(layer.ffn_exps_gpu_map, state.gpu_map.data(), 0, i32_bytes);
++            ggml_backend_tensor_set(layer.ffn_exps_cpu_map, state.cpu_map.data(), 0, i32_bytes);
++            ggml_backend_tensor_set(layer.ffn_exps_hit_mask, state.hit_mask.data(), 0, f32_bytes);
++            hybrid_cache_stats.h2d_metadata_bytes += i32_bytes * 2 + f32_bytes;
++        }
++        hybrid_cache_stats.promotion_time_us += ggml_time_us() - promote_begin_us;
++    }
++}
++
+ int llama_context::encode(const llama_batch & batch_inp) {
+     // MTP hook batches carry both token (next-token id) and embd (h_nextn row),
+     // so accept either present rather than requiring exactly one.
+@@ -1854,6 +2017,8 @@ int llama_context::decode(const llama_batch & batch_inp) {
+             }
+         }
+ 
++        hybrid_cache_process_routes(res, ubatch.n_tokens);
++
+         // plot the computation graph in dot format (for debugging purposes)
+         //if (n_past%100 == 0) {
+         //    ggml_graph_dump_dot(gf, NULL, "llama.dot");
+@@ -2526,8 +2691,11 @@ llm_graph_cb llama_context::graph_get_cb() const {
+         // - force the last op of the layer on the specified backend to avoid running it on the backend of the next layer due to scheduling
+         // FIXME: fix in ggml_backend_sched
+         const bool full_offload = model.n_gpu_layers() > model.hparams.n_layer_all;
+-        if (ubatch.n_tokens < 32 || full_offload) {
+-            if (il != -1 && (strcmp(name, "norm") == 0 || strcmp(name, "l_last") == 0)) {
++        const bool route_pack =
++                strcmp(name, "ffn_moe_routes_pack_cont") == 0 ||
++                strcmp(name, "ffn_moe_routes_pack_concat") == 0;
++        if (route_pack || ubatch.n_tokens < 32 || full_offload) {
++            if (il != -1 && (route_pack || strcmp(name, "norm") == 0 || strcmp(name, "l_last") == 0)) {
+                 const auto & dev_layer = model.dev_layer(il);
+                 for (const auto & backend : backends) {
+                     if (ggml_backend_get_device(backend.get()) == dev_layer) {
+@@ -4220,6 +4388,14 @@ int32_t llama_decode(
+     return ret;
+ }
+ 
++llama_hybrid_cache_stats llama_hybrid_cache_stats_get(const llama_context * ctx) {
++    return ctx->hybrid_cache_stats_get();
++}
++
++void llama_hybrid_cache_stats_reset(llama_context * ctx) {
++    ctx->hybrid_cache_stats_reset();
++}
++
+ //
+ // perf
+ //
+diff --git a/src/llama-context.h b/src/llama-context.h
+index bf91daa..c565ef3 100644
+--- a/src/llama-context.h
++++ b/src/llama-context.h
+@@ -143,6 +143,9 @@ struct llama_context {
+     int encode(const llama_batch & batch_inp);
+     int decode(const llama_batch & batch_inp);
+ 
++    llama_hybrid_cache_stats hybrid_cache_stats_get() const;
++    void hybrid_cache_stats_reset();
++
+     //
+     // state save/load
+     //
+@@ -341,6 +344,23 @@ private:
+ 
+     std::vector<swap_info> output_swaps;
+ 
++    struct hybrid_cache_layer_state {
++        std::vector<int32_t> ids;
++        std::vector<int32_t> gpu_map;
++        std::vector<int32_t> cpu_map;
++        std::vector<float> hit_mask;
++        std::vector<uint64_t> last_touch;
++    };
++
++    void hybrid_cache_process_routes(const llm_graph_result * res, uint32_t n_tokens);
++
++    int32_t hybrid_cache_promote_threshold = -1;
++    uint64_t hybrid_cache_clock = 0;
++    llama_hybrid_cache_stats hybrid_cache_stats = {};
++    std::vector<hybrid_cache_layer_state> hybrid_cache_layers;
++    std::vector<int32_t> hybrid_cache_route_ids;
++    std::vector<uint8_t> hybrid_cache_staging;
++
+     ggml_backend_sched_ptr sched;
+ 
+     bool sched_need_reserve = true;
+diff --git a/src/llama-graph.cpp b/src/llama-graph.cpp
+index 8fca8e1..02656ba 100644
+--- a/src/llama-graph.cpp
++++ b/src/llama-graph.cpp
+@@ -1327,6 +1327,10 @@ void llm_graph_result::reset() {
+     t_layer_inp.resize(LLAMA_MAX_LAYERS + 1);
+     std::fill(t_layer_inp.begin(), t_layer_inp.end(), nullptr);
+ 
++    t_moe_selected_experts.resize(LLAMA_MAX_LAYERS);
++    std::fill(t_moe_selected_experts.begin(), t_moe_selected_experts.end(), nullptr);
++    t_moe_selected_experts_packed = nullptr;
++
+     t_sampled.clear();
+     t_sampled_probs.clear();
+     t_sampled_logits.clear();
+@@ -1398,6 +1402,9 @@ void llm_graph_result::set_outputs(const llm_graph_params & params) {
+             ggml_set_output(tensor);
+         }
+     }
++    if (t_moe_selected_experts_packed != nullptr) {
++        ggml_set_output(t_moe_selected_experts_packed);
++    }
+ }
+ 
+ bool llm_graph_result::can_reuse(const llm_graph_params & params) {
+@@ -1913,7 +1920,13 @@ ggml_tensor * llm_graph_context::build_moe_ffn(
+          ggml_tensor * up_exps_s,
+          ggml_tensor * gate_exps_s,
+          ggml_tensor * down_exps_s,
+-         ggml_tensor * selected_experts_in) const {
++         ggml_tensor * selected_experts_in,
++         ggml_tensor * cache_up_exps,
++         ggml_tensor * cache_gate_exps,
++         ggml_tensor * cache_down_exps,
++         ggml_tensor * cache_gpu_map,
++         ggml_tensor * cache_cpu_map,
++         ggml_tensor * cache_hit_mask) const {
+     return build_moe_ffn(
+         cur,
+         gate_inp,  /* gate_inp_b  */ nullptr,
+@@ -1934,7 +1947,13 @@ ggml_tensor * llm_graph_context::build_moe_ffn(
+         up_exps_s,
+         gate_exps_s,
+         down_exps_s,
+-        selected_experts_in
++        selected_experts_in,
++        cache_up_exps,
++        cache_gate_exps,
++        cache_down_exps,
++        cache_gpu_map,
++        cache_cpu_map,
++        cache_hit_mask
+     );
+ }
+ 
+@@ -1962,7 +1981,13 @@ ggml_tensor * llm_graph_context::build_moe_ffn(
+          ggml_tensor * up_exps_s,
+          ggml_tensor * gate_exps_s,
+          ggml_tensor * down_exps_s,
+-         ggml_tensor * selected_experts_in) const {
++         ggml_tensor * selected_experts_in,
++         ggml_tensor * cache_up_exps,
++         ggml_tensor * cache_gate_exps,
++         ggml_tensor * cache_down_exps,
++         ggml_tensor * cache_gpu_map,
++         ggml_tensor * cache_cpu_map,
++         ggml_tensor * cache_hit_mask) const {
+     const int64_t n_embd   = cur->ne[0];
+     const int64_t n_tokens = cur->ne[1];
+     const bool weight_before_ffn = arch == LLM_ARCH_LLAMA4; // for llama4, we apply the sigmoid-ed weights before the FFN
+@@ -2114,6 +2139,51 @@ ggml_tensor * llm_graph_context::build_moe_ffn(
+     ggml_tensor * up = nullptr;
+     ggml_tensor * experts = nullptr;
+ 
++    const bool hybrid_cache = cache_up_exps != nullptr;
++    if (hybrid_cache) {
++        GGML_ASSERT(cache_gate_exps && cache_down_exps && cache_gpu_map && cache_cpu_map && cache_hit_mask);
++        GGML_ASSERT(gate_exps && up_exps && down_exps && !gate_up_exps);
++        GGML_ASSERT(!gate_inp_b && !up_exps_b && !gate_exps_b && !down_exps_b && !gate_up_exps_b);
++        GGML_ASSERT(!up_exps_s && !gate_exps_s && !down_exps_s);
++        GGML_ASSERT(type_op == LLM_FFN_SILU && !weight_before_ffn);
++
++        GGML_ASSERT(il >= 0 && il < LLAMA_MAX_LAYERS);
++        res->t_moe_selected_experts[il] = selected_experts;
++
++        ggml_tensor * selected_experts_cont = ggml_cont(ctx0, selected_experts);
++        ggml_tensor * selected_experts_flat = ggml_reshape_1d(
++            ctx0, selected_experts_cont, n_expert_used * n_tokens);
++        auto map_selected_ids = [&](ggml_tensor * map, const char * name) {
++            ggml_tensor * mapped = ggml_get_rows(ctx0, map, selected_experts_flat);
++            mapped = ggml_reshape_2d(ctx0, mapped, n_expert_used, n_tokens);
++            cb(mapped, name, il);
++            return mapped;
++        };
++        ggml_tensor * gpu_selected_experts = map_selected_ids(cache_gpu_map, "ffn_moe_cache_gpu_ids");
++        ggml_tensor * cpu_selected_experts = map_selected_ids(cache_cpu_map, "ffn_moe_cache_cpu_ids");
++        ggml_tensor * hit_mask = ggml_get_rows(ctx0, cache_hit_mask, selected_experts_flat);
++        hit_mask = ggml_reshape_3d(ctx0, hit_mask, 1, n_expert_used, n_tokens);
++        cb(hit_mask, "ffn_moe_cache_hit_mask", il);
++
++        auto build_expert_path = [&](ggml_tensor * path_up, ggml_tensor * path_gate, ggml_tensor * path_down,
++                                     ggml_tensor * path_ids, const char * prefix) {
++            ggml_tensor * path_up_out = build_lora_mm_id(path_up, cur, path_ids);
++            ggml_tensor * path_gate_out = build_lora_mm_id(path_gate, cur, path_ids);
++            ggml_tensor * path_act = ggml_swiglu_split(ctx0, path_gate_out, path_up_out);
++            ggml_tensor * path_out = build_lora_mm_id(path_down, path_act, path_ids);
++            cb(path_out, prefix, il);
++            return path_out;
++        };
++
++        ggml_tensor * cpu_experts = build_expert_path(
++            up_exps, gate_exps, down_exps, cpu_selected_experts, "ffn_moe_cache_cpu_out");
++        ggml_tensor * gpu_experts = build_expert_path(
++            cache_up_exps, cache_gate_exps, cache_down_exps, gpu_selected_experts, "ffn_moe_cache_gpu_out");
++        gpu_experts = ggml_mul(ctx0, gpu_experts, hit_mask);
++        cb(gpu_experts, "ffn_moe_cache_gpu_masked", il);
++        experts = ggml_add(ctx0, cpu_experts, gpu_experts);
++        cb(experts, "ffn_moe_cache_merged", il);
++    } else {
+     if (gate_up_exps) {
+         // merged gate_up path: one mul_mat_id, then split into gate and up views
+         ggml_tensor * gate_up = build_lora_mm_id(gate_up_exps, cur, selected_experts, up_exps_s); // [n_ff*2, n_expert_used, n_tokens]
+@@ -2263,6 +2333,7 @@ ggml_tensor * llm_graph_context::build_moe_ffn(
+         experts = ggml_add_id(ctx0, experts, down_exps_b, selected_experts);
+         cb(experts, "ffn_moe_down_biased", il);
+     }
++    }
+ 
+     if (!weight_before_ffn) {
+         experts = ggml_mul(ctx0, experts, weights);
+diff --git a/src/llama-graph.h b/src/llama-graph.h
+index b388e02..f5994ea 100644
+--- a/src/llama-graph.h
++++ b/src/llama-graph.h
+@@ -938,6 +938,11 @@ public:
+ 
+     std::vector<ggml_tensor *> t_layer_inp;
+ 
++    // Retained only for hybrid expert-cache graphs. Keeping these tiny I32
++    // tensors as outputs provides exact routing IDs without the eval callback.
++    std::vector<ggml_tensor *> t_moe_selected_experts;
++    ggml_tensor * t_moe_selected_experts_packed = nullptr;
++
+     std::vector<ggml_tensor *> t_sampled;
+     std::vector<ggml_tensor *> t_sampled_probs;
+     std::vector<ggml_tensor *> t_sampled_logits;
+@@ -1112,10 +1117,16 @@ struct llm_graph_context {
+                      int   il,
+              ggml_tensor * probs_in = nullptr,
+              ggml_tensor * gate_up_exps = nullptr,
+-             ggml_tensor * up_exps_s = nullptr,
+-             ggml_tensor * gate_exps_s = nullptr,
+-             ggml_tensor * down_exps_s = nullptr,
+-             ggml_tensor * selected_experts_in = nullptr) const;
++              ggml_tensor * up_exps_s = nullptr,
++              ggml_tensor * gate_exps_s = nullptr,
++              ggml_tensor * down_exps_s = nullptr,
++              ggml_tensor * selected_experts_in = nullptr,
++              ggml_tensor * cache_up_exps = nullptr,
++              ggml_tensor * cache_gate_exps = nullptr,
++              ggml_tensor * cache_down_exps = nullptr,
++              ggml_tensor * cache_gpu_map = nullptr,
++              ggml_tensor * cache_cpu_map = nullptr,
++              ggml_tensor * cache_hit_mask = nullptr) const;
+ 
+     ggml_tensor * build_moe_ffn(
+              ggml_tensor * cur,
+@@ -1138,10 +1149,16 @@ struct llm_graph_context {
+              ggml_tensor * probs_in = nullptr,
+              ggml_tensor * gate_up_exps = nullptr,
+              ggml_tensor * gate_up_exps_b = nullptr,
+-             ggml_tensor * up_exps_s = nullptr,
+-             ggml_tensor * gate_exps_s = nullptr,
+-             ggml_tensor * down_exps_s = nullptr,
+-             ggml_tensor * selected_experts_in = nullptr) const;
++              ggml_tensor * up_exps_s = nullptr,
++              ggml_tensor * gate_exps_s = nullptr,
++              ggml_tensor * down_exps_s = nullptr,
++              ggml_tensor * selected_experts_in = nullptr,
++              ggml_tensor * cache_up_exps = nullptr,
++              ggml_tensor * cache_gate_exps = nullptr,
++              ggml_tensor * cache_down_exps = nullptr,
++              ggml_tensor * cache_gpu_map = nullptr,
++              ggml_tensor * cache_cpu_map = nullptr,
++              ggml_tensor * cache_hit_mask = nullptr) const;
+ 
+     //
+     // inputs
+diff --git a/src/llama-model-loader.cpp b/src/llama-model-loader.cpp
+index d924102..042f4f8 100644
+--- a/src/llama-model-loader.cpp
++++ b/src/llama-model-loader.cpp
+@@ -1079,7 +1079,7 @@ struct ggml_tensor * llama_model_loader::create_tensor(
+             // one ggml context per buffer type
+             int max_n_tensors = n_tensors;
+             max_n_tensors += 1;                   // duplicated output tensor
+-            max_n_tensors += hparams.n_layer()*2; // duplicated rope freq tensors
++            max_n_tensors += hparams.n_layer()*10; // rope duplicates plus optional packed expert-cache tensors
+             if (files.empty()) {
+                 max_n_tensors += hparams.n_layer()*256; // this should be well above what any model actually uses
+             }
+@@ -1344,6 +1344,21 @@ struct ggml_tensor * llama_model_loader::create_tensor(
+     return tensor;
+ }
+ 
++struct ggml_tensor * llama_model_loader::create_extra_tensor(
++        ggml_backend_buffer_type_t buft, enum ggml_type type,
++        const std::vector<int64_t> & ne, const std::string & name) {
++    auto it = ctx_map.find(buft);
++    if (it == ctx_map.end()) {
++        throw std::runtime_error(format("missing tensor context for extra tensor '%s'", name.c_str()));
++    }
++    if (ne.empty() || ne.size() > GGML_MAX_DIMS) {
++        throw std::runtime_error(format("invalid dimensions for extra tensor '%s'", name.c_str()));
++    }
++    ggml_tensor * tensor = ggml_new_tensor(it->second.get(), type, static_cast<int>(ne.size()), ne.data());
++    ggml_set_name(tensor, name.c_str());
++    return tensor;
++}
++
+ void llama_model_loader::done_getting_tensors(bool partial) const {
+     if (n_created > n_tensors) {
+         throw std::runtime_error(format("%s: too many tensors created; expected %d, got %d", __func__, n_tensors, n_created));
+diff --git a/src/llama-model-loader.h b/src/llama-model-loader.h
+index 407260e..9bbc112 100644
+--- a/src/llama-model-loader.h
++++ b/src/llama-model-loader.h
+@@ -195,6 +195,10 @@ struct llama_model_loader {
+         const llama_hparams & hparams, const buft_list_t * buft_list_cpu, const buft_list_t * buft_list_input, const buft_list_t * buft_list_output,
+         const buft_list_t * buft_list_layer, const LLM_TN_IMPL & tn, const std::initializer_list<int64_t> & ne, int flags);
+ 
++    struct ggml_tensor * create_extra_tensor(
++        ggml_backend_buffer_type_t buft, enum ggml_type type,
++        const std::vector<int64_t> & ne, const std::string & name);
++
+     void done_getting_tensors(bool partial = false) const;
+ 
+     void init_mappings(bool prefetch = true, llama_mlocks * mlock_mmaps = nullptr);
+diff --git a/src/llama-model.cpp b/src/llama-model.cpp
+index fc83658..0659fb3 100644
+--- a/src/llama-model.cpp
++++ b/src/llama-model.cpp
+@@ -32,6 +32,7 @@
+ #include <cstring>
+ #include <cmath>
+ #include <functional>
++#include <fstream>
+ #include <map>
+ #include <numeric>
+ #include <regex>
+@@ -1387,6 +1388,51 @@ void llama_model_base::load_vocab(llama_model_loader & ml) {
+     vocab.load(ml, kv);
+ }
+ 
++static std::vector<std::vector<int32_t>> load_hybrid_expert_cache_plan(
++        const char * path, int n_layers, int n_experts) {
++    std::ifstream input(path);
++    if (!input) {
++        throw std::runtime_error(format("failed to open hybrid expert cache plan '%s'", path));
++    }
++
++    std::vector<std::vector<int32_t>> result(n_layers);
++    std::string line;
++    int line_number = 0;
++    while (std::getline(input, line)) {
++        ++line_number;
++        if (line.empty() || line[0] == '#') {
++            continue;
++        }
++        std::replace(line.begin(), line.end(), ',', ' ');
++        std::istringstream row(line);
++        int layer = -1;
++        int expert = -1;
++        if (!(row >> layer >> expert)) {
++            if (line_number == 1) {
++                continue;
++            }
++            throw std::runtime_error(format("invalid hybrid cache plan row %d", line_number));
++        }
++        if (layer < 0 || layer >= n_layers || expert < 0 || expert >= n_experts) {
++            throw std::runtime_error(format("hybrid cache plan row %d is out of range", line_number));
++        }
++        result[layer].push_back(static_cast<int32_t>(expert));
++    }
++
++    size_t total = 0;
++    for (int layer = 0; layer < n_layers; ++layer) {
++        auto & ids = result[layer];
++        std::sort(ids.begin(), ids.end());
++        ids.erase(std::unique(ids.begin(), ids.end()), ids.end());
++        if (ids.empty()) {
++            throw std::runtime_error(format("hybrid cache plan has no resident experts for layer %d", layer));
++        }
++        total += ids.size();
++    }
++    LLAMA_LOG_INFO("hybrid expert cache: loaded %zu resident layer-expert entries from %s\n", total, path);
++    return result;
++}
++
+ bool llama_model_base::load_tensors(llama_model_loader & ml) {
+     const auto & split_mode   = params.split_mode;
+     const bool use_mlock      = params.load_mode == LLAMA_LOAD_MODE_MLOCK || params.load_mode == LLAMA_LOAD_MODE_MMAP_MLOCK;
+@@ -1663,6 +1709,41 @@ bool llama_model_base::load_tensors(llama_model_loader & ml) {
+             }
+         }
+     }
++    if (params.hybrid_expert_cache_plan != nullptr && params.hybrid_expert_cache_plan[0] != '\0') {
++        if (arch != LLM_ARCH_QWEN35MOE && arch != LLM_ARCH_QWEN4EXP) {
++            throw std::runtime_error("hybrid expert cache currently targets qwen35moe/qwen4exp");
++        }
++
++        const auto plan = load_hybrid_expert_cache_plan(
++            params.hybrid_expert_cache_plan, n_layer_all, static_cast<int>(hparams.n_expert));
++        for (int il = 0; il < n_layer_all; ++il) {
++            auto & layer = layers[il];
++            if (!layer.ffn_gate_exps || !layer.ffn_up_exps || !layer.ffn_down_exps || layer.ffn_gate_up_exps) {
++                throw std::runtime_error(format("hybrid expert cache requires separate gate/up/down tensors at layer %d", il));
++            }
++
++            ggml_backend_buffer_type_t buft = select_buft(il);
++            ggml_backend_dev_t dev = ggml_backend_buft_get_device(buft);
++            if (!dev || ggml_backend_dev_type(dev) != GGML_BACKEND_DEVICE_TYPE_GPU) {
++                throw std::runtime_error(format("hybrid expert cache layer %d has no GPU buffer", il));
++            }
++
++            layer.ffn_exps_cache_ids = plan[il];
++            const int64_t slots = static_cast<int64_t>(plan[il].size());
++            auto create_cache_weight = [&](ggml_tensor * source, const char * suffix) {
++                return ml.create_extra_tensor(
++                    buft, source->type, {source->ne[0], source->ne[1], slots},
++                    format("blk.%d.%s", il, suffix));
++            };
++            layer.ffn_gate_exps_cache = create_cache_weight(layer.ffn_gate_exps, "ffn_gate_exps.cache");
++            layer.ffn_up_exps_cache   = create_cache_weight(layer.ffn_up_exps,   "ffn_up_exps.cache");
++            layer.ffn_down_exps_cache = create_cache_weight(layer.ffn_down_exps, "ffn_down_exps.cache");
++            layer.ffn_exps_gpu_map  = ml.create_extra_tensor(buft, GGML_TYPE_I32, {1, hparams.n_expert}, format("blk.%d.ffn_exps.gpu_map", il));
++            layer.ffn_exps_cpu_map  = ml.create_extra_tensor(buft, GGML_TYPE_I32, {1, hparams.n_expert}, format("blk.%d.ffn_exps.cpu_map", il));
++            layer.ffn_exps_hit_mask = ml.create_extra_tensor(buft, GGML_TYPE_F32, {1, hparams.n_expert}, format("blk.%d.ffn_exps.hit_mask", il));
++        }
++    }
++
+     ml.done_getting_tensors();
+ 
+     // Tied NVFP4 output is valid when no separate LM-head scale tensors are present.
+@@ -1807,6 +1888,46 @@ bool llama_model_base::load_tensors(llama_model_loader & ml) {
+         }
+     }
+ 
++    if (params.hybrid_expert_cache_plan != nullptr && params.hybrid_expert_cache_plan[0] != '\0') {
++        size_t cache_bytes = 0;
++        std::vector<uint8_t> staging;
++        for (int il = 0; il < n_layer_all; ++il) {
++            auto & layer = layers[il];
++            auto populate_weight = [&](ggml_tensor * destination, const ggml_tensor * source) {
++                if (destination->nb[2] != source->nb[2]) {
++                    throw std::runtime_error(format("hybrid expert cache slice mismatch at layer %d", il));
++                }
++                const size_t slice_bytes = source->nb[2];
++                staging.resize(slice_bytes);
++                for (size_t slot = 0; slot < layer.ffn_exps_cache_ids.size(); ++slot) {
++                    const size_t source_offset = static_cast<size_t>(layer.ffn_exps_cache_ids[slot]) * source->nb[2];
++                    ggml_backend_tensor_get(source, staging.data(), source_offset, slice_bytes);
++                    ggml_backend_tensor_set(destination, staging.data(), slot * destination->nb[2], slice_bytes);
++                }
++                cache_bytes += ggml_nbytes(destination);
++            };
++
++            populate_weight(layer.ffn_gate_exps_cache, layer.ffn_gate_exps);
++            populate_weight(layer.ffn_up_exps_cache,   layer.ffn_up_exps);
++            populate_weight(layer.ffn_down_exps_cache, layer.ffn_down_exps);
++
++            std::vector<int32_t> gpu_map(hparams.n_expert, 0);
++            std::vector<int32_t> cpu_map(hparams.n_expert);
++            std::vector<float> hit_mask(hparams.n_expert, 0.0f);
++            std::iota(cpu_map.begin(), cpu_map.end(), 0);
++            for (size_t slot = 0; slot < layer.ffn_exps_cache_ids.size(); ++slot) {
++                const int32_t expert = layer.ffn_exps_cache_ids[slot];
++                gpu_map[expert] = static_cast<int32_t>(slot);
++                cpu_map[expert] = -1;
++                hit_mask[expert] = 1.0f;
++            }
++            ggml_backend_tensor_set(layer.ffn_exps_gpu_map,  gpu_map.data(),  0, gpu_map.size()  * sizeof(gpu_map[0]));
++            ggml_backend_tensor_set(layer.ffn_exps_cpu_map,  cpu_map.data(),  0, cpu_map.size()  * sizeof(cpu_map[0]));
++            ggml_backend_tensor_set(layer.ffn_exps_hit_mask, hit_mask.data(), 0, hit_mask.size() * sizeof(hit_mask[0]));
++        }
++        LLAMA_LOG_INFO("hybrid expert cache: populated %.2f MiB of packed GPU weights\n", cache_bytes / 1024.0 / 1024.0);
++    }
++
+     if (use_mmap_buffer) {
+         for (auto & mapping : ml.mappings) {
+             pimpl->mappings.emplace_back(std::move(mapping));
+@@ -1839,6 +1960,10 @@ llama_ftype llama_model::ftype() const {
+     return pimpl->ftype;
+ }
+ 
++int32_t llama_model::hybrid_cache_promote_threshold() const {
++    return params.hybrid_expert_cache_promote_threshold;
++}
++
+ size_t llama_model::size() const {
+     return pimpl->n_bytes;
+ }
+@@ -2664,6 +2789,25 @@ ggml_cgraph * llama_model::build_graph(const llm_graph_params & params) const {
+     // TODO: move reranking logic here and generalize
+     llm->build_dense_out(dense_2_out_layers, dense_2_out_layers_b, dense_3_out_layers);
+ 
++    if (this->params.hybrid_expert_cache_promote_threshold >= 0) {
++        ggml_tensor * packed_routes = nullptr;
++        for (int il = 0; il < hparams.n_layer(); ++il) {
++            ggml_tensor * layer_routes = llm->res->t_moe_selected_experts[il];
++            GGML_ASSERT(layer_routes != nullptr);
++            layer_routes = ggml_cont(llm->ctx0, layer_routes);
++            llm->cb(layer_routes, "ffn_moe_routes_pack_cont", il);
++            layer_routes = ggml_reshape_1d(llm->ctx0, layer_routes, ggml_nelements(layer_routes));
++            packed_routes = packed_routes == nullptr
++                    ? layer_routes
++                    : ggml_concat(llm->ctx0, packed_routes, layer_routes, 0);
++            llm->cb(packed_routes, "ffn_moe_routes_pack_concat", il);
++        }
++        GGML_ASSERT(packed_routes != nullptr);
++        ggml_set_name(packed_routes, "ffn_moe_routes_packed");
++        ggml_build_forward_expand(llm->gf, packed_routes);
++        llm->res->t_moe_selected_experts_packed = packed_routes;
++    }
++
+     llm->res->set_outputs(params);
+ 
+     return llm->res->get_gf();
+@@ -2678,6 +2822,8 @@ llama_model_params llama_model_default_params() {
+     llama_model_params result = {
+         /*.devices                     =*/ nullptr,
+         /*.tensor_buft_overrides       =*/ nullptr,
++        /*.hybrid_expert_cache_plan    =*/ nullptr,
++        /*.hybrid_expert_cache_promote_threshold =*/ -1,
+         /*.n_gpu_layers                =*/ -1,
+         /*.split_mode                  =*/ LLAMA_SPLIT_MODE_LAYER,
+         /*.load_mode                   =*/ LLAMA_LOAD_MODE_AUTO,
+diff --git a/src/llama-model.h b/src/llama-model.h
+index 3806653..e860b5b 100644
+--- a/src/llama-model.h
++++ b/src/llama-model.h
+@@ -336,6 +336,16 @@ struct llama_layer {
+     struct ggml_tensor * ffn_up_exps_b     = nullptr;
+     struct ggml_tensor * ffn_gate_up_exps_b = nullptr;
+ 
++    // Packed Stage-1 GPU expert cache. The source expert tensors above remain
++    // the CPU cold store; these tensors contain only the resident expert set.
++    struct ggml_tensor * ffn_gate_exps_cache = nullptr;
++    struct ggml_tensor * ffn_down_exps_cache = nullptr;
++    struct ggml_tensor * ffn_up_exps_cache   = nullptr;
++    struct ggml_tensor * ffn_exps_gpu_map    = nullptr;
++    struct ggml_tensor * ffn_exps_cpu_map    = nullptr;
++    struct ggml_tensor * ffn_exps_hit_mask   = nullptr;
++    std::vector<int32_t> ffn_exps_cache_ids;
++
+     // ff MoE per-expert scales (NVFP4 per-tensor scale2)
+     struct ggml_tensor * ffn_gate_exps_s   = nullptr;
+     struct ggml_tensor * ffn_down_exps_s   = nullptr;
+@@ -719,6 +729,7 @@ struct llama_model {
+     std::string desc() const;
+ 
+     llama_ftype ftype() const;
++    int32_t hybrid_cache_promote_threshold() const;
+ 
+     size_t size() const; // file size
+     size_t n_tensors() const;
+diff --git a/src/models/qwen35moe.cpp b/src/models/qwen35moe.cpp
+index 38f2a57..7c5daa3 100644
+--- a/src/models/qwen35moe.cpp
++++ b/src/models/qwen35moe.cpp
+@@ -497,6 +497,7 @@ ggml_tensor * llama_model_qwen35moe::graph::build_layer_attn_linear(
+ ggml_tensor * llama_model_qwen35moe::graph::build_layer_ffn(ggml_tensor * cur, const int il) {
+     // Check if this is an MoE layer
+     GGML_ASSERT(model.layers[il].ffn_gate_inp != nullptr);
++    cb(cur, "ffn_moe_inp", il);
+ 
+     ggml_tensor * moe_out =
+         build_moe_ffn(cur,
+@@ -512,7 +513,14 @@ ggml_tensor * llama_model_qwen35moe::graph::build_layer_ffn(ggml_tensor * cur, c
+             nullptr, model.layers[il].ffn_gate_up_exps,
+             model.layers[il].ffn_up_exps_s,
+             model.layers[il].ffn_gate_exps_s,
+-            model.layers[il].ffn_down_exps_s);
++            model.layers[il].ffn_down_exps_s,
++            nullptr,
++            model.layers[il].ffn_up_exps_cache,
++            model.layers[il].ffn_gate_exps_cache,
++            model.layers[il].ffn_down_exps_cache,
++            model.layers[il].ffn_exps_gpu_map,
++            model.layers[il].ffn_exps_cpu_map,
++            model.layers[il].ffn_exps_hit_mask);
+     cb(moe_out, "ffn_moe_out", il);
+ 
+     // Add shared experts if present - following Qwen3Next reference implementation
+@@ -690,7 +698,14 @@ llama_model_qwen35moe::graph_mtp::graph_mtp(const llama_model & model, const llm
+             nullptr, layer.ffn_gate_up_exps,
+             layer.ffn_up_exps_s,
+             layer.ffn_gate_exps_s,
+-            layer.ffn_down_exps_s);
++            layer.ffn_down_exps_s,
++            nullptr,
++            layer.ffn_up_exps_cache,
++            layer.ffn_gate_exps_cache,
++            layer.ffn_down_exps_cache,
++            layer.ffn_exps_gpu_map,
++            layer.ffn_exps_cpu_map,
++            layer.ffn_exps_hit_mask);
+     cb(moe_out, "mtp_ffn_moe_out", il);
+ 
+     if (layer.ffn_up_shexp != nullptr) {
+diff --git a/src/models/qwen4exp.cpp b/src/models/qwen4exp.cpp
+index acfdd5b..e0357ad 100644
+--- a/src/models/qwen4exp.cpp
++++ b/src/models/qwen4exp.cpp
+@@ -903,6 +903,7 @@ ggml_tensor * llama_model_qwen4exp::graph::build_layer_attn_linear(
+ 
+ ggml_tensor * llama_model_qwen4exp::graph::build_layer_ffn(ggml_tensor * cur, const int il) {
+     GGML_ASSERT(model.layers[il].ffn_gate_inp != nullptr);
++    cb(cur, "ffn_moe_inp", il);
+ 
+     ggml_tensor * moe_out =
+         build_moe_ffn(cur,
+@@ -918,7 +919,14 @@ ggml_tensor * llama_model_qwen4exp::graph::build_layer_ffn(ggml_tensor * cur, co
+             nullptr, model.layers[il].ffn_gate_up_exps,
+             model.layers[il].ffn_up_exps_s,
+             model.layers[il].ffn_gate_exps_s,
+-            model.layers[il].ffn_down_exps_s);
++            model.layers[il].ffn_down_exps_s,
++            nullptr,
++            model.layers[il].ffn_up_exps_cache,
++            model.layers[il].ffn_gate_exps_cache,
++            model.layers[il].ffn_down_exps_cache,
++            model.layers[il].ffn_exps_gpu_map,
++            model.layers[il].ffn_exps_cpu_map,
++            model.layers[il].ffn_exps_hit_mask);
+     cb(moe_out, "ffn_moe_out", il);
+ 
+     // shared experts, as in the Qwen3Next reference
