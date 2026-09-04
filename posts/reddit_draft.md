@@ -34,7 +34,7 @@ Two honest caveats:
 
 I also tested adjacent-token selective H2D. Hit rate rose from 31% to 62%, yet throughput fell to 11–12.8 tok/s. The main issue was the per-token route readback/synchronization boundary plus fragmented expert-slice transfers. That path stays experimental and disabled.
 
-For Cold Prefill, increasing physical ubatch to 8192 produced a 524.003 tok/s three-run mean for 16,363 tokens, with a 32K single check at 617.342 tok/s. At 262K the cold prefill cost is 786.9 s (331.8 tok/s) — still the system's biggest single wait, and the next work item (expert bucketing plus grouped GEMM).
+For Cold Prefill, increasing physical ubatch to 8192 produced a 524.003 tok/s three-run mean for 16,363 tokens, with a 32K single check at 617.342 tok/s. At 262K the cold prefill cost is 786.9 s (331.8 tok/s) — still the system's biggest single wait. I'm actively working on an expert-bucketing + grouped-GEMM prefill path to push past 1000 tok/s; the first implementation round hasn't landed yet, and I'll add measured results to the repo as they arrive.
 
 Prior art this builds on (read and referenced, no source copied): llama.cpp as the base, Slotstream (carloslfu) for the expert-slot streaming idea on Apple Silicon, Fiddler (efeslab, arXiv 2402.07033) for the CPU-executes-missed-experts trade, and KTransformers as a heterogeneous MoE comparison.
 
@@ -42,6 +42,6 @@ Limitations: one machine, one model/quant family, Windows-only VRAM behavior obs
 
 I published the patch, both benchmark runners, the reproduction scripts, and the complete raw evidence trail (per-run JSON + stderr logs behind every number, ~1150 files) here:
 
-https://github.com/<placeholder>/moe-working-set-16gb
+https://github.com/zhaoyilun/moe-working-set-16gb
 
 Happy to answer questions about the WDDM behavior or the cache policy — those were the two things I got wrong first.

@@ -83,7 +83,7 @@ large prompt ubatch
   -> existing selected-expert CUDA path
 ```
 
-Increasing physical ubatch from 2K to 8K raised the same-prompt 16K Prefill path from 287.387 to a 524.003 tok/s three-run mean. At 262K the cold prefill cost is 786.9 s (331.8 tok/s) — the system's largest single wait, and the next work item (expert bucketing + grouped GEMM).
+Increasing physical ubatch from 2K to 8K raised the same-prompt 16K Prefill path from 287.387 to a 524.003 tok/s three-run mean. At 262K the cold prefill cost is 786.9 s (331.8 tok/s) — the system's largest single wait. An expert-bucketing + grouped-GEMM prefill path targeting 1000+ tok/s is actively being developed; results will be added here when measured.
 
 ## Evidence labels
 

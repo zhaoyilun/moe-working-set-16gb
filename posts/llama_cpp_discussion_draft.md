@@ -53,4 +53,8 @@ I added an experimental packed 48×10 route observation tensor and adjacent-toke
 
 The repository package includes the patch, runners, raw per-run evidence (JSON + stderr logs for every number above), aggregate CSVs, exact base revision, and limitations. Before a PR, I would like feedback on API shape, model generality, and where a fixed expert working-set policy belongs in llama.cpp.
 
-Repository: https://github.com/<placeholder>/moe-working-set-16gb
+## Work in progress
+
+At 262K context the cold prefill costs 786.9 s (331.8 tok/s) — the system's largest single wait. An expert-bucketing plus grouped-GEMM prefill path targeting 1000+ tok/s is actively being developed; the first implementation round is not landed yet, and measured results will be added to the repository as they arrive.
+
+Repository: https://github.com/zhaoyilun/moe-working-set-16gb
