@@ -27,13 +27,15 @@ metadata.
     calibration and CUDA Graph isolation runs.
   - `prefill-gate-v1/` (and `v2`, `v3`) — Prefill ubatch scaling, critical-path
     analysis, prefix-cache runs, routing traces.
-  - `prefill-grouped-gate/` — first round of the expert-staging prefill
-    runtime (v4: eval-callback barrier, shared VRAM windows, pinned pack/DMA):
-    A/B runs, staging runs, design notes (`GROUPED_RUNTIME_DESIGN.md`,
-    `CODE_NOTES.md`), and routing captures. Headline: 16K prompt at physical
-    ubatch 6144 = 720.8 tok/s (+27.3% over same-condition control, cosine
-    0.9999928). The 52.8 MB `routing/prefill-16k.sstrace` is excluded
-    (regenerable via `profiling-scripts/capture_routing_trace.ps1`).
+  - `prefill-grouped-gate/` — expert-staging prefill runtime gate (v4:
+    eval-callback barrier, shared VRAM windows, pinned pack/DMA, grouped MMQ).
+    Formal gate report in `PREFILL_STAGING_RESULTS.md` (Chinese): 16K prompt at
+    physical ubatch 6144 = **725.667 tok/s** (3 runs, CV 0.13%), +40.4% over
+    the same-build control; greedy sequences identical across runs; 262K
+    staging NO-GO on the VRAM envelope (536 MiB headroom → WDDM crawl);
+    decode regression check plus detective-tool outputs. The 52.8 MB
+    `routing/prefill-16k.sstrace` is excluded (regenerable via
+    `profiling-scripts/capture_routing_trace.ps1`).
   - `economic-adaptation/` — ubatch knee, workspace sizing, and stability
     confirmation runs.
   - `integration-gate/` — router-trace fixtures and smoke checks used to

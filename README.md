@@ -85,7 +85,14 @@ large prompt ubatch
 
 Increasing physical ubatch from 2K to 8K raised the same-prompt 16K Prefill path from 287.387 to a 524.003 tok/s three-run mean. At 262K the cold prefill cost is 786.9 s (331.8 tok/s) — the system's largest single wait.
 
-The first round of the expert-staging prefill runtime (eval-callback barrier + shared VRAM windows + pinned pack/DMA) measured **720.8 tok/s** on the 16K prompt at physical ubatch 6144 — +27.3% over its same-condition control, with numerics agreement at cosine 0.9999928. Pushing past 1000 tok/s continues; the runtime patch lives in the routing-trace repository and the run data in `evidence/results/prefill-grouped-gate/`.
+The expert-staging prefill runtime (router-post anchor node → eval-callback barrier → per-layer unique-expert pack into a pinned arena → bulk DMA into shared VRAM windows → grouped MMQ on a pure-GPU large-batch graph) then measured **725.667 tok/s** on the 16K prompt at physical ubatch 6144 (three runs, CV 0.13%) — **+40.4%** over the same-build same-ubatch control (516.9) and +28.1% over the best historical config (ubatch 8192, 566.7). Numerics: first-token argmax and the 8-token greedy sequence are identical across all three runs; logits cosine is 0.9999928 for a single ubatch and 0.9948 over the full 16K prompt (KV propagation amplifies the drift).
+
+Two boundaries from the same gate, stated plainly:
+
+- **262K staging is a NO-GO**: staging windows + KV measured 15,840 MiB with 536 MiB headroom — below the 1,024 MiB safety line — and the run degraded into WDDM crawling (terminated after 40 min at full GPU load with pathological throughput). 262K prefill stays on the control path at 331.8–364.2 tok/s.
+- The incremental route toward 950+ tok/s (persisting expert weights across ubatches) is **structurally dead**: it would need per-layer independent windows totalling 22–41 GiB.
+
+Decode regression check: no binary-level regression — 2K decode at 18.979 tok/s vs 19.531 on the old binary (-2.8%, within environment variance); the 16K plan-mode reading of 15.0 came after 20 h of continuous load and is attributed to environment state, with a cold-restart re-measure recommended before citing it. Run data and the full gate report: `evidence/results/prefill-grouped-gate/` (`PREFILL_STAGING_RESULTS.md`).
 
 ## Evidence labels
 

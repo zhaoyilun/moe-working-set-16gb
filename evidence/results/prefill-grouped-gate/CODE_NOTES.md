@@ -138,3 +138,36 @@ v1 实测（2K ctx / ubatch 512）：49.91 MB/token、33.63 copies/token、host 
    - raw cudaMemcpyAsync 直接调用还有独立问题：不带 cudaSetDevice 会 AV；带上下文后仍写不进 GEMM 读到的位置。已弃用。
 3. 回退到 v4 形态（位置布局 + pinned 并行打包 + 连续跨度 DMA + 每 ubatch 重写映射）：**恢复正确**（16K/6144 = 684.6 单轮；v4 三轮均值 720.8 仍为该形态的正式数字）。
 4. 直接映射增量（通往 950+）的下一步 = 先解共享窗口 set/get 不一致之谜（VERIFY 已就位，最小复现：2K + LLAMA_PREFILL_STAGING_VERIFY=1）。
+
+## 八、窗口之谜探索记录（2026-09-04 深夜二，全部 Measured）
+
+**已解决——reserve 污染（真 bug，已修复在树上）**：`ggml_backend_sched_reserve` 会用 dummy 输入真算一遍图来测 buffer，锚点回调在 reserve 期间也会触发——增量位图被 dummy 路由预置（实测首个真实 barrier 前 layer 0 已有 352 位）。修复：graph_reserve 加 `prefill_staging_suppress` 守卫。
+
+**二分阶梯（2K 全绿 → 锁定增量）**：位置布局 ✅ / 直接映射 ✅ / 直接+逐 run 写 ✅ / 直接+增量 ❌（多 ubatch 时首 token 795）。直接+全量重写在 8K ✅（248046）——只有"依赖跨 ubatch 持久化窗口数据"的增量模式失败。
+
+**TAIL SWEEP 证据与悖论**：ubatch 1 结束时（层 47 锚点）层 0/1/3/4/5 的窗口槽位 bad≈全部、层 2 完好。但存在**幂等悖论**：直接映射下 slot=expert 永远放该 expert 的权重——同类型层共享窗口互写不可能产生不同字节（内容幂等、可交换）。故 TAIL SWEEP 的"损坏"要么是读取伪影（图执行期间调度器把 tensor->data 重定位到 split 副本——v10 校验 episode 已证明该伪影类存在），要么存在一个未知非幂等写入者。未解。
+
+**私有缓冲尝试（失败，已回退）**：no_alloc 上下文 + 手工绑定专用 cudaMalloc 缓冲 → 两种模式输出全坏（first=0）——手工绑定不满足调度器对张量 residence 的要求（需 ggml_backend_buffer_init_tensor 或等效）。已完整回退，树恢复到已知正确态并回归验证（16K/6144=676.8，首 token 248046 ✅）。
+
+**下一会话的精确线索**：
+1. TAIL SWEEP 改用加载期缓存的裸窗口基址读（绕过 tensor_get 的重定位伪影）——一次性裁决"损坏真伪"；
+2. 若伪影：真凶大概率在 ubatch 2 barrier 的 ids 读回（可能拿到 ubatch 1 的陈旧路由 → delta 覆盖错）——与已存的 16K trace 逐层比对即知；
+3. 若真损坏：对 3-5 个哨兵槽位做逐 barrier 内容哈希，抓非幂等写入者。
+
+**树上现有 env 开关矩阵**（默认全关 = v4 位置布局全量重写 = 正确 676-720.8）：`LLAMA_PREFILL_STAGING`（总开关）、`_DIRECT`、`_PRERUN`、`_DELTA`、`_SWEEP`、`_VERIFY`、`_DEBUG`、`_SLOTS`。
+
+## 九、双读裁决（2026-09-04 凌晨，Measured）
+
+**损坏为真，伪影论出局**：同一槽位、同一 barrier，`tensor_get` 与初始化期缓存的裸窗口基址 `cudaMemcpy`（绕过一切可能的重定位）读数**完全一致地坏**（`bad_get=375 bad_raw=375 readers_disagree=0 raw_err=0`，8K/6144，层 0/1）。窗口内存里确实被写入了非任何 expert 权重的字节。
+
+**下一步（哨兵哈希）**：在每个层 L 的 barrier 处，对层 0 窗口的一个哨兵槽位（4 KB）做裸读哈希并打印——损坏出现的确切层号即直接指认写入者。注意候选写入者必须满足"写非 expert 字节"：MMQ 的 compute-buffer padding memset（若窗口 buffer 被误判为 USAGE_COMPUTE——见 mmq.cu 开头的 padding 清零分支）、调度器对大张量的 input-copy 回写、或 CUDA Graph 复用时的 buffer 重放。
+
+## 十、结案：哨兵定凶手，delta 路线数学性死亡（2026-09-04 凌晨，Measured）
+
+**哨兵时间线**（8K/6144，层 0 窗口槽 0 裸读）：层 1 barrier OK → 层 2 barrier BAD。凶手 = **层 1 的 staging 写入**。
+
+**机制**：每层专家权重是独立张量（blk.0.ffn_gate_exps ≠ blk.1.ffn_gate_exps），同类型层共享窗口时，层 1 把自己层的 expert-e 权重写进槽 e，覆盖层 0 的 expert-e。"直接映射内容幂等"只在单层内成立，跨层不成立——此前的"幂等悖论"是推理错误。
+
+**判决**：跨 ubatch 增量复用需要每层独立窗口 = 47 层 × ~440 slots × ~2 MiB ≈ 22-41 GiB，16 GB 不可能；按层轮转多窗口在单 ubatch 内就会被同类型层覆盖（无效）。**delta 路线（950-1,250 投影）结构性死亡。** 当前架构上限 = 全量重写 ≈ 676-720 tok/s（+27.3% vs control 566.7）。
+
+**若未来要再提速 prefill**，可选新方向（均属新立项）：两遍式部分常驻（先跑 trace 统计各层 top-M 高频专家、每层私有窗口只放 top-M ≈ 3 GiB、其余走共享全量窗口）、prefill attention/dense 算子优化、或 CPU 侧打包带宽（10.5 GB/s 源读取墙）的 NUMA/预取优化。
