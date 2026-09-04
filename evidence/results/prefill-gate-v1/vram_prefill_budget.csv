@@ -1,0 +1,5 @@
+evidence,configuration,model_mib,kv_and_recurrent_mib,compute_mib,expert_staging_mib,accounted_mib,observed_or_projected_total_mib,device_headroom_mib,note
+Measured,16K n_ubatch=512 prefix roundtrip,4459.62,561.0,1842.5714,0,6863.1914,8188.0,8187.0,NVML peak during approximate prefill interval
+Measured,16K n_ubatch=2048 optimized cold prefill,4459.62,561.0,2270.2823,0,7290.9023,,9084.0977,Buffer logs measured; no extra NVML run
+Projection,16K n_ubatch=2048 plus 4 GiB staging,4459.62,561.0,2270.2823,4096,11386.9023,12711.7109,3663.2891,Uses measured runtime-overhead delta from n_ubatch=512
+Projection,16K n_ubatch=2048 plus 8 GiB staging,4459.62,561.0,2270.2823,8192,15482.9023,16807.7109,-432.7108999999982,Uses measured runtime-overhead delta from n_ubatch=512

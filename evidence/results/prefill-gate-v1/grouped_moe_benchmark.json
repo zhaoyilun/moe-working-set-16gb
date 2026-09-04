@@ -1,0 +1,48 @@
+{
+  "evidence": "Prototype measured",
+  "scope": "Ten real affine-INT4 experts from one Qwen layer; GPU weights dequantized once to resident FP16",
+  "correctness": {
+    "gpu_partial_vs_fp32_reference": {
+      "max_abs": 2.8893351554870605e-05,
+      "relative_l1": 0.00026060605969406857,
+      "relative_rmse": 0.0002543515585782832,
+      "cosine": 1.0
+    },
+    "cpu_partial_vs_fp32_reference": {
+      "max_abs": 4.8939138650894165e-05,
+      "relative_l1": 0.0034247847434417827,
+      "relative_rmse": 0.003525153231198631,
+      "cosine": 0.999994158744812
+    },
+    "mixed_vs_fp32_reference": {
+      "max_abs": 3.692135214805603e-05,
+      "relative_l1": 0.0005769807755538935,
+      "relative_rmse": 0.0005570027555417217,
+      "cosine": 0.9999996423721313
+    }
+  },
+  "component_speedups": {
+    "qlen_4_resident_gpu_vs_cpu": 4.178537257055379,
+    "qlen_8_resident_gpu_vs_cpu": 8.016150843779354,
+    "qlen_16_resident_gpu_vs_cpu": 15.301929094486919,
+    "qlen_256_resident_gpu_vs_cpu": 193.86939028876216
+  },
+  "serial_streaming_crossover": {
+    "evidence": "Projection",
+    "range": "between qlen 4 and 8",
+    "bulk_h2d_bandwidth_gb_s": 23.46,
+    "estimated_staging_ms_for_10_experts": 1.5354102100862566
+  },
+  "real_prefill_integration": {
+    "evidence": "Measured",
+    "implementation": "Existing llama.cpp selected-expert transfer and CUDA execution; larger physical ubatch",
+    "ubatch_512_tok_s": 105.632664277,
+    "ubatch_2048_tok_s": 150.456142545,
+    "speedup": 1.4243335011456268
+  },
+  "full_custom_grouped_streaming_runtime": {
+    "evidence": "Projection",
+    "status": "deferred after Prefill v1 stop condition",
+    "reason": "Warm development loop and 300 tok/s Gate B were already reached"
+  }
+}

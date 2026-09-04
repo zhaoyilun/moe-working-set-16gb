@@ -1,0 +1,37 @@
+{
+  "gpu_hot_with_h2d": {
+    "p50_ms": 0.37012800574302673,
+    "p95_ms": 0.3848335951566696
+  },
+  "gpu_hot_with_cpu": {
+    "p50_ms": 0.07630249904155731,
+    "p95_ms": 0.35629835
+  },
+  "cpu_with_h2d": {
+    "p50_ms": 0.0,
+    "p95_ms": 0.1541338565209389
+  },
+  "triple_cpu_gpu_h2d": {
+    "p50_ms": 0.0,
+    "p95_ms": 0.1541338565209389
+  },
+  "cpu_with_gpu_critical_span": {
+    "p50_ms": 0.1894754857902527,
+    "p95_ms": 0.40112792980327605
+  },
+  "host_total": {
+    "p50_ms": 1.038023,
+    "p95_ms": 1.3952421499999998
+  },
+  "gpu_idle_waiting_for_cpu_before_merge": {
+    "p50_ms": 0.2396320030093193,
+    "p95_ms": 0.48931839317083353
+  },
+  "host_merge_and_finalize": {
+    "p50_ms": 0.18859450203847888,
+    "p95_ms": 0.4497322062765363
+  },
+  "cpu_idle_or_gpu_wait_p50_ms": 0.611716,
+  "dma_exposed_after_resident_compute_p50_ms": 0.0,
+  "critical_path": "host launch submission delays CPU start; the CPU cold branch finishes after the GPU branch, then CPU return/merge closes the p50 critical path"
+}

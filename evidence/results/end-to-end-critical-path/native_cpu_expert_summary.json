@@ -1,0 +1,10 @@
+{
+  "profiled_layers": 48,
+  "samples_per_layer": 20,
+  "mean_input_embedding_ms_per_token": 0.009300000000000001,
+  "mean_cpu_expert_graph_ms_per_token": 35.223299999999995,
+  "mean_final_down_worker_ms_per_token": 9.466000000000003,
+  "mean_final_barrier_ms_per_token": 3.470599999999999,
+  "mean_other_expert_work_and_barriers_ms_per_token": 22.2867,
+  "scope": "CPU routed-expert subgraphs only; router, attention, dense/shared paths are GPU-resident"
+}

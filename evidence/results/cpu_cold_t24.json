@@ -1,0 +1,67 @@
+{
+  "cpu": "Intel Core i9-14900KF",
+  "kernel": "KTransformers AVX2RawInt4_MOE with exact MLX affine group bias",
+  "pid": 1662,
+  "results": [
+    {
+      "threads": 24,
+      "topk": 1,
+      "qlen": 1,
+      "cache_mode": "dram_cold",
+      "runs": 50,
+      "p50_ms": 0.272492,
+      "p95_ms": 0.36643159999999986,
+      "min_ms": 0.183362,
+      "effective_weight_bandwidth_gbps_p50": 11.273725467169678,
+      "output_checksum": -6.742216646671295e-05
+    },
+    {
+      "threads": 24,
+      "topk": 2,
+      "qlen": 1,
+      "cache_mode": "dram_cold",
+      "runs": 50,
+      "p50_ms": 0.336755,
+      "p95_ms": 0.45669829999999995,
+      "min_ms": 0.234757,
+      "effective_weight_bandwidth_gbps_p50": 18.244717970037563,
+      "output_checksum": 0.00016722179134376347
+    },
+    {
+      "threads": 24,
+      "topk": 4,
+      "qlen": 1,
+      "cache_mode": "dram_cold",
+      "runs": 50,
+      "p50_ms": 0.422546,
+      "p95_ms": 0.6005620500000001,
+      "min_ms": 0.337575,
+      "effective_weight_bandwidth_gbps_p50": 29.08085746877263,
+      "output_checksum": 0.0005785060347989202
+    },
+    {
+      "threads": 24,
+      "topk": 8,
+      "qlen": 1,
+      "cache_mode": "dram_cold",
+      "runs": 50,
+      "p50_ms": 0.7005445,
+      "p95_ms": 0.82598675,
+      "min_ms": 0.569376,
+      "effective_weight_bandwidth_gbps_p50": 35.08128320185227,
+      "output_checksum": 0.00040886507485993207
+    },
+    {
+      "threads": 24,
+      "topk": 10,
+      "qlen": 1,
+      "cache_mode": "dram_cold",
+      "runs": 50,
+      "p50_ms": 0.7809115,
+      "p95_ms": 0.91486135,
+      "min_ms": 0.653765,
+      "effective_weight_bandwidth_gbps_p50": 39.33864464795306,
+      "output_checksum": 0.00012192886788398027
+    }
+  ]
+}

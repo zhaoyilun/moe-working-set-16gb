@@ -1,0 +1,69 @@
+{
+  "schema": "pc-slotstream.context-adaptive-policy.v1",
+  "evidence": "Measured allocation and throughput matrix plus policy decision",
+  "device_total_mib": 16376,
+  "safety_reserve_mib": 1024,
+  "selection_rule": "Choose the largest measured pool whose allocator-accounted headroom is at least 1024 MiB; reject it only for a repeatable throughput regression above 1 percent.",
+  "measured_domain_tokens": [
+    2027,
+    8171,
+    16363,
+    32747
+  ],
+  "decisions": [
+    {
+      "evidence": "Measured plus policy decision",
+      "context": "2K",
+      "actual_context_tokens": 2027,
+      "max_throughput_pool_gib": 8,
+      "max_throughput_tok_s": 17.5112095381,
+      "max_throughput_allocator_headroom_mib": 2124.38,
+      "safe_default_pool_gib": 8,
+      "safe_default_tok_s": 17.5112095381,
+      "safe_default_allocator_headroom_mib": 2124.38,
+      "safety_reserve_mib": 1024
+    },
+    {
+      "evidence": "Measured plus policy decision",
+      "context": "8K",
+      "actual_context_tokens": 8171,
+      "max_throughput_pool_gib": 8,
+      "max_throughput_tok_s": 17.6261661141,
+      "max_throughput_allocator_headroom_mib": 1917.31,
+      "safe_default_pool_gib": 8,
+      "safe_default_tok_s": 17.6261661141,
+      "safe_default_allocator_headroom_mib": 1917.31,
+      "safety_reserve_mib": 1024
+    },
+    {
+      "evidence": "Measured plus policy decision",
+      "context": "16K",
+      "actual_context_tokens": 16363,
+      "max_throughput_pool_gib": 8,
+      "max_throughput_tok_s": 16.6520980236,
+      "max_throughput_allocator_headroom_mib": 850.0,
+      "safe_default_pool_gib": 6,
+      "safe_default_tok_s": 15.0322766279,
+      "safe_default_allocator_headroom_mib": 2992.28,
+      "safety_reserve_mib": 1024
+    },
+    {
+      "evidence": "Measured plus policy decision",
+      "context": "32K",
+      "actual_context_tokens": 32747,
+      "max_throughput_pool_gib": 8,
+      "max_throughput_tok_s": 15.118491327,
+      "max_throughput_allocator_headroom_mib": 306.0,
+      "safe_default_pool_gib": 6,
+      "safe_default_tok_s": 14.1039920052,
+      "safe_default_allocator_headroom_mib": 2448.28,
+      "safety_reserve_mib": 1024
+    }
+  ],
+  "boundaries": [
+    "2K/8K: 8 GiB is both throughput winner and safety-qualified.",
+    "16K/32K: 8 GiB is the short-run throughput winner but below the 1024 MiB reserve; 6 GiB is the default.",
+    "16K 8 GiB observed device peak is 15990 MiB with 386 MiB headroom.",
+    "32K 8 GiB completed one 100-token run with only 306 MiB allocator-accounted headroom; treat as benchmark-max, not default."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "gate-context-adaptive",
+  "created_at": "2026-09-04T01:09:55.7976103+08:00",
+  "source_checkpoint": "2d4f315",
+  "contexts": [
+    2027,
+    8171,
+    16363,
+    32747
+  ],
+  "pools_gib": [
+    4,
+    6,
+    8
+  ],
+  "performance_runs": 12,
+  "stats_runs": 12,
+  "cuda_graphs": true,
+  "benchmark_max_pool_gib": 8,
+  "safe_policy": {
+    "2027": 8,
+    "8171": 8,
+    "16363": 6,
+    "32747": 6
+  },
+  "artifacts": [
+    "CONTEXT_ADAPTIVE_RESULTS.md",
+    "context_pool_matrix.csv",
+    "optimal_pool_policy.csv",
+    "auto_policy.json",
+    "context_state_builds.csv"
+  ]
+}

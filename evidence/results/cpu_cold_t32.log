@@ -1,0 +1,290 @@
+CPUInfer[0x5603c9952aa0]: Hello
+WorkerPool[0x5603c9953410] 1 subpools, [numa:threads][0:32] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 32 threads
+Core 16 inside NUMA node 0 not found
+Core 17 inside NUMA node 0 not found
+Core 18 inside NUMA node 0 not found
+Core 19 inside NUMA node 0 not found
+Core 20 inside NUMA node 0 not found
+Core 21 inside NUMA node 0 not found
+Core 22 inside NUMA node 0 not found
+Core 23 inside NUMA node 0 not found
+Core 24 inside NUMA node 0 not found
+Core 25 inside NUMA node 0 not found
+Core 26 inside NUMA node 0 not found
+Core 27 inside NUMA node 0 not found
+Core 28 inside NUMA node 0 not found
+Core 29 inside NUMA node 0 not found
+Core 30 inside NUMA node 0 not found
+Core 31 inside NUMA node 0 not found
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x5603c9953410, expert num: 10, num_experts_per_tok: 1
+alloc 0 from other numa for 7f46ac0269a0
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x5603c9952aa0]: Goodbye
+{"threads": 32, "topk": 1, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 30.9200755, "p95_ms": 41.9584968, "min_ms": 4.625666, "effective_weight_bandwidth_gbps_p50": 0.08941763418397863, "output_checksum": -6.742216646671295e-05}
+CPUInfer[0x5603c99e1a60]: Hello
+WorkerPool[0x5603c992b770] 1 subpools, [numa:threads][0:32] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 32 threads
+Core 16 inside NUMA node 0 not found
+Core 17 inside NUMA node 0 not found
+Core 18 inside NUMA node 0 not found
+Core 19 inside NUMA node 0 not found
+Core 20 inside NUMA node 0 not found
+Core 21 inside NUMA node 0 not found
+Core 22 inside NUMA node 0 not found
+Core 23 inside NUMA node 0 not found
+Core 24 inside NUMA node 0 not found
+Core 25 inside NUMA node 0 not found
+Core 26 inside NUMA node 0 not found
+Core 27 inside NUMA node 0 not found
+Core 28 inside NUMA node 0 not found
+Core 29 inside NUMA node 0 not found
+Core 30 inside NUMA node 0 not found
+Core 31 inside NUMA node 0 not found
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x5603c992b770, expert num: 10, num_experts_per_tok: 2
+alloc 0 from other numa for 7f460001dbd0
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x5603c99e1a60]: Goodbye
+{"threads": 32, "topk": 2, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 32.050546, "p95_ms": 41.962010449999994, "min_ms": 21.170896, "effective_weight_bandwidth_gbps_p50": 0.17252748205912, "output_checksum": 0.00016722179134376347}
+CPUInfer[0x5603c99f8ac0]: Hello
+WorkerPool[0x5603c99bf5b0] 1 subpools, [numa:threads][0:32] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 32 threads
+Core 16 inside NUMA node 0 not found
+Core 17 inside NUMA node 0 not found
+Core 18 inside NUMA node 0 not found
+Core 19 inside NUMA node 0 not found
+Core 20 inside NUMA node 0 not found
+Core 21 inside NUMA node 0 not found
+Core 22 inside NUMA node 0 not found
+Core 23 inside NUMA node 0 not found
+Core 24 inside NUMA node 0 not found
+Core 25 inside NUMA node 0 not found
+Core 26 inside NUMA node 0 not found
+Core 27 inside NUMA node 0 not found
+Core 28 inside NUMA node 0 not found
+Core 29 inside NUMA node 0 not found
+Core 30 inside NUMA node 0 not found
+Core 31 inside NUMA node 0 not found
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x5603c99bf5b0, expert num: 10, num_experts_per_tok: 4
+alloc 0 from other numa for 7f4640027780
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x5603c99f8ac0]: Goodbye
+{"threads": 32, "topk": 4, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 34.8602745, "p95_ms": 48.47726454999998, "min_ms": 24.946021, "effective_weight_bandwidth_gbps_p50": 0.3172436292777901, "output_checksum": 0.0005785060347989202}
+CPUInfer[0x5603c9a0c9e0]: Hello
+WorkerPool[0x5603c99e4b90] 1 subpools, [numa:threads][0:32] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 32 threads
+Core 16 inside NUMA node 0 not found
+Core 17 inside NUMA node 0 not found
+Core 18 inside NUMA node 0 not found
+Core 19 inside NUMA node 0 not found
+Core 20 inside NUMA node 0 not found
+Core 21 inside NUMA node 0 not found
+Core 22 inside NUMA node 0 not found
+Core 23 inside NUMA node 0 not found
+Core 24 inside NUMA node 0 not found
+Core 25 inside NUMA node 0 not found
+Core 26 inside NUMA node 0 not found
+Core 27 inside NUMA node 0 not found
+Core 28 inside NUMA node 0 not found
+Core 29 inside NUMA node 0 not found
+Core 30 inside NUMA node 0 not found
+Core 31 inside NUMA node 0 not found
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x5603c99e4b90, expert num: 10, num_experts_per_tok: 8
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+alloc 0 from other numa for 7f463801bca0
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x5603c9a0c9e0]: Goodbye
+{"threads": 32, "topk": 8, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 41.10134, "p95_ms": 53.40900379999999, "min_ms": 22.204045, "effective_weight_bandwidth_gbps_p50": 0.5381430386454553, "output_checksum": 0.00040886507485993207}
+CPUInfer[0x5603c99f8340]: Hello
+WorkerPool[0x5603c99fac50] 1 subpools, [numa:threads][0:32] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 32 threads
+Core 16 inside NUMA node 0 not found
+Core 17 inside NUMA node 0 not found
+Core 18 inside NUMA node 0 not found
+Core 19 inside NUMA node 0 not found
+Core 20 inside NUMA node 0 not found
+Core 21 inside NUMA node 0 not found
+Core 22 inside NUMA node 0 not found
+Core 23 inside NUMA node 0 not found
+Core 24 inside NUMA node 0 not found
+Core 25 inside NUMA node 0 not found
+Core 26 inside NUMA node 0 not found
+Core 27 inside NUMA node 0 not found
+Core 28 inside NUMA node 0 not found
+Core 29 inside NUMA node 0 not found
+Core 30 inside NUMA node 0 not found
+Core 31 inside NUMA node 0 not found
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x5603c99fac50, expert num: 10, num_experts_per_tok: 10
+alloc 0 from other numa for 7f466400f1c0
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x5603c99f8340]: Goodbye
+{"threads": 32, "topk": 10, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 32.169955, "p95_ms": 42.27443385, "min_ms": 21.439634, "effective_weight_bandwidth_gbps_p50": 0.8594354577120173, "output_checksum": 0.00012192886788398027}

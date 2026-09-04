@@ -1,0 +1,2 @@
+run,token_index,context_tokens,decode_ms,sampling_ms,loop_ms
+0,0,2028,272.293,1.3112,273.604

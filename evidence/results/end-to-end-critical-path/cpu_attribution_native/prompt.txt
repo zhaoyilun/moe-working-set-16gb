@@ -1,0 +1,1 @@
+Explain semantic pagination as a systems architecture concept, then compare it with fixed paging and token chunking.

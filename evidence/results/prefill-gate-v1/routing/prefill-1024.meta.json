@@ -1,0 +1,19 @@
+{
+  "format": "slotstream-routing-trace-v1",
+  "workload": "prefill_occupancy_1024",
+  "model_path": "E:\\AI\\Models\\Qwen3.8-Flash-Next-UD-IQ4_XS\\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf",
+  "runtime": "llama.cpp b10666 / 4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "prompt": "Explain semantic pagination as a systems architecture concept, then compare it with fixed paging and token chunking.",
+  "prompt_tokens": 1024,
+  "decode_tokens": 0,
+  "seed": 0,
+  "sampling": {"strategy": "greedy"},
+  "routing": {"experts": 512, "top_k": 10, "normalization": "top-k softmax", "shared_expert": true},
+  "n_layers": 48,
+  "records": 48129,
+  "hidden_state_trace": null,
+  "hidden_state_layer": 0,
+  "n_gpu_layers": -2,
+  "cpu_moe": true,
+  "threads": 24
+}

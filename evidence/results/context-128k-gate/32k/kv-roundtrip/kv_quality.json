@@ -1,0 +1,90 @@
+{
+  "f16-f16": {
+    "finite": true,
+    "binary_equal": true,
+    "argmax_ref": 1865,
+    "argmax": 1865,
+    "top5_overlap": 5,
+    "top10_overlap": 10,
+    "cosine": 1.0,
+    "rmse": 0.0,
+    "max_abs": 0.0,
+    "verify_common_prefix": 8,
+    "verify_tokens": [
+      1865,
+      9238,
+      31997,
+      6000,
+      7609,
+      2586,
+      11,
+      321
+    ]
+  },
+  "q8-q8": {
+    "finite": true,
+    "binary_equal": false,
+    "argmax_ref": 1865,
+    "argmax": 1865,
+    "top5_overlap": 4,
+    "top10_overlap": 8,
+    "cosine": 0.9908055333527547,
+    "rmse": 0.5393281339121587,
+    "max_abs": 3.823523759841919,
+    "verify_common_prefix": 8,
+    "verify_tokens": [
+      1865,
+      9238,
+      31997,
+      6000,
+      7609,
+      2586,
+      11,
+      321
+    ]
+  },
+  "q8-q4": {
+    "finite": true,
+    "binary_equal": false,
+    "argmax_ref": 1865,
+    "argmax": 1865,
+    "top5_overlap": 4,
+    "top10_overlap": 8,
+    "cosine": 0.9899693225070646,
+    "rmse": 0.5510443844007586,
+    "max_abs": 2.9528216123580933,
+    "verify_common_prefix": 8,
+    "verify_tokens": [
+      1865,
+      9238,
+      31997,
+      6000,
+      7609,
+      2586,
+      11,
+      321
+    ]
+  },
+  "q4-q4": {
+    "finite": true,
+    "binary_equal": false,
+    "argmax_ref": 1865,
+    "argmax": 1865,
+    "top5_overlap": 3,
+    "top10_overlap": 7,
+    "cosine": 0.9903655159944736,
+    "rmse": 0.540573104505265,
+    "max_abs": 2.830678939819336,
+    "verify_common_prefix": 8,
+    "verify_tokens": [
+      1865,
+      9238,
+      31997,
+      6000,
+      7609,
+      2586,
+      11,
+      321
+    ]
+  }
+}

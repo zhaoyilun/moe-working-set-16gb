@@ -1,0 +1,172 @@
+{
+  "source_revision": "4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "evidence_classes": [
+    "Measured",
+    "Prototype measured",
+    "Trace simulation",
+    "Projection"
+  ],
+  "baselines": {
+    "coarse_layer_offload_ngl10": {
+      "evidence": "Measured",
+      "tokens": 1500,
+      "wall_mean_ms": 152.95714933333332,
+      "wall_p50_ms": 151.8175,
+      "wall_p95_ms": 162.434,
+      "decode_mean_ms": 148.23459533333335,
+      "sampling_mean_ms": 4.722561066666667,
+      "decode_tok_s": 6.537778746260108
+    },
+    "native_expert_only_cpu_offload": {
+      "evidence": "Measured",
+      "tokens": 1500,
+      "wall_mean_ms": 66.2509728,
+      "wall_p50_ms": 65.2771,
+      "wall_p95_ms": 72.9528,
+      "decode_mean_ms": 64.5403002,
+      "sampling_mean_ms": 1.710672,
+      "decode_tok_s": 15.094117984030568
+    },
+    "phase_adaptive_hybrid": {
+      "evidence": [
+        "Prototype measured",
+        "Trace simulation",
+        "Projection"
+      ],
+      "full_model_measured": false,
+      "rule": "Do not subtract prototype routed-MoE time from either measured full-model wall time."
+    }
+  },
+  "coarse_cpu_attribution": {
+    "cpu_layers_0_38_ms_per_token": 132.8748,
+    "input_graph_ms_per_token": 1.5025,
+    "total_cpu_graph_ms_per_token": 134.3773,
+    "share_of_measured_llama_decode_percent": 90.65178050901504,
+    "recorded_marker_barrier_lower_bound_ms_per_token": 3.0183499999999994,
+    "recorded_marker_worker_partial_ms_per_token": 11.780249999999997
+  },
+  "native_cpu_expert_attribution": {
+    "profiled_layers": 48,
+    "samples_per_layer": 20,
+    "mean_input_embedding_ms_per_token": 0.009300000000000001,
+    "mean_cpu_expert_graph_ms_per_token": 35.223299999999995,
+    "mean_final_down_worker_ms_per_token": 9.466000000000003,
+    "mean_final_barrier_ms_per_token": 3.470599999999999,
+    "mean_other_expert_work_and_barriers_ms_per_token": 22.2867,
+    "scope": "CPU routed-expert subgraphs only; router, attention, dense/shared paths are GPU-resident"
+  },
+  "context_sweep": [
+    {
+      "context_target": 512,
+      "actual_prompt_tokens": 491,
+      "cold_prefill_seconds": 11.08065,
+      "prompt_processing_tok_s": 44.31147992220673,
+      "decode_tok_s": 16.508472849876654,
+      "decode_mean_ms": 58.930395,
+      "kv_vram_mib": 24.75,
+      "accounted_cuda_buffers_mib": 5595.19,
+      "observed_total_vram_mib": "",
+      "total_vram_note": "not sampled; no extra long run",
+      "evidence": "Measured"
+    },
+    {
+      "context_target": 1024,
+      "actual_prompt_tokens": 1003,
+      "cold_prefill_seconds": 15.738817999999998,
+      "prompt_processing_tok_s": 63.727784386349725,
+      "decode_tok_s": 16.483416405631164,
+      "decode_mean_ms": 58.9215,
+      "kv_vram_mib": 41.25,
+      "accounted_cuda_buffers_mib": 5624.19,
+      "observed_total_vram_mib": "",
+      "total_vram_note": "not sampled; no extra long run",
+      "evidence": "Measured"
+    },
+    {
+      "context_target": 2048,
+      "actual_prompt_tokens": 2027,
+      "cold_prefill_seconds": 23.893031,
+      "prompt_processing_tok_s": 84.83645293893437,
+      "decode_tok_s": 16.600243558773496,
+      "decode_mean_ms": 58.54816,
+      "kv_vram_mib": 74.25,
+      "accounted_cuda_buffers_mib": 5677.389999999999,
+      "observed_total_vram_mib": 6973,
+      "total_vram_note": "NVML sampled peak from the 3x500 native run",
+      "evidence": "Measured"
+    },
+    {
+      "context_target": 4096,
+      "actual_prompt_tokens": 4075,
+      "cold_prefill_seconds": 40.046757,
+      "prompt_processing_tok_s": 101.75605480363866,
+      "decode_tok_s": 16.291006908038568,
+      "decode_mean_ms": 59.699065,
+      "kv_vram_mib": 140.25,
+      "accounted_cuda_buffers_mib": 5746.389999999999,
+      "observed_total_vram_mib": "",
+      "total_vram_note": "not sampled; no extra long run",
+      "evidence": "Measured"
+    },
+    {
+      "context_target": 8192,
+      "actual_prompt_tokens": 8171,
+      "cold_prefill_seconds": 74.029122,
+      "prompt_processing_tok_s": 110.37548169219134,
+      "decode_tok_s": 15.551809297493671,
+      "decode_mean_ms": 62.57894,
+      "kv_vram_mib": 272.25,
+      "accounted_cuda_buffers_mib": 5884.389999999999,
+      "observed_total_vram_mib": "",
+      "total_vram_note": "not sampled; no extra long run",
+      "evidence": "Measured"
+    },
+    {
+      "context_target": 16384,
+      "actual_prompt_tokens": 16363,
+      "cold_prefill_seconds": 141.507022,
+      "prompt_processing_tok_s": 115.63383759146596,
+      "decode_tok_s": 15.053376261548198,
+      "decode_mean_ms": 64.58622,
+      "kv_vram_mib": 536.25,
+      "accounted_cuda_buffers_mib": 6950.259999999999,
+      "observed_total_vram_mib": "",
+      "total_vram_note": "not sampled; no extra long run",
+      "evidence": "Measured"
+    }
+  ],
+  "ab_results": [
+    {
+      "priority": "Top 1",
+      "bottleneck": "coarse whole-layer placement",
+      "control": "-ngl 10; layers 0-38 entirely CPU",
+      "candidate": "all non-expert tensors GPU; routed experts CPU/RAM",
+      "control_tok_s": 6.537778746260108,
+      "candidate_tok_s": 15.094117984030568,
+      "tok_s_change_percent": 130.87532585383155,
+      "control_wall_ms": 152.95714933333332,
+      "candidate_wall_ms": 66.2509728,
+      "sample": "3 runs x 500 measured tokens per placement",
+      "evidence": "Measured"
+    },
+    {
+      "priority": "Top 2",
+      "bottleneck": "GPU launch/runtime overhead after placement fix",
+      "control": "CUDA Graph disabled",
+      "candidate": "CUDA Graph enabled",
+      "control_tok_s": 12.440758755208233,
+      "candidate_tok_s": 17.062779257763438,
+      "tok_s_change_percent": 37.152239614165254,
+      "control_wall_ms": 80.3809494,
+      "candidate_wall_ms": 58.6070994,
+      "sample": "same prompt/position; 1 run x 500 measured tokens each",
+      "evidence": "Measured"
+    }
+  ],
+  "decision": {
+    "primary_class": "C: placement/global VRAM",
+    "measured_native_target_status": "15+ tok/s reached",
+    "next_decode_question": "Does an integrated GPU expert cache exceed the measured native baseline, first target 18-20+ tok/s?",
+    "next_prefill_question": "Can cold prefill move from roughly 100 tok/s to 500+ and then 1000+ tok/s?"
+  }
+}

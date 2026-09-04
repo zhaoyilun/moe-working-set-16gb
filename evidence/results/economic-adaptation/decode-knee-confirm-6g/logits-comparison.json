@@ -1,0 +1,42 @@
+{
+  "K1-u4": {
+    "shape_equal": true,
+    "finite": true,
+    "binary_equal": true,
+    "argmax_ref": 13901,
+    "argmax_candidate": 13901,
+    "cosine": 1.0000000000000002,
+    "rmse": 0.0,
+    "max_abs": 0.0
+  },
+  "K2-u1": {
+    "shape_equal": true,
+    "finite": true,
+    "binary_equal": true,
+    "argmax_ref": 13901,
+    "argmax_candidate": 13901,
+    "cosine": 1.0000000000000002,
+    "rmse": 0.0,
+    "max_abs": 0.0
+  },
+  "K3-u16": {
+    "shape_equal": true,
+    "finite": true,
+    "binary_equal": true,
+    "argmax_ref": 13901,
+    "argmax_candidate": 13901,
+    "cosine": 1.0000000000000002,
+    "rmse": 0.0,
+    "max_abs": 0.0
+  },
+  "K0R-u512": {
+    "shape_equal": true,
+    "finite": true,
+    "binary_equal": true,
+    "argmax_ref": 13901,
+    "argmax_candidate": 13901,
+    "cosine": 1.0000000000000002,
+    "rmse": 0.0,
+    "max_abs": 0.0
+  }
+}

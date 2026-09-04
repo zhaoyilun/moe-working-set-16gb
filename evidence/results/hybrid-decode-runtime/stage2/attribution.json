@@ -1,0 +1,56 @@
+{
+  "evidence": "Measured",
+  "scope": "canonical 16K, 6 GiB pool, CUDA Graph ON, 100 warmup + 100 measured tokens",
+  "baseline": {
+    "name": "T0 instrumented fixed cache",
+    "decode_tok_s": 12.7669399579,
+    "decode_ms_per_token": 78.327305,
+    "promotion_ms_per_token": 0.0
+  },
+  "thresholds": [
+    {
+      "threshold": 1,
+      "decode_ms_per_token": 81.505799,
+      "delta_vs_t0_ms_per_token": 3.178494,
+      "promotion_ms_per_token": 0.87447,
+      "remaining_delta_ms_per_token": 2.304024,
+      "h2d_weight_mb_per_token": 3.533056
+    },
+    {
+      "threshold": 2,
+      "decode_ms_per_token": 86.570547,
+      "delta_vs_t0_ms_per_token": 8.243242,
+      "promotion_ms_per_token": 4.82565,
+      "remaining_delta_ms_per_token": 3.417592,
+      "h2d_weight_mb_per_token": 20.674304
+    },
+    {
+      "threshold": 3,
+      "decode_ms_per_token": 83.26126,
+      "delta_vs_t0_ms_per_token": 4.933955,
+      "promotion_ms_per_token": 13.59788,
+      "remaining_delta_ms_per_token": -8.663925,
+      "h2d_weight_mb_per_token": 64.381696
+    },
+    {
+      "threshold": 4,
+      "decode_ms_per_token": 89.673764,
+      "delta_vs_t0_ms_per_token": 11.346459,
+      "promotion_ms_per_token": 22.89424,
+      "remaining_delta_ms_per_token": -11.547781,
+      "h2d_weight_mb_per_token": 114.448128
+    }
+  ],
+  "interpretation": [
+    "Promotion timing is measured inside the promotion routine; overlap and later compute savings make it non-additive with whole-token wall time.",
+    "T0 already pays one packed route readback and scheduler synchronization per token.",
+    "T1-T4 add fragmented expert-slice transfers, map updates, and cache replacement work.",
+    "Higher hit rate did not translate into higher end-to-end throughput on this implementation."
+  ],
+  "nsight_systems": {
+    "status": "collector_failure",
+    "version": "2023.3.3",
+    "usable_numeric_evidence": false,
+    "note": "Two short collections observed target exit while the collector stayed active; lightweight runtime instrumentation is the attribution source."
+  }
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "cell": "P0-b7168-u7168",
+    "n_batch": 7168,
+    "n_ubatch": 7168,
+    "tok_s": 458.144088508,
+    "prefill_ms": 35715.8379,
+    "compute_mib": 7140.0,
+    "first": 321
+  },
+  {
+    "cell": "P1-b16384-u7168",
+    "n_batch": 16384,
+    "n_ubatch": 7168,
+    "tok_s": 461.594925592,
+    "prefill_ms": 35448.8299,
+    "compute_mib": 7140.0,
+    "first": 321
+  },
+  {
+    "cell": "P0R-b7168-u7168",
+    "n_batch": 7168,
+    "n_ubatch": 7168,
+    "tok_s": 464.487743299,
+    "prefill_ms": 35228.0555,
+    "compute_mib": 7140.0,
+    "first": 321
+  }
+]

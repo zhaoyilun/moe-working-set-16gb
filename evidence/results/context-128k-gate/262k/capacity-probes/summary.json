@@ -1,0 +1,22 @@
+[
+  {
+    "profile": "q8-q4-u1",
+    "batch": 1,
+    "alloc": "llama_kv_cache:      CUDA0 KV buffer size =  2496.00 MiB | llama_kv_cache:      CUDA0 KV buffer size =   840.01 MiB | sched_reserve:      CUDA0 compute buffer size =   196.32 MiB"
+  },
+  {
+    "profile": "q4-q4-u1",
+    "batch": 1,
+    "alloc": "llama_kv_cache:      CUDA0 KV buffer size =  1728.00 MiB | llama_kv_cache:      CUDA0 KV buffer size =   648.01 MiB | sched_reserve:      CUDA0 compute buffer size =   196.32 MiB"
+  },
+  {
+    "profile": "q8-q4-b1536",
+    "batch": 1536,
+    "alloc": "llama_kv_cache:      CUDA0 KV buffer size =  2496.00 MiB | llama_kv_cache:      CUDA0 KV buffer size =   840.01 MiB | sched_reserve:      CUDA0 compute buffer size =  5450.71 MiB"
+  },
+  {
+    "profile": "q4-q4-b2048",
+    "batch": 2048,
+    "alloc": "llama_kv_cache:      CUDA0 KV buffer size =  1728.00 MiB | llama_kv_cache:      CUDA0 KV buffer size =   648.01 MiB | sched_reserve:      CUDA0 compute buffer size =  6984.28 MiB"
+  }
+]

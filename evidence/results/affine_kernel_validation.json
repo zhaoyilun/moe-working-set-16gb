@@ -1,0 +1,9 @@
+{
+  "reference": "direct FP32 dequant q*scale+bias, FP32 GEMM, BF16 final cast",
+  "kernel": "adapted KTransformers AVX2RawInt4_MOE",
+  "relative_l1": 0.0029888416174799204,
+  "relative_rmse": 0.0037666738498955965,
+  "max_abs_error": 2.384185791015625e-07,
+  "actual_checksum": -6.742216646671295e-05,
+  "reference_checksum": -6.921347812749445e-05
+}

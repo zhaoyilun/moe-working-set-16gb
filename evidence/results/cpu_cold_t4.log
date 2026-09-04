@@ -1,0 +1,70 @@
+CPUInfer[0x559706225b00]: Hello
+WorkerPool[0x559706278d80] 1 subpools, [numa:threads][0:4] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 4 threads
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x559706278d80, expert num: 10, num_experts_per_tok: 1
+alloc 0 from other numa for 7f2b70003a30
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x559706225b00]: Goodbye
+{"threads": 4, "topk": 1, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 0.290917, "p95_ms": 0.3843391, "min_ms": 0.223, "effective_weight_bandwidth_gbps_p50": 9.503741617024788, "output_checksum": -6.742216646671295e-05}
+CPUInfer[0x5597062a7df0]: Hello
+WorkerPool[0x5597061fe7d0] 1 subpools, [numa:threads][0:4] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 4 threads
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x5597061fe7d0, expert num: 10, num_experts_per_tok: 2
+alloc 0 from other numa for 7f2b74016c30
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x5597062a7df0]: Goodbye
+{"threads": 4, "topk": 2, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 0.441664, "p95_ms": 0.6811556, "min_ms": 0.359295, "effective_weight_bandwidth_gbps_p50": 12.519924648601652, "output_checksum": 0.00016722179134376347}
+CPUInfer[0x5597062cbd00]: Hello
+WorkerPool[0x559706292610] 1 subpools, [numa:threads][0:4] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 4 threads
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x559706292610, expert num: 10, num_experts_per_tok: 4
+alloc 0 from other numa for 7f2b78005c60
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x5597062cbd00]: Goodbye
+{"threads": 4, "topk": 4, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 0.679071, "p95_ms": 0.80542045, "min_ms": 0.625442, "effective_weight_bandwidth_gbps_p50": 16.28577865937435, "output_checksum": 0.0005785060347989202}
+CPUInfer[0x5597062dfd80]: Hello
+WorkerPool[0x5597062afda0] 1 subpools, [numa:threads][0:4] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 4 threads
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x5597062afda0, expert num: 10, num_experts_per_tok: 8
+alloc 0 from other numa for 7f2b7c022d70
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x5597062dfd80]: Goodbye
+{"threads": 4, "topk": 8, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 1.2487135, "p95_ms": 1.4981145499999997, "min_ms": 1.111248, "effective_weight_bandwidth_gbps_p50": 17.712950168313228, "output_checksum": 0.00040886507485993207}
+CPUInfer[0x5597062f3b40]: Hello
+WorkerPool[0x5597062cde90] 1 subpools, [numa:threads][0:4] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 4 threads
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x5597062cde90, expert num: 10, num_experts_per_tok: 10
+alloc 0 from other numa for 7f2b74018090
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x5597062f3b40]: Goodbye
+{"threads": 4, "topk": 10, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 1.4898365, "p95_ms": 1.6838573000000001, "min_ms": 1.39023, "effective_weight_bandwidth_gbps_p50": 18.557741067560098, "output_checksum": 0.00012192886788398027}

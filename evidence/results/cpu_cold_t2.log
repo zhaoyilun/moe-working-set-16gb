@@ -1,0 +1,60 @@
+CPUInfer[0x55d387f84ac0]: Hello
+WorkerPool[0x55d387f84ae0] 1 subpools, [numa:threads][0:2] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 2 threads
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x55d387f84ae0, expert num: 10, num_experts_per_tok: 1
+alloc 0 from other numa for 7f37200215a0
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x55d387f84ac0]: Goodbye
+{"threads": 2, "topk": 1, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 0.3902265, "p95_ms": 0.46775484999999994, "min_ms": 0.333863, "effective_weight_bandwidth_gbps_p50": 7.085115951889479, "output_checksum": -6.742216646671295e-05}
+CPUInfer[0x55d388039000]: Hello
+WorkerPool[0x55d387f9d9c0] 1 subpools, [numa:threads][0:2] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 2 threads
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x55d387f9d9c0, expert num: 10, num_experts_per_tok: 2
+alloc 0 from other numa for 7f371c0169d0
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x55d388039000]: Goodbye
+{"threads": 2, "topk": 2, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 0.637787, "p95_ms": 0.7497146, "min_ms": 0.587874, "effective_weight_bandwidth_gbps_p50": 8.669979162322218, "output_checksum": 0.00016722179134376347}
+CPUInfer[0x55d38804fdc0]: Hello
+WorkerPool[0x55d3880176f0] 1 subpools, [numa:threads][0:2] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 2 threads
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x55d3880176f0, expert num: 10, num_experts_per_tok: 4
+alloc 0 from other numa for 7f37180165a0
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x55d38804fdc0]: Goodbye
+{"threads": 2, "topk": 4, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 1.141297, "p95_ms": 1.22812935, "min_ms": 1.067796, "effective_weight_bandwidth_gbps_p50": 9.690028099609478, "output_checksum": 0.0005785060347989202}
+CPUInfer[0x55d38804ff40]: Hello
+WorkerPool[0x55d388034dd0] 1 subpools, [numa:threads][0:2] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 2 threads
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x55d388034dd0, expert num: 10, num_experts_per_tok: 8
+alloc 0 from other numa for 7f37217c77a0
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x55d38804ff40]: Goodbye
+{"threads": 2, "topk": 8, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 2.1307185, "p95_ms": 2.3953210499999993, "min_ms": 2.03532, "effective_weight_bandwidth_gbps_p50": 10.380723685461032, "output_checksum": 0.00040886507485993207}
+CPUInfer[0x55d38804e880]: Hello
+WorkerPool[0x55d3880527d0] 1 subpools, [numa:threads][0:2] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 2 threads
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x55d3880527d0, expert num: 10, num_experts_per_tok: 10
+alloc 0 from other numa for 7f371c33ef80
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x55d38804e880]: Goodbye
+{"threads": 2, "topk": 10, "qlen": 1, "cache_mode": "dram_cold", "runs": 50, "p50_ms": 2.639107, "p95_ms": 2.9923861499999997, "min_ms": 2.54866, "effective_weight_bandwidth_gbps_p50": 10.47627095074205, "output_checksum": 0.00012192886788398027}

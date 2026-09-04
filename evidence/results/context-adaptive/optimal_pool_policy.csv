@@ -1,0 +1,5 @@
+"evidence","context","actual_context_tokens","max_throughput_pool_gib","max_throughput_tok_s","max_throughput_allocator_headroom_mib","safe_default_pool_gib","safe_default_tok_s","safe_default_allocator_headroom_mib","safety_reserve_mib"
+"Measured plus policy decision","2K","2027","8","17.5112095381","2124.38","8","17.5112095381","2124.38","1024"
+"Measured plus policy decision","8K","8171","8","17.6261661141","1917.31","8","17.6261661141","1917.31","1024"
+"Measured plus policy decision","16K","16363","8","16.6520980236","850","6","15.0322766279","2992.28","1024"
+"Measured plus policy decision","32K","32747","8","15.118491327","306","6","14.1039920052","2448.28","1024"

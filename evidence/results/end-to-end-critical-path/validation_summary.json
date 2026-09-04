@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "token_timeline_rows": 1500,
+  "per_layer_rows": 48,
+  "per_layer_sequence_ok": true,
+  "context_rows": 6,
+  "ab_rows": 2,
+  "evidence_classes": [
+    "Measured",
+    "Projection",
+    "Prototype measured",
+    "Trace simulation"
+  ],
+  "critical_summary_json_ok": true,
+  "nsys_rep_bytes": 1219611,
+  "nsys_sqlite_bytes": 3190784,
+  "patch_bytes": 9085
+}

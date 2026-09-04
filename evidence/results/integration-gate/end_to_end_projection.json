@@ -1,0 +1,99 @@
+{
+  "format": "slotstream-end-to-end-projection-v1",
+  "classification": {
+    "measured": [
+      "five instrumented llama.cpp decode runtimes",
+      "single-layer hybrid timeline",
+      "prior isolated CPU/H2D/router curves"
+    ],
+    "simulated_from_real_trace": [
+      "cache state and per-layer CPU/H2D decisions for 4000 held-out decode tokens"
+    ],
+    "projected": [
+      "48-layer routed-MoE latency",
+      "complete decode latency and throughput"
+    ]
+  },
+  "selected_policy": {
+    "budget_gb": 8,
+    "policy": "Hybrid policy (adaptive)",
+    "static_gb_nominal": 2,
+    "dynamic_gb_nominal": 6,
+    "calibration_fraction": 0.2,
+    "future_route_knowledge": false
+  },
+  "workloads": [
+    {
+      "workload": "zh_technical",
+      "tokens": 800,
+      "ideal_overlap_p50_ms": 25.15708143749999,
+      "ideal_overlap_p95_ms": 46.56572212500001,
+      "current_prototype_calibrated_p50_ms": 26.429114499999997,
+      "current_prototype_calibrated_p95_ms": 56.09162285750002
+    },
+    {
+      "workload": "en_technical",
+      "tokens": 800,
+      "ideal_overlap_p50_ms": 25.321161749999987,
+      "ideal_overlap_p95_ms": 46.695760375000006,
+      "current_prototype_calibrated_p50_ms": 26.756491999999987,
+      "current_prototype_calibrated_p95_ms": 57.52089780750003
+    },
+    {
+      "workload": "code",
+      "tokens": 800,
+      "ideal_overlap_p50_ms": 25.150411312499987,
+      "ideal_overlap_p95_ms": 46.427137750000014,
+      "current_prototype_calibrated_p50_ms": 26.225776749999994,
+      "current_prototype_calibrated_p95_ms": 55.82847440000004
+    },
+    {
+      "workload": "math_logic",
+      "tokens": 800,
+      "ideal_overlap_p50_ms": 25.39226412499999,
+      "ideal_overlap_p95_ms": 47.052432374999995,
+      "current_prototype_calibrated_p50_ms": 26.81446824999999,
+      "current_prototype_calibrated_p95_ms": 58.34061541500002
+    },
+    {
+      "workload": "long_context",
+      "tokens": 800,
+      "ideal_overlap_p50_ms": 26.407591437499992,
+      "ideal_overlap_p95_ms": 46.90415437500002,
+      "current_prototype_calibrated_p50_ms": 28.52968374999999,
+      "current_prototype_calibrated_p95_ms": 58.56046170750003
+    }
+  ],
+  "routed_moe_48_layers": {
+    "ideal_overlap_cost_model": {
+      "p50_ms": 25.45928637499999,
+      "p95_ms": 46.73092462500001
+    },
+    "current_prototype_calibrated": {
+      "p50_ms": 26.92119649999999,
+      "p95_ms": 57.391179950000016,
+      "calibration_rule": "layers using GPU and CPU together receive the measured three-path host span; GPU-only and CPU-only layers use measured isolated curves",
+      "caveat": "the measured three-path span is conservative for two-path mixes with fewer branches"
+    }
+  },
+  "complete_decode": {
+    "instrumented_trace_runtime_median_ms_per_token": 180.09,
+    "instrumented_trace_runtime_tokens_per_second": 5.552779165972569,
+    "non_moe_trunk_proxy_ms": 137.772648,
+    "trunk_proxy_method": "instrumented median minus 48 times the previously measured pure-CPU routed-layer p50; trace callback overhead remains inside the proxy",
+    "ideal_overlap_projection": {
+      "p50_ms_per_token": 163.23193437499998,
+      "p95_ms_per_token": 184.503572625,
+      "p50_tokens_per_second": 6.12625221791868,
+      "p95_tokens_per_second": 5.419949249614158
+    },
+    "current_prototype_projection": {
+      "p50_ms_per_token": 164.69384449999998,
+      "p95_ms_per_token": 195.16382795,
+      "p50_tokens_per_second": 6.071872346145883,
+      "p95_tokens_per_second": 5.123900317512705
+    }
+  },
+  "decision": "C",
+  "decision_reason": "real traces put most layers in the low-miss GPU-favorable band, while the measured three-path mid-band loses to whole-layer CPU; phase- and cost-adaptive selection preserves the former and avoids the latter"
+}

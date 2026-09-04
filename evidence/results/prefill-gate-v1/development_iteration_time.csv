@@ -1,0 +1,5 @@
+evidence,mode,model_load_s,prefix_or_prefill_s,decode_500_s,total_s,note
+Projection,Inherited cold baseline plus 500 decode,0,141.507022,29.303170603059254,170.81019260305925,Measured prefill plus measured best decode rate
+Projection,Optimized cold n_ubatch=2048 plus 500 decode,0,46.4286579,29.303170603059254,75.73182850305925,Measured optimized prefill plus measured best decode rate
+Measured,"Warm development, model resident",0,0.8071014,36.8158125,37.6229139,Independent load-only process timing after model/context residency
+Measured,"Warm development, fresh process",6.713979500000001,0.8071014,36.8158125,44.3368934,Includes model load and context creation

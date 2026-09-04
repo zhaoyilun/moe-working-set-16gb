@@ -1,0 +1,8 @@
+evidence,series,context,actual_prompt_tokens,n_batch,n_ubatch,run,prefill_seconds,prefill_tok_s,first_token,note
+Measured,historical_prefill_v1,16K,16363,2048,2048,1,46.4286579,352.433189761,248046,Different prompt seed; retained as historical v1 headline
+Measured,prefill_v2_same_prompt,16K,16363,2048,2048,1,56.9371379,287.387118558,321,Strict v2 A/B control
+Measured,prefill_v2_same_prompt,16K,16363,4096,4096,1,39.795832,411.173712865,321,Strict v2 A/B
+Measured,prefill_v2_same_prompt,16K,16363,8192,8192,1,31.2354837,523.859343981,321,Strict v2 A/B
+Measured,prefill_v2_same_prompt,16K,16363,8192,8192,2,31.0511309,526.969534627,321,Stability repeat
+Measured,prefill_v2_same_prompt,16K,16363,8192,8192,3,31.396127,521.178933949,321,Stability repeat
+Measured,prefill_v2_context_check,32K,32747,8192,8192,1,53.0451787,617.341685004,4082,Single context check

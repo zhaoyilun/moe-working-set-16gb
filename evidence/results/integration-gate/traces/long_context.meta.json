@@ -1,0 +1,39 @@
+{
+  "format": "slotstream-routing-trace-v1",
+  "workload": "long_context",
+  "model_path": "E:\\AI\\Models\\Qwen3.8-Flash-Next-UD-IQ4_XS\\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf",
+  "runtime": "llama.cpp b10666 / 4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "prompt": "Read the following project note and then produce a self-contained architecture review of at least 1,600 words. Separate confirmed measurements, simulated results, projected results, and assumptions. Explain which conclusions transfer from a single routed layer to a 48-layer decoder and which do not.\n\nPROJECT NOTE:\nThe workstation has a high-end desktop CPU, one consumer NVIDIA GPU, and a PCIe link between host memory and device memory. A sparse decoder contains 48 routed layers. Every routed layer selects 10 experts from 512 candidates. Each expert consists of three quantized affine matrices and occupies roughly 2.76 MB. The GPU has room for only a subset of all layer-expert pairs. Earlier isolated measurements established three useful execution modes: experts already resident on the GPU; experts copied from pinned host memory and then executed on the GPU; and experts executed directly on CPU workers while only the small activation and output cross the boundary. The transfer and CPU curves cross as the number of missing experts changes, so one global choice is inadequate. A prior synthetic cache study suggested that an aggregate cache near 8 GB could reach around sixty percent hit rate, but that study did not use real per-token router output. The present study therefore captures real top-10 IDs and normalized weights at every layer for several workloads, analyzes temporal and cross-workload locality, simulates several cache policies without future knowledge, validates a real mixed-path layer numerically, and measures whether GPU compute, host-to-device promotion, and CPU expert work overlap in time. The final design must make its decision independently at each layer and token, maintain a static hot region plus a dynamic region, and use measured costs and recent reuse as its inputs. It must not claim exact future-route prefetching.\n\nYour review must reconstruct the information flow from token to router to cache lookup to per-expert execution to weighted merge. It must identify the dominant bottlenecks, explain the purpose of every validation gate, propose an experiment matrix, give acceptance criteria, and end with a decision among GPU-only, CPU-only, static partitioning, or a dynamic hybrid architecture. Continue until all requested sections are complete.\r\n",
+  "prompt_tokens": 450,
+  "decode_tokens": 1000,
+  "seed": 0,
+  "sampling": {
+    "strategy": "greedy"
+  },
+  "routing": {
+    "experts": 512,
+    "top_k": 10,
+    "normalization": "top-k softmax",
+    "shared_expert": true,
+    "routed_scaling_factor": 1.0,
+    "group_routing": false,
+    "correction_bias": false
+  },
+  "n_layers": 48,
+  "records": 69151,
+  "hidden_state_trace": null,
+  "hidden_state_layer": 0,
+  "n_gpu_layers": 10,
+  "threads": 24,
+  "model_repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+  "model_revision": "38bb39ee97821de2c9009abb7e93950eec396e66",
+  "runtime_commit": "4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "trace_timestamp_utc": "2026-09-03T09:33:38.565190+00:00",
+  "trace_runtime": {
+    "decode_total_ms": 175943.85,
+    "decode_runs": 1000,
+    "decode_ms_per_token": 175.94,
+    "decode_tokens_per_second": 5.68,
+    "note": "instrumented trace runtime; synchronous callback copies are included"
+  }
+}

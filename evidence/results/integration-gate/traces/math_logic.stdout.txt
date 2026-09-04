@@ -1,0 +1,65 @@
+<think>
+The user is asking for a comprehensive mathematical modeling problem about expert caching in a Mixture-of-Experts (MoE) decoder architecture. Let me break down what's needed:
+
+1. **Setup**: 48 layers, 10 experts chosen from 512 per layer, each expert = 2,764,800 bytes, GPU cache budget B ∈ {2,4,6,8,10,12} GB
+2. **Cost functions**: H(k) for loading k missing experts, C(k) for CPU execution, G(k) for GPU-resident execution
+3. **Tasks**:
+   - Formulate optimal offline schedule
+   - Prove relationship to weighted caching
+   - Identify why exact online optimality is unavailable without future routes
+   - Derive practical lower and upper bounds
+   - Construct and analyze an online cost-aware policy using frequency and reuse distance
+   - At least two theorems with proofs
+   - One adversarial sequence
+   - One stochastic model
+   - Numerical examples
+   - Pseudocode
+   - Sensitivity analysis
+   - At least 1,800 words
+   - Show every reasoning step
+
+Let me structure this carefully and thoroughly.
+
+Key parameters:
+- L = 48 layers
+- E = 512 experts per layer
+- k_select = 10 experts chosen per layer per token
+- Expert size: s = 2,764,800 bytes ≈ 2.637 MB
+- Cache budget B ∈ {2,4,6,8,10,12} GB
+
+Total experts across all layers: 48 × 512 = 24,576
+Total memory for all experts: 24,576 × 2,764,800 bytes = 67,946,752,000 bytes ≈ 63.28 GB
+
+Cache capacity in experts: B GB / 2,764,800 bytes
+- B=2: 2×10^9 / 2,764,800 ≈ 723 experts
+- B=4: ≈ 1,446 experts
+- B=6: ≈ 2,169 experts
+- B=8: ≈ 2,892 experts
+- B=10: ≈ 3,615 experts
+- B=12: ≈ 4,338 experts
+
+Wait, let me recalculate. 1 GB = 10^9 bytes (decimal).
+- B=2: 2×10^9 / 2,764,800 ≈ 723.4 experts
+- B=4: 4×10^9 / 2,764,800 ≈ 1,446.8 experts
+- B=6: 6×10^9 / 2,764,800 ≈ 2,170.2 experts
+- B=8: 8×10^9 / 2,764,800 ≈ 2,893.6 experts
+- B=10: 10×10^9 / 2,764,800 ≈ 3,617.0 experts
+- B=12: 12×10^9 / 2,764,800 ≈ 4,340.4 experts
+
+Per layer, 10 experts are needed. Total experts needed per token: 48 × 10 = 480.
+
+This is a weighted caching problem where:
+- Items are (layer, expert) pairs
+- Weight of each item = expert size = 2,764,800 bytes (uniform weight actually)
+- But the cost structure makes it more complex because of nonlinear H(k)
+
+Actually, since all experts have the same size, the weight is uniform. But the cost functions H(k), C(k), G(k) introduce nonlinearity.
+
+Let me think about the formulation more carefully.
+
+For a token t at layer l, the router selects a set S_{t,l} ⊂ {1,...,512} with |S_{t,l}| = 10.
+
+The cache state at any point is a subset of (l, e) pairs that are GPU-resident.
+
+When processing token t at layer l:
+- Let R_{t,l} = S_{t,l} ∩ Cache (experts already in cache)

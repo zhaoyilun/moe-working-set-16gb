@@ -1,0 +1,5704 @@
+{
+  "format": "slotstream-routing-summary-v1",
+  "source": "real decode routing traces",
+  "traces": [
+    {
+      "trace": "C:\\Users\\user0\\Documents\\Codex\\2026-09-03\\chatgpt-conversation-6a98f719-c4cc-83ec-8dd8\\work\\pc-slotstream-hybrid-gate\\results\\integration-gate\\trace_fixture.bin",
+      "metadata": {},
+      "decode_tokens": 140,
+      "layers": 48,
+      "top_k": 10,
+      "expert_requests": 67200,
+      "routing_weight_sum_error_max": 0.0,
+      "frequency": {
+        "global": {
+          "distinct_pages": 24048,
+          "entropy_bits": 14.412622098812706,
+          "entropy_normalized": 0.9881836924915008,
+          "working_set": {
+            "W50": 8000,
+            "W80": 15360,
+            "W90": 18720,
+            "W95": 20688,
+            "W99": 23376
+          }
+        },
+        "per_layer": [
+          {
+            "layer": 0,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 0,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 170,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 154,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 153,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 137,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 136,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 120,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 171,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 119,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 102,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 86,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 85,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 69,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 68,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 52,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 103,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 51,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 187,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 204,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 324,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 1,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 283,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 45,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 46,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 317,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 62,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 63,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 250,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 249,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 79,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 80,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 96,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 334,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 233,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 232,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 113,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 266,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 114,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 131,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 216,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 147,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 2,
+            "distinct_experts": 501,
+            "entropy_bits": 8.82765959809155,
+            "entropy_normalized": 0.9808510664546167,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 243,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 23,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 176,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 175,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 227,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 345,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 124,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 277,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 294,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 278,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 74,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 73,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 226,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 39,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 40,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 159,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 295,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 125,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 244,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 22,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 3,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 255,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 84,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 254,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 271,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 272,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 68,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 67,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 288,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 305,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 306,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 322,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 323,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 51,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 50,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 339,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 340,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 85,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 356,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 238,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 221,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 4,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 282,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 164,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 163,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 44,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 45,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 334,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 283,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 147,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 146,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 61,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 62,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 299,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 368,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 266,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 367,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 130,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 129,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 78,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 79,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 316,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 5,
+            "distinct_experts": 501,
+            "entropy_bits": 8.82765959809155,
+            "entropy_normalized": 0.9808510664546167,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 225,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 106,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 361,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 362,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 191,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 192,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 90,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 107,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 89,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 260,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 73,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 72,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 259,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 56,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 55,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 378,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 345,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 344,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 123,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 174,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 6,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 288,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 389,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 100,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 203,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 270,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 372,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 219,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 220,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 356,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 355,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 339,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 338,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 390,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 236,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 322,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 321,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 84,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 83,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 305,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 304,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 7,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 401,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 180,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 179,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 146,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 400,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 78,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 77,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 128,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 264,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 265,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 129,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 163,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 162,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 384,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 383,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 333,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 299,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 298,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 281,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 282,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 8,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 225,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 241,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 242,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 326,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 327,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 88,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 207,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 123,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 122,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 343,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 344,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 224,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 412,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 411,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 106,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 105,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 258,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 360,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 361,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 395,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 9,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 270,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 269,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 253,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 422,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 320,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 321,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 405,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 406,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 355,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 134,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 133,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 354,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 372,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 337,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 338,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 201,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 202,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 184,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 252,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 185,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 10,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 383,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 144,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 179,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 178,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 348,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 127,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 400,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 399,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 128,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 349,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 263,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 264,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 298,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 297,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 162,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 161,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 331,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 382,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 280,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 281,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 11,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 309,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 410,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 394,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 393,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 206,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 377,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 376,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 223,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 224,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 360,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 359,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 343,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 342,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 240,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 241,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 326,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 325,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 257,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 258,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 308,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 12,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 268,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 150,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 149,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 337,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 404,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 405,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 252,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 319,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 320,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 269,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 201,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 336,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 456,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 455,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 354,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 353,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 133,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 132,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 387,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 217,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 13,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 433,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 143,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 450,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 296,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 297,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 449,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 313,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 144,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 314,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 331,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 347,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 348,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 364,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 365,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 381,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 330,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 280,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 279,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 467,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 212,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 14,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 393,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 409,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 205,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 206,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 291,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 392,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 222,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 223,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 376,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 375,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 359,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 358,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 239,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 240,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 342,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 341,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 256,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 257,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 325,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 324,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 15,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 267,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 403,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 404,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 369,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 488,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 353,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 352,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 166,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 165,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 251,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 336,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 250,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 301,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 233,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 234,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 284,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 285,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 420,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 472,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 471,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 16,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 448,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 381,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 346,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 414,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 227,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 347,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 228,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 483,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 482,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 415,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 296,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 380,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 312,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 295,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 245,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 466,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 431,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 432,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 465,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 279,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 17,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 255,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 324,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 323,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 307,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 306,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 290,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 289,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 273,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 340,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 272,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 510,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 239,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 238,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 222,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 221,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 205,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 204,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 256,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 188,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 341,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 18,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 453,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 385,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 488,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 487,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 232,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 419,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 420,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 301,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 454,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 300,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 233,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 351,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 352,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 249,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 250,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 471,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 470,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 284,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 436,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 437,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 19,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 226,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 328,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 329,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 465,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 464,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 277,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 243,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 244,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 397,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 345,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 448,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 447,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 278,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 346,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 209,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 431,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 430,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 362,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 363,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 414,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 20,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 255,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 425,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 424,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 408,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 407,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 391,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 390,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 374,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 373,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 357,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 356,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 339,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 323,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 322,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 306,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 305,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 289,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 288,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 272,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 271,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 21,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 266,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 469,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 385,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 384,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 470,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 316,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 367,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 368,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 418,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 419,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 42,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 26,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 43,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 231,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 232,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 487,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 486,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 351,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 300,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 299,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 22,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 412,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 294,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 310,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 54,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 53,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 481,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 480,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 361,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 276,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 277,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 413,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 36,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 37,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 345,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 344,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 293,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 464,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 463,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 259,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 20,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 23,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 65,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 31,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 424,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 423,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 304,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 407,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 406,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 47,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 48,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 390,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 389,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 253,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 254,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 373,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 372,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 270,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 271,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 356,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 355,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 64,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 24,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 384,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 333,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 265,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 264,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 434,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 451,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 41,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 42,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 367,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 452,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 366,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 332,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 400,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 350,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 58,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 59,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 469,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 468,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 76,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 75,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 25,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 411,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 35,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 36,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 412,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 310,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 395,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 394,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 378,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 52,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 53,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 377,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 275,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 428,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 276,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 360,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 344,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 343,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 292,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 87,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 69,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 26,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 303,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 338,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 474,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 473,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 354,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 355,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 46,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 97,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 457,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 456,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 287,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 286,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 440,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 371,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 63,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 64,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 372,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 439,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 388,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 423,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 27,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 314,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 40,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 41,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 348,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 349,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 467,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 57,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 433,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 468,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 502,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 365,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 366,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 74,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 75,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 400,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 501,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 399,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 91,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 92,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 484,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 28,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 0,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 34,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 35,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 411,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 309,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 103,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 102,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 394,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 393,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 377,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 51,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 427,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 52,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 360,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 359,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 343,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 342,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 86,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 68,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 69,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 29,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 405,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 29,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 439,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 422,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 80,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 337,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 79,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 388,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 387,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 371,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 490,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 28,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 489,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 473,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 45,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 46,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 130,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 131,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 354,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 353,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 30,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 433,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 39,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 40,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 381,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 382,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 56,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 57,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 399,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 484,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 483,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 415,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 73,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 74,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 365,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 416,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 90,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 91,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 467,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 466,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 142,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 31,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 0,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 342,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 341,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 153,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 152,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 136,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 135,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 358,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 119,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 102,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 101,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 85,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 84,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 68,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 67,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 118,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 51,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 359,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 376,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 495,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 32,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 164,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 352,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 44,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 45,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 437,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 438,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 369,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 387,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 386,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 147,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 146,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 353,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 61,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 62,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 130,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 129,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 454,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 78,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 79,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 455,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 33,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 415,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 465,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 466,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 500,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 499,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 56,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 55,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 157,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 158,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 414,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 90,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 89,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 380,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 38,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 39,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 381,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 432,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 431,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 175,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 398,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 34,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 511,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 169,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 443,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 374,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 84,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 510,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 426,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 32,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 33,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 425,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 185,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 186,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 409,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 408,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 101,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 100,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 392,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 391,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 49,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 50,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 35,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 385,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 27,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 386,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 60,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 78,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 77,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 505,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 163,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 162,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 43,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 44,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 402,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 403,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 128,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 129,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 437,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 504,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 146,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 145,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 436,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 36,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 88,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 447,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 430,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 431,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 72,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 71,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 37,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 38,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 140,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 139,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 465,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 464,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 207,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 208,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 190,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 191,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 122,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 123,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 54,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 55,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 37,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 185,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 167,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 168,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 218,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 441,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 83,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 31,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 32,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 425,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 424,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 184,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 408,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 407,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 201,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 100,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 99,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 202,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 48,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 49,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 219,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 38,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 213,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 504,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 503,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 59,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 60,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 469,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 470,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 76,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 77,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 93,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 94,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 435,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 436,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 110,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 111,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 43,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 453,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 128,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 452,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 144,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 39,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 104,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 88,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 87,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 190,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 155,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 36,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 37,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 464,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 463,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 138,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 139,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 480,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 173,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 429,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 430,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 105,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 53,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 54,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 71,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 70,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 40,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 132,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 47,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 200,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 167,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 475,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 150,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 252,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 30,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 31,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 166,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 149,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 474,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 133,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 82,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 81,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 184,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 458,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 457,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 183,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 65,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 41,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 486,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 262,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 92,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 160,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 161,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 503,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 245,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 229,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 41,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 42,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 228,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 177,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 178,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 485,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 76,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 212,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 211,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 75,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 58,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 59,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 42,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 35,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 188,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 104,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 103,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 189,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 70,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 36,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 205,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 206,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 222,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 172,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 223,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 52,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 53,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 86,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 239,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 240,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 256,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 257,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 273,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 43,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 46,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 216,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 149,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 29,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 30,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 200,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 474,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 473,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 267,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 114,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 217,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 182,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 251,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 250,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 47,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 268,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 132,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 131,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 64,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 63,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 44,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091554,
+            "entropy_normalized": 0.9808510664546171,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 142,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 24,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 109,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 75,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 92,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 245,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 244,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 91,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 177,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 23,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 485,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 210,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 211,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 159,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 160,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 228,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 227,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 40,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 41,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 176,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 45,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 0,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 170,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 154,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 153,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 137,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 136,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 120,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 171,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 119,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 102,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 86,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 85,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 69,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 68,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 52,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 103,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 51,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 187,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 204,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 496,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 46,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 266,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 29,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 301,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 300,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 131,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 130,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 46,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 249,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 250,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 114,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 113,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 62,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 63,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 284,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 283,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 216,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 181,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 182,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 267,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 79,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          },
+          {
+            "layer": 47,
+            "distinct_experts": 501,
+            "entropy_bits": 8.827659598091552,
+            "entropy_normalized": 0.9808510664546168,
+            "working_set": {
+              "W50": 167,
+              "W80": 320,
+              "W90": 390,
+              "W95": 431,
+              "W99": 487
+            },
+            "top_experts": [
+              {
+                "expert": 261,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 175,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 141,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 277,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 278,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 124,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 125,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 74,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 39,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 40,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 176,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 226,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 73,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 159,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 295,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 294,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 158,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 56,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 57,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              },
+              {
+                "expert": 244,
+                "requests": 5,
+                "fraction": 0.0035714285714285713
+              }
+            ]
+          }
+        ]
+      },
+      "adjacent_token_overlap": {
+        "histogram": {
+          "0": 6672,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0
+        },
+        "distribution": {
+          "0": 1.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0,
+          "10": 0.0
+        },
+        "mean_intersection": 0.0,
+        "per_layer_mean_intersection": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "window_locality": {
+        "2": {
+          "samples": 6672,
+          "distinct_experts_mean": 20.0,
+          "distinct_experts_p50": 20.0,
+          "distinct_experts_p95": 20.0,
+          "repeated_request_fraction_mean": 0.0
+        },
+        "4": {
+          "samples": 6576,
+          "distinct_experts_mean": 40.0,
+          "distinct_experts_p50": 40.0,
+          "distinct_experts_p95": 40.0,
+          "repeated_request_fraction_mean": 0.0
+        },
+        "8": {
+          "samples": 6384,
+          "distinct_experts_mean": 80.0,
+          "distinct_experts_p50": 80.0,
+          "distinct_experts_p95": 80.0,
+          "repeated_request_fraction_mean": 0.0
+        },
+        "16": {
+          "samples": 6000,
+          "distinct_experts_mean": 160.0,
+          "distinct_experts_p50": 160.0,
+          "distinct_experts_p95": 160.0,
+          "repeated_request_fraction_mean": 0.0
+        },
+        "32": {
+          "samples": 5232,
+          "distinct_experts_mean": 304.0,
+          "distinct_experts_p50": 304.0,
+          "distinct_experts_p95": 304.0,
+          "repeated_request_fraction_mean": 0.05000000000000004
+        },
+        "64": {
+          "samples": 3696,
+          "distinct_experts_mean": 368.0,
+          "distinct_experts_p50": 368.0,
+          "distinct_experts_p95": 368.0,
+          "repeated_request_fraction_mean": 0.4249999999999999
+        },
+        "128": {
+          "samples": 624,
+          "distinct_experts_mean": 489.0,
+          "distinct_experts_p50": 489.0,
+          "distinct_experts_p95": 489.0,
+          "repeated_request_fraction_mean": 0.6179687500000001
+        }
+      },
+      "reuse_distance": {
+        "first_touch_requests": 24048,
+        "repeat_requests": 43152,
+        "expert_request_distance": {
+          "count": 43152,
+          "p50": 14402.0,
+          "p80": 14402.0,
+          "p90": 14402.0,
+          "p95": 14402.0,
+          "p99": 58071.0,
+          "mean": 15324.92658509455
+        },
+        "token_distance": {
+          "count": 43152,
+          "p50": 30.0,
+          "p80": 30.0,
+          "p90": 30.0,
+          "p95": 30.0,
+          "p99": 121.0,
+          "mean": 31.92324805339266
+        }
+      }
+    }
+  ],
+  "cross_workload": []
+}

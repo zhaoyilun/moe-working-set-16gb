@@ -1,0 +1,5 @@
+evidence,configuration,context_tokens,physical_vram_mib,gpu_model_buffer_mib,raw_expert_weights_mib,kv_attention_mib,kv_indexer_mib,recurrent_state_mib,gpu_compute_buffer_mib,gpu_output_buffer_mib,observed_peak_vram_mib,minimum_headroom_mib,notes
+Measured,Native expert-only CPU offload,16363,16376,4459.62,0.00,408.00,153.00,112.57,1842.57,0.95,,,component sizes from runtime log
+Measured plus exact allocation,Hybrid fixed cache 4 GiB,16363,16376,8741.41,4094.56,408.00,153.00,112.57,1842.57,0.95,,,model buffer includes cache maps and allocator padding
+Measured plus exact allocation,Hybrid fixed cache 6 GiB,16363,16376,10866.63,6142.94,408.00,153.00,112.57,1842.57,0.95,,,model buffer includes cache maps and allocator padding
+Measured plus exact allocation,Hybrid fixed cache 8 GiB,16363,16376,13008.91,8191.33,408.00,153.00,112.57,1842.57,0.95,15990,386,peak from 2-second resource sampling; throughput from this observation run excluded

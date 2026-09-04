@@ -1,0 +1,18 @@
+{
+  "evidence": "Measured",
+  "mode": "cold-only",
+  "revision": "2d4f3154a2d93c3a4d6d4a415c404f1b397d8dcb",
+  "prompt_tokens": 2,
+  "n_ctx": 2048,
+  "n_batch": 16,
+  "n_ubatch": 16,
+  "cache_type_k": "f16",
+  "cache_type_v": "f16",
+  "model_load_ms": 6314.027,
+  "context_init_ms": 29.8679,
+  "cold_prefill_ms": 308.9078,
+  "cold_prefill_tok_s": 6.4744237601,
+  "first_token": 198,
+  "verify_tokens": [198,1,248046,198,248045,248045,248046,198],
+  "verify_text": "\n\"<|im_end|>\n<|im_start|><|im_start|><|im_end|>\n"
+}

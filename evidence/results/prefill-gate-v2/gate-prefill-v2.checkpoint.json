@@ -1,0 +1,24 @@
+{
+  "name": "gate-prefill-v2",
+  "created_at": "2026-09-04T01:25:27.3134050+08:00",
+  "source_checkpoint": "2d4f315",
+  "performance_gate": "passed",
+  "best_16k_mean_tok_s": 524.0026041857,
+  "best_16k_runs_tok_s": [
+    523.859343981,
+    526.969534627,
+    521.178933949
+  ],
+  "best_16k_mean_seconds": 31.2275805333,
+  "context_32k_single_tok_s": 617.341685004,
+  "default_candidate_n_ubatch": 8192,
+  "numerical_boundary": "same first-token argmax; 4K and 8K 32-token continuation equal; 2K vs 8K diverges after 6 tokens",
+  "artifacts": [
+    "PREFILL_V2_RESULTS.md",
+    "ubatch_sweep.csv",
+    "vram_prefill_v2.csv",
+    "correctness-comparison.json",
+    "correctness-comparison-2048-vs-4096.json",
+    "correctness-comparison-4096-vs-8192.json"
+  ]
+}

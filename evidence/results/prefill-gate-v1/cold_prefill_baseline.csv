@@ -1,0 +1,9 @@
+evidence,series,context_target,actual_prompt_tokens,n_batch,n_ubatch,prefill_seconds,prefill_tok_s,decode_tok_s,note
+Measured,inherited_native_baseline,512,491,2048,512,11.08065,44.31147992220673,16.508472849876654,Existing end-to-end runner; first prompt evaluation; OS page cache retained
+Measured,inherited_native_baseline,1024,1003,2048,512,15.738817999999998,63.727784386349725,16.483416405631164,Existing end-to-end runner; first prompt evaluation; OS page cache retained
+Measured,inherited_native_baseline,2048,2027,2048,512,23.893031,84.83645293893437,16.600243558773496,Existing end-to-end runner; first prompt evaluation; OS page cache retained
+Measured,inherited_native_baseline,4096,4075,2048,512,40.046757,101.75605480363866,16.291006908038568,Existing end-to-end runner; first prompt evaluation; OS page cache retained
+Measured,inherited_native_baseline,8192,8171,2048,512,74.029122,110.37548169219134,15.551809297493671,Existing end-to-end runner; first prompt evaluation; OS page cache retained
+Measured,inherited_native_baseline,16384,16363,2048,512,141.507022,115.63383759146596,15.053376261548198,Existing end-to-end runner; first prompt evaluation; OS page cache retained
+Measured,prefix_harness_control,16384,16363,2048,512,103.3284341,158.359121016,,Same harness control for ubatch A/B; last token replayed for session protocol
+Measured,prefill_v1_optimized,16384,16363,2048,2048,46.4286579,352.433189761,,Direct cold prefill; larger physical ubatch; model revision unchanged

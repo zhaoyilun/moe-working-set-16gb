@@ -1,0 +1,39 @@
+{
+  "format": "slotstream-routing-trace-v1",
+  "workload": "en_technical",
+  "model_path": "E:\\AI\\Models\\Qwen3.8-Flash-Next-UD-IQ4_XS\\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf",
+  "runtime": "llama.cpp b10666 / 4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "prompt": "Write a detailed English engineering essay of at least 1,800 words on designing a PC-scale hybrid Mixture-of-Experts inference runtime. Build a precise mental model, then explain token routing, expert locality, GPU residency, PCIe transfers, direct CPU execution, per-layer scheduling, tail latency, and the interaction between static hot sets and dynamic caches. Compare LRU, CLOCK, LFU, frequency-based admission, and a cost-aware hybrid policy. Include equations, a worked 48-layer example, counterexamples, operational boundaries, and a final decision table. Use complete dense paragraphs and continue until the requested scope is fully covered.\r\n",
+  "prompt_tokens": 138,
+  "decode_tokens": 1000,
+  "seed": 0,
+  "sampling": {
+    "strategy": "greedy"
+  },
+  "routing": {
+    "experts": 512,
+    "top_k": 10,
+    "normalization": "top-k softmax",
+    "shared_expert": true,
+    "routed_scaling_factor": 1.0,
+    "group_routing": false,
+    "correction_bias": false
+  },
+  "n_layers": 48,
+  "records": 54487,
+  "hidden_state_trace": null,
+  "hidden_state_layer": 0,
+  "n_gpu_layers": 10,
+  "threads": 24,
+  "model_repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+  "model_revision": "38bb39ee97821de2c9009abb7e93950eec396e66",
+  "runtime_commit": "4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "trace_timestamp_utc": "2026-09-03T09:23:19.831926+00:00",
+  "trace_runtime": {
+    "decode_total_ms": 180085.86,
+    "decode_runs": 1000,
+    "decode_ms_per_token": 180.09,
+    "decode_tokens_per_second": 5.55,
+    "note": "instrumented trace runtime; synchronous callback copies are included"
+  }
+}

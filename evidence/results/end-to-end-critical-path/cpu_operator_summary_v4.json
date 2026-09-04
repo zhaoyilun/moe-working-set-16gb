@@ -1,0 +1,17 @@
+{
+  "profiled_graphs": 800,
+  "profiled_layers": 39,
+  "samples_per_layer": 20,
+  "mean_input_embedding_and_initial_prep_ms": 1.5025,
+  "mean_cpu_layer_graph_ms_per_token": 132.8748,
+  "mean_cpu_graph_ms_per_token": 134.3773,
+  "operator_families_ms_per_token": {
+    "hc_and_attention_ms": 25.564000000000004,
+    "attn_residual_and_ffn_hc_ms": 10.688950000000002,
+    "router_ms": 0.0,
+    "routed_expert_and_merge_ms": 37.51415,
+    "shared_expert_ms": 5.8901,
+    "moe_shared_merge_ms": 0.6188499999999999,
+    "ffn_residual_and_next_prep_ms": 52.59874999999999
+  }
+}

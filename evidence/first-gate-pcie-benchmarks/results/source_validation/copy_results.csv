@@ -1,0 +1,5 @@
+pool_gb,host_memory,layout,batch_experts,bytes,iterations,wall_mean_ms,wall_p50_ms,wall_p95_ms,event_mean_ms,effective_gbps
+1.000000,pageable,contiguous_record,1,2764800,362,0.180510,0.177100,0.199400,0.174215,15.316631
+1.000000,pageable,nine_pieces_per_expert,1,2764800,362,0.288907,0.287400,0.298900,0.275288,9.569865
+1.000000,pinned,contiguous_record,1,2764800,362,0.127366,0.125600,0.138100,0.120961,21.707563
+1.000000,pinned,nine_pieces_per_expert,1,2764800,362,0.141176,0.139400,0.152200,0.135915,19.584070

@@ -1,0 +1,5 @@
+evidence,context,actual_prompt_tokens,n_ctx,prefill_seconds,prefill_tok_s,state_mib,save_seconds,load_seconds,restore_to_first_token_seconds,roundtrip_correct
+Measured,2K,2027,3072,16.1608913,125.426250469,177.96,0.1164884,0.1365834,0.2308827,true
+Measured,8K,8171,9216,34.4035014,237.504895359,376.27,0.252923,0.3191233,0.43561,true
+Measured,16K,16363,17408,46.4286579,352.433189761,640.67,0.465721,0.5867351,0.8071014,true
+Measured,32K,32747,33792,105.8514058,309.36764375,1169.49,0.9846666,1.2482511,1.3447031,true

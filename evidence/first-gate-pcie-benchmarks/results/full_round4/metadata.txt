@@ -1,0 +1,12 @@
+timestamp_utc=2026-09-03T05:41:04Z
+gpu=NVIDIA GeForce RTX 4080 SUPER
+compute_capability=8.9
+cuda_driver_api=13030
+cuda_runtime_api=12030
+vram_total_bytes=17170956288
+vram_free_before_bytes=15792603136
+expert_bytes=2764800
+model_layers=48
+experts_per_layer=512
+routed_topk=10
+compute_model=three_fp16_strided_batched_gemms_no_activation_or_int4_dequant

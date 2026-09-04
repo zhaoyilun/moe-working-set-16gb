@@ -1,0 +1,52 @@
+[
+  {
+    "cell": "K0-u512",
+    "n_ubatch": 512,
+    "tok_s": 15.080273995,
+    "p50_ms": 64.4967,
+    "p95_ms": 94.1868,
+    "compute_mib": 1842.5714,
+    "graph": true,
+    "first": 7059
+  },
+  {
+    "cell": "K1-u4",
+    "n_ubatch": 4,
+    "tok_s": 14.1525323852,
+    "p50_ms": 69.1711,
+    "p95_ms": 94.3292,
+    "compute_mib": 14.2906,
+    "graph": true,
+    "first": 7059
+  },
+  {
+    "cell": "K2-u1",
+    "n_ubatch": 1,
+    "tok_s": 14.0372521651,
+    "p50_ms": 67.4356,
+    "p95_ms": 107.4094,
+    "compute_mib": 13.3024,
+    "graph": true,
+    "first": 7059
+  },
+  {
+    "cell": "K3-u16",
+    "n_ubatch": 16,
+    "tok_s": 14.0095443874,
+    "p50_ms": 68.4469,
+    "p95_ms": 105.2135,
+    "compute_mib": 18.3781,
+    "graph": true,
+    "first": 7059
+  },
+  {
+    "cell": "K0R-u512",
+    "n_ubatch": 512,
+    "tok_s": 13.7780044183,
+    "p50_ms": 68.4066,
+    "p95_ms": 109.0279,
+    "compute_mib": 1842.5714,
+    "graph": true,
+    "first": 7059
+  }
+]

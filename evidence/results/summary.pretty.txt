@@ -1,0 +1,241 @@
+{
+  "decision": "C_mixed",
+  "best_dram_cold_by_cpu_expert_count": {
+    "1": {
+      "threads": 8,
+      "topk": 1,
+      "qlen": 1,
+      "cache_mode": "dram_cold",
+      "runs": 50,
+      "p50_ms": 0.253113,
+      "p95_ms": 0.34904585,
+      "min_ms": 0.198886,
+      "effective_weight_bandwidth_gbps_p50": 12.136871673916396,
+      "output_checksum": -6.742216646671295e-05
+    },
+    "2": {
+      "threads": 16,
+      "topk": 2,
+      "qlen": 1,
+      "cache_mode": "dram_cold",
+      "runs": 50,
+      "p50_ms": 0.333946,
+      "p95_ms": 0.4663480999999999,
+      "min_ms": 0.23513,
+      "effective_weight_bandwidth_gbps_p50": 18.398184137555173,
+      "output_checksum": 0.00016722179134376347
+    },
+    "4": {
+      "threads": 24,
+      "topk": 4,
+      "qlen": 1,
+      "cache_mode": "dram_cold",
+      "runs": 50,
+      "p50_ms": 0.422546,
+      "p95_ms": 0.6005620500000001,
+      "min_ms": 0.337575,
+      "effective_weight_bandwidth_gbps_p50": 29.08085746877263,
+      "output_checksum": 0.0005785060347989202
+    },
+    "8": {
+      "threads": 24,
+      "topk": 8,
+      "qlen": 1,
+      "cache_mode": "dram_cold",
+      "runs": 50,
+      "p50_ms": 0.7005445,
+      "p95_ms": 0.82598675,
+      "min_ms": 0.569376,
+      "effective_weight_bandwidth_gbps_p50": 35.08128320185227,
+      "output_checksum": 0.00040886507485993207
+    },
+    "10": {
+      "threads": 24,
+      "topk": 10,
+      "qlen": 1,
+      "cache_mode": "dram_cold",
+      "runs": 50,
+      "p50_ms": 0.7809115,
+      "p95_ms": 0.91486135,
+      "min_ms": 0.653765,
+      "effective_weight_bandwidth_gbps_p50": 39.33864464795306,
+      "output_checksum": 0.00012192886788398027
+    }
+  },
+  "top10_vs_prior_pcie_exposed": {
+    "cpu_expert_p50_ms": 0.7809115,
+    "cpu_expert_p95_ms": 0.91486135,
+    "activation_roundtrip_p50_ms": 0.0161,
+    "router_top10_p50_ms": 0.0846,
+    "whole_routed_layer_serial_sum_p50_ms": 0.8816115,
+    "whole_routed_layer_serial_sum_p95_ms": 1.17376135,
+    "prior_pcie_exposed_p50_ms": 1.040189,
+    "cpu_only_margin_ms": 0.25927750000000005,
+    "cpu_plus_activation_margin_ms": 0.24317750000000005
+  },
+  "phase_accounting_top10": {
+    "scheduler_only_p50_ms": 0.036542,
+    "llc_warm_fused_kernel_p50_ms": 0.6172275,
+    "dram_cold_fused_kernel_p50_ms": 0.7809115,
+    "observed_dram_cold_penalty_ms": 0.16368399999999994,
+    "note": "dequantization and GEMV are fused in the AVX2 inner loop"
+  },
+  "prefill": {
+    "cpu": [
+      {
+        "threads": 24,
+        "topk": 10,
+        "qlen": 16,
+        "cache_mode": "warm",
+        "runs": 5,
+        "p50_ms": 7.589512,
+        "p95_ms": 7.729513,
+        "min_ms": 7.155667,
+        "effective_weight_bandwidth_gbps_p50": 4.04769107684394,
+        "skip_all_cpu_experts": false,
+        "output_checksum": 0.003065158613026142
+      },
+      {
+        "threads": 24,
+        "topk": 10,
+        "qlen": 64,
+        "cache_mode": "warm",
+        "runs": 5,
+        "p50_ms": 28.623868,
+        "p95_ms": 28.9400568,
+        "min_ms": 28.084954,
+        "effective_weight_bandwidth_gbps_p50": 1.0732302147284916,
+        "skip_all_cpu_experts": false,
+        "output_checksum": 0.015818439424037933
+      },
+      {
+        "threads": 24,
+        "topk": 10,
+        "qlen": 256,
+        "cache_mode": "warm",
+        "runs": 5,
+        "p50_ms": 118.055602,
+        "p95_ms": 123.2663376,
+        "min_ms": 116.636836,
+        "effective_weight_bandwidth_gbps_p50": 0.2602163682160547,
+        "skip_all_cpu_experts": false,
+        "output_checksum": 0.054624043405056
+      },
+      {
+        "threads": 24,
+        "topk": 10,
+        "qlen": 512,
+        "cache_mode": "warm",
+        "runs": 5,
+        "p50_ms": 237.079781,
+        "p95_ms": 260.5713114,
+        "min_ms": 234.405559,
+        "effective_weight_bandwidth_gbps_p50": 0.1295766339517582,
+        "skip_all_cpu_experts": false,
+        "output_checksum": 0.1081898957490921
+      },
+      {
+        "threads": 24,
+        "topk": 10,
+        "qlen": 1024,
+        "cache_mode": "warm",
+        "runs": 5,
+        "p50_ms": 460.789485,
+        "p95_ms": 477.68692880000003,
+        "min_ms": 455.467038,
+        "effective_weight_bandwidth_gbps_p50": 0.06666818796874238,
+        "skip_all_cpu_experts": false,
+        "output_checksum": 0.21191543340682983
+      },
+      {
+        "threads": 24,
+        "topk": 10,
+        "qlen": 2048,
+        "cache_mode": "warm",
+        "runs": 5,
+        "p50_ms": 1016.764958,
+        "p95_ms": 1041.3885533999999,
+        "min_ms": 937.344585,
+        "effective_weight_bandwidth_gbps_p50": 0.03021347240411092,
+        "skip_all_cpu_experts": false,
+        "output_checksum": 0.4329676330089569
+      },
+      {
+        "threads": 24,
+        "topk": 10,
+        "qlen": 4096,
+        "cache_mode": "warm",
+        "runs": 5,
+        "p50_ms": 2328.437609,
+        "p95_ms": 2370.4716004,
+        "min_ms": 2289.387121,
+        "effective_weight_bandwidth_gbps_p50": 0.013193396241865978,
+        "skip_all_cpu_experts": false,
+        "output_checksum": 0.8314356803894043
+      }
+    ],
+    "gpu": [
+      {
+        "qlen": 1,
+        "p50_ms": 0.37872,
+        "p95_ms": 0.6976
+      },
+      {
+        "qlen": 2,
+        "p50_ms": 0.479744,
+        "p95_ms": 0.896098
+      },
+      {
+        "qlen": 4,
+        "p50_ms": 0.480768,
+        "p95_ms": 0.94404
+      },
+      {
+        "qlen": 8,
+        "p50_ms": 0.493968,
+        "p95_ms": 1.15722
+      },
+      {
+        "qlen": 16,
+        "p50_ms": 0.495984,
+        "p95_ms": 0.951296
+      },
+      {
+        "qlen": 256,
+        "p50_ms": 0.608944,
+        "p95_ms": 1.06357
+      },
+      {
+        "qlen": 512,
+        "p50_ms": 0.793088,
+        "p95_ms": 1.25568
+      },
+      {
+        "qlen": 1024,
+        "p50_ms": 1.36277,
+        "p95_ms": 2.07149
+      },
+      {
+        "qlen": 2048,
+        "p50_ms": 2.55078,
+        "p95_ms": 3.20271
+      },
+      {
+        "qlen": 4096,
+        "p50_ms": 5.82554,
+        "p95_ms": 6.87833
+      }
+    ],
+    "streaming_crossover": "CPU wins decode qlen 1-2; GPU streaming wins from qlen 4 in measured sweep"
+  },
+  "slotstream_real_8gb_pool": {
+    "slots": 2880,
+    "experts_per_layer": 60,
+    "bytes": 7962624000,
+    "observed_hit_rate_range": [
+      0.593,
+      0.6
+    ],
+    "scope": "8,073-token real model run, aggregate cache counter; raw per-token route IDs are not committed upstream"
+  }
+}

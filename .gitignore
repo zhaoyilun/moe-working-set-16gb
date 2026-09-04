@@ -1,9 +1,20 @@
+# Build outputs (regenerable)
 build/
 reproduction-output/
-*.gguf
-*.bin
-*.nsys-rep
-*.sqlite
-*.log
 __pycache__/
 *.pyc
+
+# Regenerable experiment artifacts — see evidence/EVIDENCE_INDEX.md.
+# Session state, tokenized prompts, model-derived binaries, profiler
+# raw formats, and build outputs are excluded; run logs, JSON results,
+# CSVs, and exported SQLite analysis databases are intentionally kept.
+*.gguf
+*.exe
+*.so
+*.dll
+*.nsys-rep
+*.tokens
+session.bin
+*-session.bin
+*.hidden.f32
+*_qweight.bin

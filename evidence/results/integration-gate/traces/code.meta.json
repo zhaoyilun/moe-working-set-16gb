@@ -1,0 +1,39 @@
+{
+  "format": "slotstream-routing-trace-v1",
+  "workload": "code",
+  "model_path": "E:\\AI\\Models\\Qwen3.8-Flash-Next-UD-IQ4_XS\\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf",
+  "runtime": "llama.cpp b10666 / 4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "prompt": "Design and explain a complete Python 3.12 implementation of an event-driven simulator for a 48-layer sparse Mixture-of-Experts model with 512 experts per layer and top-10 routing. The simulator must accept a token-by-layer routing trace, model a byte-capacity GPU expert cache, and implement LRU, CLOCK, LFU, static-hot-plus-dynamic, frequency-gated admission, and cost-aware CPU-versus-H2D decisions. Provide type-annotated production-quality code, data structures, invariants, complexity analysis, deterministic tests, property tests, sample input/output, and a discussion of how to validate the simulator against measured hardware timings. Produce at least 1,500 words plus all necessary code, and do not abbreviate the tests or explanations.\r\n",
+  "prompt_tokens": 173,
+  "decode_tokens": 1000,
+  "seed": 0,
+  "sampling": {
+    "strategy": "greedy"
+  },
+  "routing": {
+    "experts": 512,
+    "top_k": 10,
+    "normalization": "top-k softmax",
+    "shared_expert": true,
+    "routed_scaling_factor": 1.0,
+    "group_routing": false,
+    "correction_bias": false
+  },
+  "n_layers": 48,
+  "records": 56132,
+  "hidden_state_trace": null,
+  "hidden_state_layer": 0,
+  "n_gpu_layers": 10,
+  "threads": 24,
+  "model_repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+  "model_revision": "38bb39ee97821de2c9009abb7e93950eec396e66",
+  "runtime_commit": "4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "trace_timestamp_utc": "2026-09-03T09:26:46.366611+00:00",
+  "trace_runtime": {
+    "decode_total_ms": 181347.43,
+    "decode_runs": 1000,
+    "decode_ms_per_token": 181.35,
+    "decode_tokens_per_second": 5.51,
+    "note": "instrumented trace runtime; synchronous callback copies are included"
+  }
+}

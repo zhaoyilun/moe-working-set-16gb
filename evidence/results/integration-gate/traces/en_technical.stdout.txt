@@ -1,0 +1,35 @@
+<think>
+The user wants a detailed engineering essay (at least 1,800 words) on designing a PC-scale hybrid Mixture-of-Experts (MoE) inference runtime. Let me plan the structure carefully to cover all requested topics:
+
+1. Mental model of PC-scale MoE inference
+2. Token routing
+3. Expert locality
+4. GPU residency
+5. PCIe transfers
+6. Direct CPU execution
+7. Per-layer scheduling
+8. Tail latency
+9. Static hot sets vs dynamic caches
+10. Cache policies: LRU, CLOCK, LFU, frequency-based admission, cost-aware hybrid
+11. Equations
+12. Worked 48-layer example
+13. Counterexamples
+14. Operational boundaries
+15. Final decision table
+
+I need to write dense, complete paragraphs with technical depth. Let me ensure I hit at least 1,800 words and cover everything thoroughly. I'll write this as a proper engineering essay with equations, examples, and analysis.
+</think>
+
+# Designing a PC-Scale Hybrid Mixture-of-Experts Inference Runtime: Architecture, Scheduling, and Cache Policy
+
+## 1. Constructing the Mental Model
+
+A Mixture-of-Experts (MoE) transformer at PC scale—think a 70-billion-parameter model with 128 experts per layer, 48 layers, and a hidden dimension of 4096—presents a fundamentally different memory and compute topology than a dense model. In a dense architecture, every token traverses every weight matrix; the entire parameter set is a monolithic working set. In an MoE, each token activates only a sparse subset of experts (typically top-k, with k ∈ {1, 2, 4}), meaning that at any given inference step, only a fraction of the total parameters are touched. The critical engineering insight is that the total parameter footprint (roughly 140 GB in FP16 for the 70B MoE) vastly exceeds the capacity of a consumer GPU (8–24 GB VRAM), yet the *active* working set per token is orders of magnitude smaller. The design goal of a PC-scale hybrid runtime is therefore to exploit this sparsity: keep the most frequently accessed experts resident on the GPU, stream less-frequent experts over PCIe on demand, and fall back to direct CPU execution for cold experts when transfer latency would exceed compute latency. The mental model is a three-tier hierarchy—GPU HBM (fastest, smallest), system DRAM (intermediate), and NVMe SSD (slowest, largest)—with the runtime acting as an intelligent scheduler that decides, per expert per layer per token, where computation occurs and how data moves.
+
+## 2. Token Routing and Expert Locality
+
+At each MoE layer, a learned gating network produces a probability vector g(x) ∈ ℝ^E for E experts given input token embedding x. The router selects the top-k experts by score, yielding a routing set R(x) = {e₁, e₂, …, e_k} and associated weights w_i = softmax(g(x))_i for i ∈ R(x). The output of the layer is y = Σ_{i∈R(x)} w_i · Expert_i(x). Expert locality refers to the empirical observation that routing distributions are not uniform: certain experts are activated far more frequently than others, and this frequency is correlated across tokens within a semantic domain. Formally, let f_e = P(e ∈ R(x)) be the marginal activation frequency of expert e across a representative corpus. In practice, the top 10–20% of experts account for 60–80% of all activations, producing a heavy-tailed Zipf-like distribution. This non-uniformity is the entire justification for a caching hierarchy: if we can identify and pin the hot experts on the GPU, we eliminate PCIe transfers for the majority of tokens.
+
+## 3. GPU Residency and the Static Hot Set
+
+GPU residency is governed by the constraint Σ_{e ∈ S_hot} size(e) ≤ C_GPU, where S_hot is the set of experts pinned in VRAM and C_GPU is the available VRAM budget after accounting for KV-cache, activations, and framework overhead. For a 48-layer MoE with 128 experts per layer, each expert in FP16 occupies approximately 2 × 4096 × 4096 × 2 bytes ≈ 67 MB (two weight matrices of shape [4096, 4096]). With 24 GB VRAM and roughly 8 GB reserved for KV-cache and activations, we have about 16 GB for expert weights, accommodating approximately 240 experts across all layers. Spread over 48 layers, this yields

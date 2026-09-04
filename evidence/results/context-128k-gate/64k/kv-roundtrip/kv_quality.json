@@ -1,0 +1,78 @@
+{
+  "f16-f16": {
+    "argmax": 3679,
+    "top5_overlap": 5,
+    "top10_overlap": 10,
+    "cosine": 0.9999999999999999,
+    "rmse": 0.0,
+    "max_abs": 0.0,
+    "verify_common_prefix": 8,
+    "verify_tokens": [
+      3679,
+      6297,
+      9883,
+      1973,
+      3725,
+      6337,
+      11,
+      25419
+    ]
+  },
+  "q8-q8": {
+    "argmax": 3679,
+    "top5_overlap": 4,
+    "top10_overlap": 9,
+    "cosine": 0.9904750657665661,
+    "rmse": 0.5171826833823833,
+    "max_abs": 4.194295883178711,
+    "verify_common_prefix": 8,
+    "verify_tokens": [
+      3679,
+      6297,
+      9883,
+      1973,
+      3725,
+      6337,
+      11,
+      25419
+    ]
+  },
+  "q8-q4": {
+    "argmax": 3679,
+    "top5_overlap": 5,
+    "top10_overlap": 8,
+    "cosine": 0.9889161133982927,
+    "rmse": 0.5649178880794712,
+    "max_abs": 3.4532032012939453,
+    "verify_common_prefix": 8,
+    "verify_tokens": [
+      3679,
+      6297,
+      9883,
+      1973,
+      3725,
+      6337,
+      11,
+      25419
+    ]
+  },
+  "q4-q4": {
+    "argmax": 3679,
+    "top5_overlap": 4,
+    "top10_overlap": 9,
+    "cosine": 0.9865170888707504,
+    "rmse": 0.6173044581048928,
+    "max_abs": 3.6098313331604004,
+    "verify_common_prefix": 8,
+    "verify_tokens": [
+      3679,
+      6297,
+      9883,
+      1973,
+      3725,
+      6337,
+      11,
+      25419
+    ]
+  }
+}

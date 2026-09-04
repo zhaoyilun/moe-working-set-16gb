@@ -1,0 +1,7 @@
+"evidence","path","prompt_tokens","n_batch","n_ubatch","prefill_ms","prefill_tok_s","status"
+"Measured","Native expert-only CPU/RAM","2048","64","64","63199.4417","32.4053495555","ok"
+"Measured","Native expert-only CPU/RAM","2048","128","128","40585.9701","50.4607871871","ok"
+"Measured","Native expert-only CPU/RAM","2048","256","256","26944.2419","76.0088187896","ok"
+"Measured","Native expert-only CPU/RAM","2048","512","512","19387.9423","105.632664277","ok"
+"Measured","Native expert-only CPU/RAM","2048","1024","1024","15563.1833","131.59261576","ok"
+"Measured","Native expert-only CPU/RAM","2048","2048","2048","13611.9401","150.456142545","ok"

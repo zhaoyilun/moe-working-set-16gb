@@ -1,0 +1,165 @@
+{
+  "generated_at": "2026-09-04T02:02:04+08:00",
+  "status": "complete",
+  "evidence_labels": [
+    "Measured",
+    "Prototype measured",
+    "Trace simulation",
+    "Projection"
+  ],
+  "headlines": {
+    "decode_tok_s": 18.753437,
+    "decode_context_tokens": 16363,
+    "decode_pool_gib": 8,
+    "decode_runs": 3,
+    "decode_measured_tokens_per_run": 500,
+    "prefill_tok_s_mean": 524.002604,
+    "prefill_context_tokens": 16363,
+    "prefill_physical_ubatch": 8192,
+    "prefill_runs": 3,
+    "prefill_32k_single_run_tok_s": 617.341685
+  },
+  "baselines": {
+    "coarse_layer_offload_ngl10": {
+      "evidence": "Measured",
+      "decode_tok_s": 6.537778746260108,
+      "llama_decode_ms_per_token": 148.23459533333335,
+      "wall_ms_per_token": 152.95714933333332,
+      "placement": "layers 0-38 CPU; layers 39-47 and output GPU"
+    },
+    "native_expert_only_cpu": {
+      "evidence": "Measured",
+      "critical_path_decode_tok_s": 15.094117984030568,
+      "stage1_same_path_control_tok_s": 15.134732,
+      "llama_decode_ms_per_token": 64.5403002,
+      "placement": "non-expert tensors GPU; routed experts CPU/RAM"
+    },
+    "hybrid_fixed_cache": {
+      "evidence": "Measured",
+      "decode_tok_s": 18.753437,
+      "improvement_vs_same_path_native_percent": 23.91,
+      "pool_gib": 8,
+      "cuda_graph": true
+    }
+  },
+  "cpu_critical_path": {
+    "coarse_cpu_layers_0_38_ms_per_token": 132.8748,
+    "coarse_cpu_layers_share_of_llama_decode_percent": 89.64,
+    "coarse_total_cpu_graph_ms_per_token": 134.3773,
+    "native_cpu_expert_graph_ms_per_token": 35.2233,
+    "native_other_decode_ms_per_token": 29.3170002,
+    "operator_families_ms_per_token": {
+      "ffn_residual_next_layer_prep": 52.599,
+      "routed_moe_combined": 37.514,
+      "hyperconnection_attention": 25.564,
+      "attention_residual_ffn_hyperconnection": 10.689,
+      "shared_expert": 5.89,
+      "moe_shared_merge": 0.619,
+      "input_embedding_initial_prep": 1.503
+    }
+  },
+  "stage2_selective_h2d": {
+    "decision": "NO-GO",
+    "default_promote_threshold": -1,
+    "best_stats_path_tok_s": 12.76694,
+    "max_hit_rate_percent": 61.775,
+    "max_h2d_mb_per_token": 114.448,
+    "max_promotion_ms_per_token": 22.894,
+    "correctness_cosine_t0_vs_t2": 0.999814702,
+    "primary_costs": [
+      "packed route D2H synchronization",
+      "fragmented expert-slice H2D",
+      "one-token-late prediction",
+      "replacement churn"
+    ]
+  },
+  "context_matrix": [
+    {
+      "context_label": "2K",
+      "actual_prompt_tokens": 2027,
+      "tok_s_4g": 16.405,
+      "tok_s_6g": 17.162,
+      "tok_s_8g": 17.511,
+      "safe_default_pool_gib": 8,
+      "benchmark_max_pool_gib": 8
+    },
+    {
+      "context_label": "8K",
+      "actual_prompt_tokens": 8171,
+      "tok_s_4g": 15.462,
+      "tok_s_6g": 15.986,
+      "tok_s_8g": 17.626,
+      "safe_default_pool_gib": 8,
+      "benchmark_max_pool_gib": 8
+    },
+    {
+      "context_label": "16K",
+      "actual_prompt_tokens": 16363,
+      "tok_s_4g": 15.05,
+      "tok_s_6g": 15.032,
+      "tok_s_8g": 16.652,
+      "safe_default_pool_gib": 6,
+      "benchmark_max_pool_gib": 8
+    },
+    {
+      "context_label": "32K",
+      "actual_prompt_tokens": 32747,
+      "tok_s_4g": 13.62,
+      "tok_s_6g": 14.104,
+      "tok_s_8g": 15.118,
+      "safe_default_pool_gib": 6,
+      "benchmark_max_pool_gib": 8
+    }
+  ],
+  "native_context_sweep": [
+    {"context_target": 512, "actual_prompt_tokens": 491, "prefill_seconds": 11.08065, "prefill_tok_s": 44.31148, "decode_tok_s": 16.50847, "kv_vram_mib": 24.75},
+    {"context_target": 1024, "actual_prompt_tokens": 1003, "prefill_seconds": 15.738818, "prefill_tok_s": 63.72778, "decode_tok_s": 16.48342, "kv_vram_mib": 41.25},
+    {"context_target": 2048, "actual_prompt_tokens": 2027, "prefill_seconds": 23.893031, "prefill_tok_s": 84.83645, "decode_tok_s": 16.60024, "kv_vram_mib": 74.25},
+    {"context_target": 4096, "actual_prompt_tokens": 4075, "prefill_seconds": 40.046757, "prefill_tok_s": 101.75605, "decode_tok_s": 16.29101, "kv_vram_mib": 140.25},
+    {"context_target": 8192, "actual_prompt_tokens": 8171, "prefill_seconds": 74.029122, "prefill_tok_s": 110.37548, "decode_tok_s": 15.55181, "kv_vram_mib": 272.25},
+    {"context_target": 16384, "actual_prompt_tokens": 16363, "prefill_seconds": 141.507022, "prefill_tok_s": 115.63384, "decode_tok_s": 15.05338, "kv_vram_mib": 536.25}
+  ],
+  "prefill_v2": {
+    "same_prompt_control_2048_tok_s": 287.387118558,
+    "same_prompt_4096_tok_s": 411.173712865,
+    "ubatch_8192_tok_s_runs": [523.859343981, 526.969534627, 521.178933949],
+    "ubatch_8192_mean_tok_s": 524.002604,
+    "ubatch_8192_cv_percent": 0.4516,
+    "improvement_vs_2048_percent": 82.33,
+    "context_32747_single_run_tok_s": 617.341685,
+    "gate_500_plus": "PASS",
+    "next_target_tok_s": 1000
+  },
+  "vram_policy": {
+    "device_total_mib": 16376,
+    "required_safe_allocator_headroom_mib": 1024,
+    "observed_16k_8g_device_headroom_mib": 386,
+    "allocator_32k_8g_headroom_mib": 306,
+    "allocator_32k_6g_headroom_mib": 2448.28
+  },
+  "checkpoints": {
+    "llama_base_revision": "4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+    "llama_experiment_commit": "2d4f3154a2d93c3a4d6d4a415c404f1b397d8dcb",
+    "llama_worktree_clean": true,
+    "oss_staging_commit": "622b3114a7fb2c3c38e64922a98130361e761aad",
+    "oss_staging_worktree_clean": true,
+    "oss_staging_remote_count": 0
+  },
+  "oss_staging": {
+    "condition_reached": true,
+    "clean_build": "PASS",
+    "build_actions": "360/360",
+    "patch_reverse_check": "PASS",
+    "format_parse_checks": "PASS",
+    "private_path_hits": 0,
+    "secret_pattern_hits": 0,
+    "public_actions": 0
+  },
+  "scope": {
+    "hardware_changes": 0,
+    "bios_changes": 0,
+    "public_pushes": 0,
+    "public_posts": 0,
+    "context_64k": "deferred to a separate long-context gate"
+  }
+}

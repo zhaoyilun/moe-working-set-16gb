@@ -1,0 +1,39 @@
+{
+  "format": "slotstream-routing-trace-v1",
+  "workload": "zh_technical",
+  "model_path": "E:\\AI\\Models\\Qwen3.8-Flash-Next-UD-IQ4_XS\\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf",
+  "runtime": "llama.cpp b10666 / 4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "prompt": "请写一篇不少于1800字的中文技术说明，主题是“在个人电脑上构建分层专家缓存的混合 MoE 推理系统”。先用图书馆、流水线和操作系统内存三个准确类比建立心智模型，再依次解释路由、专家复用、GPU 常驻池、PCIe 搬运、CPU 直接执行、逐层调度、命中率与尾延迟。必须讨论静态热集、动态缓存、LRU、CLOCK、LFU、频率提升和成本感知混合策略各自的适用场景，并给出一个从单层到48层的端到端推演。全文使用连续、完整、信息密集的段落，包含公式化定义、反例、边界条件和最终决策表，不要提前结束。\r\n",
+  "prompt_tokens": 155,
+  "decode_tokens": 1000,
+  "seed": 0,
+  "sampling": {
+    "strategy": "greedy"
+  },
+  "routing": {
+    "experts": 512,
+    "top_k": 10,
+    "normalization": "top-k softmax",
+    "shared_expert": true,
+    "routed_scaling_factor": 1.0,
+    "group_routing": false,
+    "correction_bias": false
+  },
+  "n_layers": 48,
+  "records": 55286,
+  "hidden_state_trace": "C:\\Users\\user0\\Documents\\Codex\\2026-09-03\\chatgpt-conversation-6a98f719-c4cc-83ec-8dd8\\work\\pc-slotstream-hybrid-gate\\results\\integration-gate\\traces\\zh_technical.hidden.f32",
+  "hidden_state_layer": 0,
+  "n_gpu_layers": 10,
+  "threads": 24,
+  "model_repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+  "model_revision": "38bb39ee97821de2c9009abb7e93950eec396e66",
+  "runtime_commit": "4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "trace_timestamp_utc": "2026-09-03T09:19:54.477499+00:00",
+  "trace_runtime": {
+    "decode_total_ms": 158189.25,
+    "decode_runs": 1000,
+    "decode_ms_per_token": 158.19,
+    "decode_tokens_per_second": 6.32,
+    "note": "instrumented trace runtime; synchronous callback copies are included"
+  }
+}

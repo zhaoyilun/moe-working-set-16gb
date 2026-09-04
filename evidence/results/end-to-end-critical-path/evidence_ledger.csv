@@ -1,0 +1,8 @@
+result,class,value
+coarse -ngl 10 full decode,Measured,6.537779 tok/s
+native expert-only CPU full decode,Measured,15.094118 tok/s
+coarse CPU layers 0-38,Measured,134.3773 ms/token including input graph
+native CPU routed-expert subgraphs,Measured,35.2233 ms/token
+hybrid single-layer and short replay,Prototype measured,existing Integration Gate artifacts
+cache hit/miss distributions,Trace simulation,five held-out routing workloads
+hybrid 48-layer routed path and full-model throughput,Projection,not a full-model wall-time measurement

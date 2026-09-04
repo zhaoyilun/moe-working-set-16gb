@@ -1,0 +1,3 @@
+Time (%),Total Time (ns),Instances,Avg (ns),Med (ns),Min (ns),Max (ns),StdDev (ns),Style,Range
+100.0,19232360510,1,19232360510.0,19232360510.0,19232360510,19232360510,0.0,PushPop,prefill
+0.0,1986145,1,1986145.0,1986145.0,1986145,1986145,0.0,PushPop,sampling

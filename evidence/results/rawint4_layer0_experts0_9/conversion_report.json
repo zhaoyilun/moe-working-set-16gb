@@ -1,0 +1,59 @@
+{
+  "source_format": "MLX affine INT4: dequant = q * scale + bias, group=64",
+  "target_format": "KTransformers RAWINT4: dequant = (q - 8) * scale, group=64",
+  "experts": 10,
+  "projections": {
+    "gate_proj": {
+      "shape": [
+        10,
+        640,
+        2560
+      ],
+      "qweight_bytes": 8192000,
+      "runtime_scale_bytes_bf16": 512000,
+      "relative_rmse": 0.11442858908316861,
+      "relative_l1": 0.12096770101409224,
+      "mean_abs_error": 0.0012489889794960619,
+      "max_abs_error": 0.0224609375,
+      "implied_zero_point_range": [
+        6.979865550994873,
+        14.0
+      ]
+    },
+    "up_proj": {
+      "shape": [
+        10,
+        640,
+        2560
+      ],
+      "qweight_bytes": 8192000,
+      "runtime_scale_bytes_bf16": 512000,
+      "relative_rmse": 0.11214999736294896,
+      "relative_l1": 0.11871547210451963,
+      "mean_abs_error": 0.001209686029702425,
+      "max_abs_error": 0.0146484375,
+      "implied_zero_point_range": [
+        6.979865550994873,
+        13.028571128845215
+      ]
+    },
+    "down_proj": {
+      "shape": [
+        10,
+        2560,
+        640
+      ],
+      "qweight_bytes": 8192000,
+      "runtime_scale_bytes_bf16": 512000,
+      "relative_rmse": 0.1084733820224422,
+      "relative_l1": 0.11390264955387719,
+      "mean_abs_error": 0.001115135984029621,
+      "max_abs_error": 0.03271484375,
+      "implied_zero_point_range": [
+        6.979865550994873,
+        14.020618438720703
+      ]
+    }
+  },
+  "runtime_bytes_per_expert": 2764800
+}

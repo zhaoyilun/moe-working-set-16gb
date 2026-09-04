@@ -1,0 +1,12 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+  "hidden": 2560,
+  "bytes_each_direction": 5120,
+  "host_memory": "cudaHostAlloc pinned",
+  "synchronization": "D2H sync, CPU boundary, H2D sync",
+  "runs": 5000,
+  "p50_us": 16.1,
+  "p95_us": 29.4,
+  "mean_us": 18.1163,
+  "min_us": 14
+}

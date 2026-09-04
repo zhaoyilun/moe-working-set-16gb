@@ -1,0 +1,9 @@
+graph_id,node_index,op,fused_nodes,worker_us,barrier_us,graph_elapsed_us,name,src0,src1
+0,0,GET_ROWS,0,543,1,544,"model.input_embed","token_embd.weight","inp_tokens"
+2,3,MUL_MAT_ID,0,0,0,2,"ffn_moe_down-47","blk.47.ffn_down_exps.weight","ffn_moe_swiglu-47"
+3,0,GET_ROWS,0,464,0,465,"model.input_embed","token_embd.weight","inp_tokens"
+5,3,MUL_MAT_ID,0,0,1,2,"ffn_moe_down-47","blk.47.ffn_down_exps.weight","ffn_moe_swiglu-47"
+6,0,GET_ROWS,0,550,1,552,"model.input_embed","token_embd.weight","inp_tokens"
+8,3,MUL_MAT_ID,0,0,0,1,"ffn_moe_down-47","blk.47.ffn_down_exps.weight","ffn_moe_swiglu-47"
+9,0,GET_ROWS,0,658,1,659,"model.input_embed","token_embd.weight","inp_tokens"
+11,3,MUL_MAT_ID,0,1453,322,4012,"ffn_moe_down-47","blk.47.ffn_down_exps.weight","ffn_moe_swiglu-47"

@@ -1,0 +1,79 @@
+<think>
+The user wants a complete, production-quality Python 3.12 implementation of an event-driven simulator for a sparse Mixture-of-Experts (MoE) model. Let me break down what's needed:
+
+1. **Model**: 48-layer sparse MoE, 512 experts per layer, top-10 routing
+2. **Input**: Token-by-layer routing trace
+3. **Cache**: Byte-capacity GPU expert cache
+4. **Eviction policies**: LRU, CLOCK, LFU, static-hot-plus-dynamic, frequency-gated admission
+5. **Transfer decisions**: Cost-aware CPU-versus-H2D (Host-to-Device)
+6. **Requirements**: Type annotations, production quality, data structures, invariants, complexity analysis, deterministic tests, property tests, sample I/O, validation discussion, 1500+ words
+
+Let me design this carefully:
+
+**Architecture:**
+- `Expert` - represents a single expert (ID, size in bytes, layer)
+- `RoutingTrace` - token-by-layer routing data
+- `CachePolicy` - abstract base for eviction policies
+- `LRUPolicy`, `ClockPolicy`, `LFUPolicy`, `StaticHotDynamicPolicy`, `FrequencyGatedAdmissionPolicy`
+- `TransferDecisionEngine` - cost-aware CPU vs H2D
+- `GPUCache` - byte-capacity cache with policy
+- `MoESimulator` - event-driven simulator
+- `Event` / `EventQueue` - event-driven infrastructure
+
+**Key design decisions:**
+- Event-driven: events are (time, type, payload)
+- Byte-capacity: cache tracks total bytes, not just count
+- Top-10 routing: each token activates 10 experts per layer
+- 48 layers × 512 experts = 24,576 total experts
+- Expert size: configurable (e.g., 128MB per expert for a large model)
+
+Let me write comprehensive code with all the components. I'll make it thorough and production-quality.
+
+For the event-driven simulator:
+- Events: TOKEN_ARRIVAL, EXPERT_REQUEST, CACHE_MISS, H2D_TRANSFER_START, H2D_TRANSFER_COMPLETE, COMPUTE_START, COMPUTE_COMPLETE
+- Priority queue for events
+
+For the cache:
+- Byte-capacity constraint
+- Multiple eviction policies
+- Admission control (frequency-gated)
+
+For transfer decisions:
+- Cost model: H2D bandwidth, PCIe latency, compute overlap
+- Decision: keep on CPU (compute there) vs transfer to GPU
+
+Let me write this out fully.
+</think>
+
+# Event-Driven Sparse MoE Expert-Cache Simulator
+
+## 1. Design Overview
+
+This simulator models the runtime behaviour of a 48-layer sparse Mixture-of-Experts (MoE) transformer where each layer contains 512 experts and each token activates exactly 10 experts per layer (top-10 routing). The GPU holds a byte-capacity cache of expert weights; on a miss the simulator must decide whether to transfer the expert from host (CPU) memory to the GPU (H2D) or to compute on the CPU, using a cost-aware model that accounts for PCIe bandwidth, compute overlap, and expert size.
+
+The simulator is **event-driven**: a priority queue of timestamped events (token arrivals, cache lookups, H2D transfers, compute completions) is processed in causal order. This lets us model pipelining, overlap, and contention without a fixed-tick loop.
+
+### Complexity Summary
+
+| Operation | Complexity |
+|---|---|
+| Cache lookup / insert / evict (LRU, LFU, CLOCK) | O(1) amortised |
+| Static-hot + dynamic eviction | O(1) amortised |
+| Frequency-gated admission check | O(1) |
+| Event dispatch (heap) | O(log E) per event |
+| Full trace replay (T tokens × L layers × K experts) | O(T·L·K·log E) |
+| Property-test invariant checks | O(1) per event |
+
+where *E* is the number of cached experts, *T* tokens, *L* = 48 layers, *K* = 10 experts/token/layer.
+
+---
+
+## 2. Complete Implementation
+
+```python
+"""
+Event-driven simulator for a 48-layer sparse MoE model with 512 experts/layer,
+top-10 routing, byte-capacity GPU expert cache, multiple eviction policies,
+frequency-gated admission, and cost-aware CPU-vs-H2D transfer decisions.
+
+Python 3.12+  (uses PEP 695 type-parameter syntax, match

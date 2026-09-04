@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "fixture": "synthetic_public_long_context",
+  "prompt_file": "context_262k.txt",
+  "target_context": 262144,
+  "reserved_tail_tokens": 1045,
+  "target_actual_prompt_tokens": 261099,
+  "markers": [
+    {
+      "id": "begin_fact",
+      "target_fraction": 0.02,
+      "text": " [[SSCTX_BEGIN_FACT_6F29]] bootstrap_region=cedar-north; owner=team-orchid. [[/SSCTX_BEGIN_FACT_6F29]]\n\n",
+      "task": "beginning_fact_recall",
+      "expected_answer": "cedar-north; team-orchid"
+    },
+    {
+      "id": "cross_definition",
+      "target_fraction": 0.12,
+      "text": " [[SSCTX_CROSS_DEF_18A4]] RELAY_SEED=7319; transform=(seed*3)+17. [[/SSCTX_CROSS_DEF_18A4]]\n\n",
+      "task": "cross_file_chain_definition",
+      "expected_answer": "7319"
+    },
+    {
+      "id": "multi_left",
+      "target_fraction": 0.25,
+      "text": " [[SSCTX_MULTI_LEFT_C271]] shard_alpha_code=4821. [[/SSCTX_MULTI_LEFT_C271]]\n\n",
+      "task": "multi_location_retrieval_left",
+      "expected_answer": "4821"
+    },
+    {
+      "id": "middle_fact",
+      "target_fraction": 0.5,
+      "text": " [[SSCTX_MIDDLE_FACT_44D8]] deployment_color=ultraviolet; retry_budget=13. [[/SSCTX_MIDDLE_FACT_44D8]]\n\n",
+      "task": "middle_fact_recall",
+      "expected_answer": "ultraviolet; 13"
+    },
+    {
+      "id": "cross_implementation",
+      "target_fraction": 0.58,
+      "text": " [[SSCTX_CROSS_IMPL_93B2]] relay_value=apply_transform(RELAY_SEED). [[/SSCTX_CROSS_IMPL_93B2]]\n\n",
+      "task": "cross_file_chain_implementation",
+      "expected_answer": "21974"
+    },
+    {
+      "id": "multi_right",
+      "target_fraction": 0.75,
+      "text": " [[SSCTX_MULTI_RIGHT_A5E0]] shard_omega_code=9076. [[/SSCTX_MULTI_RIGHT_A5E0]]\n\n",
+      "task": "multi_location_retrieval_right",
+      "expected_answer": "9076"
+    },
+    {
+      "id": "cross_test",
+      "target_fraction": 0.86,
+      "text": " [[SSCTX_CROSS_TEST_E713]] assert relay_value equals the definition-derived result. [[/SSCTX_CROSS_TEST_E713]]\n\n",
+      "task": "cross_file_chain_test",
+      "expected_answer": "21974"
+    },
+    {
+      "id": "end_fact",
+      "target_fraction": 0.95,
+      "text": " [[SSCTX_END_FACT_0BC6]] release_channel=saffron-echo; ticket=CTX-8842. [[/SSCTX_END_FACT_0BC6]]\n\n",
+      "task": "end_fact_recall",
+      "expected_answer": "saffron-echo; CTX-8842"
+    }
+  ],
+  "evaluation_cases": [
+    {
+      "id": "beginning_recall",
+      "marker_ids": [
+        "begin_fact"
+      ],
+      "expected_answer": {
+        "bootstrap_region": "cedar-north",
+        "owner": "team-orchid"
+      }
+    },
+    {
+      "id": "middle_recall",
+      "marker_ids": [
+        "middle_fact"
+      ],
+      "expected_answer": {
+        "deployment_color": "ultraviolet",
+        "retry_budget": 13
+      }
+    },
+    {
+      "id": "end_recall",
+      "marker_ids": [
+        "end_fact"
+      ],
+      "expected_answer": {
+        "release_channel": "saffron-echo",
+        "ticket": "CTX-8842"
+      }
+    },
+    {
+      "id": "multi_location_25_75",
+      "marker_ids": [
+        "multi_left",
+        "multi_right"
+      ],
+      "expected_answer": 13897
+    },
+    {
+      "id": "cross_file_chain_12_58_86",
+      "marker_ids": [
+        "cross_definition",
+        "cross_implementation",
+        "cross_test"
+      ],
+      "expected_answer": 21974
+    }
+  ]
+}

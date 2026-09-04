@@ -1,0 +1,58 @@
+[
+  {
+    "profile": "f16-f16",
+    "cache_type_k": "f16",
+    "cache_type_v": "f16",
+    "decode_tok_s": 15.3977682767,
+    "p50_ms": 63.6179,
+    "p95_ms": 79.7735,
+    "cuda_graphs": true,
+    "hit_rate": null,
+    "cpu_fallback_layers_per_token": null,
+    "cpu_fallback_experts_per_token": null,
+    "first_token": 7059,
+    "wall_s": 35.35
+  },
+  {
+    "profile": "q8-q8",
+    "cache_type_k": "q8_0",
+    "cache_type_v": "q8_0",
+    "decode_tok_s": 15.407938737,
+    "p50_ms": 63.7734,
+    "p95_ms": 78.9131,
+    "cuda_graphs": true,
+    "hit_rate": null,
+    "cpu_fallback_layers_per_token": null,
+    "cpu_fallback_experts_per_token": null,
+    "first_token": 7059,
+    "wall_s": 34.6
+  },
+  {
+    "profile": "q8-q4",
+    "cache_type_k": "q8_0",
+    "cache_type_v": "q4_0",
+    "decode_tok_s": 15.1005706309,
+    "p50_ms": 64.8174,
+    "p95_ms": 81.3167,
+    "cuda_graphs": true,
+    "hit_rate": null,
+    "cpu_fallback_layers_per_token": null,
+    "cpu_fallback_experts_per_token": null,
+    "first_token": 7059,
+    "wall_s": 34.59
+  },
+  {
+    "profile": "q4-q4",
+    "cache_type_k": "q4_0",
+    "cache_type_v": "q4_0",
+    "decode_tok_s": 15.296088917,
+    "p50_ms": 64.3937,
+    "p95_ms": 81.9485,
+    "cuda_graphs": true,
+    "hit_rate": null,
+    "cpu_fallback_layers_per_token": null,
+    "cpu_fallback_experts_per_token": null,
+    "first_token": 7059,
+    "wall_s": 34.29
+  }
+]

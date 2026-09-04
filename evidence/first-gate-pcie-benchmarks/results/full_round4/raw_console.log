@@ -1,0 +1,141 @@
+GPU: NVIDIA GeForce RTX 4080 SUPER  CC 8.9  free 16/17 GB
+Expert record: 2764800 bytes; max batch host allocation: 1.1e+02 MB
+
+Pool 1 GB
+  pageable       contiguous_record  batch  1  p50   0.177 ms  p95     0.2 ms      15 GB/s
+  pageable       contiguous_record  batch  2  p50    0.34 ms  p95   0.356 ms      16 GB/s
+  pageable       contiguous_record  batch  4  p50   0.652 ms  p95   0.698 ms      17 GB/s
+  pageable       contiguous_record  batch  8  p50    1.24 ms  p95    1.55 ms      17 GB/s
+  pageable       contiguous_record  batch 10  p50    1.62 ms  p95    2.03 ms      16 GB/s
+  pageable       contiguous_record  batch 20  p50    4.37 ms  p95    5.61 ms      12 GB/s
+  pageable  nine_pieces_per_expert  batch  1  p50   0.279 ms  p95   0.302 ms     9.8 GB/s
+  pageable  nine_pieces_per_expert  batch  2  p50   0.552 ms  p95   0.587 ms     9.9 GB/s
+  pageable  nine_pieces_per_expert  batch  4  p50    1.08 ms  p95    1.11 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch  8  p50    2.09 ms  p95    2.26 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch 10  p50    2.61 ms  p95    2.72 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch 20  p50    5.17 ms  p95    5.57 ms      11 GB/s
+    pinned       contiguous_record  batch  1  p50   0.126 ms  p95   0.129 ms      22 GB/s
+    pinned       contiguous_record  batch  2  p50   0.242 ms  p95   0.258 ms      23 GB/s
+    pinned       contiguous_record  batch  4  p50   0.486 ms  p95   0.506 ms      23 GB/s
+    pinned       contiguous_record  batch  8  p50   0.942 ms  p95   0.977 ms      23 GB/s
+    pinned       contiguous_record  batch 10  p50    1.18 ms  p95     1.2 ms      23 GB/s
+    pinned       contiguous_record  batch 20  p50    2.35 ms  p95    2.44 ms      23 GB/s
+    pinned  nine_pieces_per_expert  batch  1  p50   0.141 ms  p95   0.146 ms      19 GB/s
+    pinned  nine_pieces_per_expert  batch  2  p50   0.276 ms  p95   0.292 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  4  p50   0.542 ms  p95   0.555 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  8  p50    1.07 ms  p95    1.12 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch 10  p50    1.34 ms  p95    1.36 ms      21 GB/s
+    pinned  nine_pieces_per_expert  batch 20  p50    2.67 ms  p95    2.69 ms      21 GB/s
+
+Pool 2 GB
+  pageable       contiguous_record  batch  1  p50   0.175 ms  p95   0.187 ms      16 GB/s
+  pageable       contiguous_record  batch  2  p50    0.33 ms  p95   0.367 ms      17 GB/s
+  pageable       contiguous_record  batch  4  p50   0.636 ms  p95   0.675 ms      17 GB/s
+  pageable       contiguous_record  batch  8  p50    1.26 ms  p95    1.43 ms      17 GB/s
+  pageable       contiguous_record  batch 10  p50    1.65 ms  p95    1.97 ms      16 GB/s
+  pageable       contiguous_record  batch 20  p50    4.32 ms  p95    4.79 ms      13 GB/s
+  pageable  nine_pieces_per_expert  batch  1  p50   0.279 ms  p95   0.302 ms     9.8 GB/s
+  pageable  nine_pieces_per_expert  batch  2  p50   0.548 ms  p95    0.57 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch  4  p50    1.08 ms  p95     1.1 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch  8  p50    2.09 ms  p95    2.15 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch 10  p50    2.61 ms  p95    2.78 ms      11 GB/s
+  pageable  nine_pieces_per_expert  batch 20  p50    5.19 ms  p95    5.64 ms      10 GB/s
+    pinned       contiguous_record  batch  1  p50   0.126 ms  p95   0.131 ms      22 GB/s
+    pinned       contiguous_record  batch  2  p50   0.242 ms  p95   0.243 ms      23 GB/s
+    pinned       contiguous_record  batch  4  p50   0.475 ms  p95   0.478 ms      23 GB/s
+    pinned       contiguous_record  batch  8  p50    0.94 ms  p95   0.971 ms      23 GB/s
+    pinned       contiguous_record  batch 10  p50    1.17 ms  p95    1.19 ms      24 GB/s
+    pinned       contiguous_record  batch 20  p50    2.35 ms  p95    2.38 ms      24 GB/s
+    pinned  nine_pieces_per_expert  batch  1  p50    0.14 ms  p95   0.144 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  2  p50   0.273 ms  p95   0.294 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  4  p50    0.54 ms  p95    0.56 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  8  p50    1.07 ms  p95    1.09 ms      21 GB/s
+    pinned  nine_pieces_per_expert  batch 10  p50    1.34 ms  p95    1.35 ms      21 GB/s
+    pinned  nine_pieces_per_expert  batch 20  p50    2.66 ms  p95    2.69 ms      21 GB/s
+
+Pool 4 GB
+  pageable       contiguous_record  batch  1  p50   0.175 ms  p95   0.189 ms      16 GB/s
+  pageable       contiguous_record  batch  2  p50   0.331 ms  p95   0.401 ms      16 GB/s
+  pageable       contiguous_record  batch  4  p50   0.638 ms  p95   0.785 ms      16 GB/s
+  pageable       contiguous_record  batch  8  p50    1.31 ms  p95    1.63 ms      16 GB/s
+  pageable       contiguous_record  batch 10  p50    1.69 ms  p95       2 ms      16 GB/s
+  pageable       contiguous_record  batch 20  p50    4.47 ms  p95     4.9 ms      12 GB/s
+  pageable  nine_pieces_per_expert  batch  1  p50   0.278 ms  p95   0.296 ms     9.8 GB/s
+  pageable  nine_pieces_per_expert  batch  2  p50   0.545 ms  p95   0.564 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch  4  p50    1.07 ms  p95    1.11 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch  8  p50    2.08 ms  p95     2.2 ms      11 GB/s
+  pageable  nine_pieces_per_expert  batch 10  p50     2.6 ms  p95    2.72 ms      11 GB/s
+  pageable  nine_pieces_per_expert  batch 20  p50    5.14 ms  p95    5.51 ms      11 GB/s
+    pinned       contiguous_record  batch  1  p50   0.126 ms  p95   0.127 ms      22 GB/s
+    pinned       contiguous_record  batch  2  p50   0.242 ms  p95   0.259 ms      23 GB/s
+    pinned       contiguous_record  batch  4  p50   0.475 ms  p95   0.491 ms      23 GB/s
+    pinned       contiguous_record  batch  8  p50    0.94 ms  p95   0.981 ms      22 GB/s
+    pinned       contiguous_record  batch 10  p50    1.18 ms  p95     1.2 ms      23 GB/s
+    pinned       contiguous_record  batch 20  p50    2.34 ms  p95    2.36 ms      24 GB/s
+    pinned  nine_pieces_per_expert  batch  1  p50    0.14 ms  p95   0.162 ms      19 GB/s
+    pinned  nine_pieces_per_expert  batch  2  p50   0.273 ms  p95   0.294 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  4  p50    0.54 ms  p95   0.559 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  8  p50    1.07 ms  p95     1.1 ms      21 GB/s
+    pinned  nine_pieces_per_expert  batch 10  p50    1.34 ms  p95    1.34 ms      21 GB/s
+    pinned  nine_pieces_per_expert  batch 20  p50    2.67 ms  p95    2.69 ms      21 GB/s
+  Running ideal known-next-batch overlap on this pool...
+    batch  1 copy 0.119 ms, compute 0.0247 ms, serial 0.185 ms, overlap 0.12 ms, exposed 0.0954 ms, hidden 2e+01%
+    batch  2 copy 0.236 ms, compute 0.0294 ms, serial 0.302 ms, overlap 0.237 ms, exposed 0.207 ms, hidden 1e+01%
+    batch  4 copy 0.468 ms, compute 0.0538 ms, serial 0.562 ms, overlap 0.469 ms, exposed 0.416 ms, hidden 1e+01%
+    batch  8 copy 0.935 ms, compute 0.127 ms, serial 1.11 ms, overlap 0.936 ms, exposed 0.809 ms, hidden 1e+01%
+    batch 10 copy 1.17 ms, compute 0.124 ms, serial 1.34 ms, overlap 1.17 ms, exposed 1.05 ms, hidden 1e+01%
+    batch 20 copy 2.33 ms, compute 0.3 ms, serial 2.69 ms, overlap 2.34 ms, exposed 2.04 ms, hidden 1e+01%
+
+Pool 6 GB
+  pageable       contiguous_record  batch  1  p50   0.181 ms  p95   0.198 ms      15 GB/s
+  pageable       contiguous_record  batch  2  p50    0.33 ms  p95   0.373 ms      17 GB/s
+  pageable       contiguous_record  batch  4  p50   0.636 ms  p95   0.715 ms      17 GB/s
+  pageable       contiguous_record  batch  8  p50    1.23 ms  p95    1.59 ms      17 GB/s
+  pageable       contiguous_record  batch 10  p50    1.58 ms  p95     2.2 ms      16 GB/s
+  pageable       contiguous_record  batch 20  p50    4.35 ms  p95    5.29 ms      12 GB/s
+  pageable  nine_pieces_per_expert  batch  1  p50   0.268 ms  p95   0.304 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch  2  p50   0.541 ms  p95   0.573 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch  4  p50    1.07 ms  p95     1.1 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch  8  p50    2.09 ms  p95    2.13 ms      11 GB/s
+  pageable  nine_pieces_per_expert  batch 10  p50    2.61 ms  p95    2.97 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch 20  p50    5.13 ms  p95     5.6 ms      11 GB/s
+    pinned       contiguous_record  batch  1  p50   0.126 ms  p95   0.128 ms      22 GB/s
+    pinned       contiguous_record  batch  2  p50   0.242 ms  p95   0.258 ms      22 GB/s
+    pinned       contiguous_record  batch  4  p50   0.475 ms  p95   0.493 ms      23 GB/s
+    pinned       contiguous_record  batch  8  p50    0.94 ms  p95   0.985 ms      23 GB/s
+    pinned       contiguous_record  batch 10  p50    1.17 ms  p95     1.2 ms      23 GB/s
+    pinned       contiguous_record  batch 20  p50    2.34 ms  p95    2.36 ms      24 GB/s
+    pinned  nine_pieces_per_expert  batch  1  p50   0.141 ms  p95   0.163 ms      19 GB/s
+    pinned  nine_pieces_per_expert  batch  2  p50   0.273 ms  p95   0.277 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  4  p50    0.54 ms  p95   0.557 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  8  p50    1.07 ms  p95    1.09 ms      21 GB/s
+    pinned  nine_pieces_per_expert  batch 10  p50    1.34 ms  p95    1.37 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch 20  p50    2.67 ms  p95    2.69 ms      21 GB/s
+
+Pool 8 GB
+  pageable       contiguous_record  batch  1  p50    0.18 ms  p95   0.194 ms      15 GB/s
+  pageable       contiguous_record  batch  2  p50   0.331 ms  p95    0.34 ms      17 GB/s
+  pageable       contiguous_record  batch  4  p50   0.636 ms  p95   0.686 ms      17 GB/s
+  pageable       contiguous_record  batch  8  p50    1.23 ms  p95    1.52 ms      17 GB/s
+  pageable       contiguous_record  batch 10  p50    1.57 ms  p95    2.03 ms      16 GB/s
+  pageable       contiguous_record  batch 20  p50    4.35 ms  p95     5.1 ms      12 GB/s
+  pageable  nine_pieces_per_expert  batch  1  p50   0.277 ms  p95   0.292 ms     9.9 GB/s
+  pageable  nine_pieces_per_expert  batch  2  p50   0.544 ms  p95   0.572 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch  4  p50    1.07 ms  p95    1.09 ms      10 GB/s
+  pageable  nine_pieces_per_expert  batch  8  p50    2.08 ms  p95     2.3 ms      11 GB/s
+  pageable  nine_pieces_per_expert  batch 10  p50     2.6 ms  p95    2.77 ms      11 GB/s
+  pageable  nine_pieces_per_expert  batch 20  p50    5.08 ms  p95       6 ms      11 GB/s
+    pinned       contiguous_record  batch  1  p50   0.126 ms  p95    0.13 ms      22 GB/s
+    pinned       contiguous_record  batch  2  p50   0.242 ms  p95   0.243 ms      23 GB/s
+    pinned       contiguous_record  batch  4  p50   0.475 ms  p95   0.479 ms      23 GB/s
+    pinned       contiguous_record  batch  8  p50    0.94 ms  p95   0.947 ms      23 GB/s
+    pinned       contiguous_record  batch 10  p50    1.17 ms  p95    1.18 ms      24 GB/s
+    pinned       contiguous_record  batch 20  p50    2.34 ms  p95    2.34 ms      24 GB/s
+    pinned  nine_pieces_per_expert  batch  1  p50    0.14 ms  p95   0.143 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  2  p50   0.273 ms  p95   0.277 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  4  p50    0.54 ms  p95    0.56 ms      20 GB/s
+    pinned  nine_pieces_per_expert  batch  8  p50    1.07 ms  p95    1.08 ms      21 GB/s
+    pinned  nine_pieces_per_expert  batch 10  p50    1.34 ms  p95    1.49 ms      19 GB/s
+    pinned  nine_pieces_per_expert  batch 20  p50    2.67 ms  p95    2.69 ms      21 GB/s
+
+Wrote results to .\work\pc-slotstream\results\full_round4

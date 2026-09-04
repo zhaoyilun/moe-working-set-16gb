@@ -1,0 +1,684 @@
+{
+  "schema_version": 1,
+  "evaluation_method": "Every scalar in evaluation_cases.expected_answer must occur in generated_text; strings use case-insensitive literal matching and numbers use digit boundaries.",
+  "runs": [
+    {
+      "evidence_source": "Measured",
+      "context_label": "128k",
+      "n_ctx": 131072,
+      "prompt_tokens": 130027,
+      "kv_profile": "q8-q4",
+      "cache_type_k": "q8_0",
+      "cache_type_v": "q4_0",
+      "measured_decode_tokens": 383,
+      "restored_decode_tok_s": 8.18823000516,
+      "passed_cases": 5,
+      "total_cases": 5,
+      "all_cases_passed": true,
+      "evaluation_cases": [
+        {
+          "id": "beginning_recall",
+          "marker_ids": [
+            "begin_fact"
+          ],
+          "expected_answer": {
+            "bootstrap_region": "cedar-north",
+            "owner": "team-orchid"
+          },
+          "expected_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "matched_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "middle_recall",
+          "marker_ids": [
+            "middle_fact"
+          ],
+          "expected_answer": {
+            "deployment_color": "ultraviolet",
+            "retry_budget": 13
+          },
+          "expected_values": [
+            "ultraviolet",
+            13
+          ],
+          "matched_values": [
+            "ultraviolet",
+            13
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "end_recall",
+          "marker_ids": [
+            "end_fact"
+          ],
+          "expected_answer": {
+            "release_channel": "saffron-echo",
+            "ticket": "CTX-8842"
+          },
+          "expected_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "matched_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "multi_location_25_75",
+          "marker_ids": [
+            "multi_left",
+            "multi_right"
+          ],
+          "expected_answer": 13897,
+          "expected_values": [
+            13897
+          ],
+          "matched_values": [
+            13897
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "cross_file_chain_12_58_86",
+          "marker_ids": [
+            "cross_definition",
+            "cross_implementation",
+            "cross_test"
+          ],
+          "expected_answer": 21974,
+          "expected_values": [
+            21974
+          ],
+          "matched_values": [
+            21974
+          ],
+          "missing_values": [],
+          "passed": true
+        }
+      ],
+      "generated_text": "<think>\nLet me extract the marked records from the repository context:\n\n1. **begin_fact** (from config/bootstrap.yaml): `bootstrap_region=cedar-north; owner=team-orchid`\n2. **middle_fact** (from docs/architecture.md): `deployment_color=ultraviolet; retry_budget=13`\n3. **end_fact** (from release/manifest.txt): `release_channel=saffron-echo; ticket=CTX-8842`\n4. **multi_location_sum**: \n   - shard_alpha_code=4821 (from src/shard_alpha.cpp)\n   - shard_omega_code=9076 (from src/shard_omega.cpp)\n   - Sum: 4821 + 9076 = 13897\n5. **cross_file_result**:\n   - From include/relay_contract.h: `RELAY_SEED=7319; transform=(seed*3)+17`\n   - From src/relay.cpp: `relay_value=apply_transform(RELAY_SEED)`\n   - From tests/relay_test.cpp: `assert relay_value equals the definition-derived result`\n   - Calculation: (7319 * 3) + 17 = 21957 + 17 = 21974\n\nNow let me format the JSON response.\n</think>\n\n```json\n{\n  \"begin_fact\": \"bootstrap_region=cedar-north; owner=team-orchid\",\n  \"middle_fact\": \"deployment_color=ultraviolet; retry_budget=13\",\n  \"end_fact\": \"release_channel=saffron-echo; ticket=CTX-8842\",\n  \"multi_location_sum\": 13897,\n",
+      "source_path": "128k/retrieval/q8-q4/load-only-384.json",
+      "manifest_path": "context-prompts/context_128k.markers.json",
+      "prompt_source_path": "context-prompts/context_128k.txt"
+    },
+    {
+      "evidence_source": "Measured",
+      "context_label": "128k",
+      "n_ctx": 131072,
+      "prompt_tokens": 130027,
+      "kv_profile": "q8-q4",
+      "cache_type_k": "q8_0",
+      "cache_type_v": "q4_0",
+      "measured_decode_tokens": 255,
+      "restored_decode_tok_s": 7.61770125899,
+      "passed_cases": 4,
+      "total_cases": 5,
+      "all_cases_passed": false,
+      "evaluation_cases": [
+        {
+          "id": "beginning_recall",
+          "marker_ids": [
+            "begin_fact"
+          ],
+          "expected_answer": {
+            "bootstrap_region": "cedar-north",
+            "owner": "team-orchid"
+          },
+          "expected_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "matched_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "middle_recall",
+          "marker_ids": [
+            "middle_fact"
+          ],
+          "expected_answer": {
+            "deployment_color": "ultraviolet",
+            "retry_budget": 13
+          },
+          "expected_values": [
+            "ultraviolet",
+            13
+          ],
+          "matched_values": [
+            "ultraviolet",
+            13
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "end_recall",
+          "marker_ids": [
+            "end_fact"
+          ],
+          "expected_answer": {
+            "release_channel": "saffron-echo",
+            "ticket": "CTX-8842"
+          },
+          "expected_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "matched_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "multi_location_25_75",
+          "marker_ids": [
+            "multi_left",
+            "multi_right"
+          ],
+          "expected_answer": 13897,
+          "expected_values": [
+            13897
+          ],
+          "matched_values": [
+            13897
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "cross_file_chain_12_58_86",
+          "marker_ids": [
+            "cross_definition",
+            "cross_implementation",
+            "cross_test"
+          ],
+          "expected_answer": 21974,
+          "expected_values": [
+            21974
+          ],
+          "matched_values": [],
+          "missing_values": [
+            21974
+          ],
+          "passed": false
+        }
+      ],
+      "generated_text": "<think>\nLet me extract the marked records from the repository context:\n\n1. **begin_fact** (from config/bootstrap.yaml): `bootstrap_region=cedar-north; owner=team-orchid`\n2. **middle_fact** (from docs/architecture.md): `deployment_color=ultraviolet; retry_budget=13`\n3. **end_fact** (from release/manifest.txt): `release_channel=saffron-echo; ticket=CTX-8842`\n4. **multi_location_sum**: \n   - shard_alpha_code=4821 (from src/shard_alpha.cpp)\n   - shard_omega_code=9076 (from src/shard_omega.cpp)\n   - Sum: 4821 + 9076 = 13897\n5. **cross_file_result**:\n   - From include/relay_contract.h: `RELAY_SEED=7319; transform=(seed*3)+17`\n   - From src/relay.cpp: `relay_value=apply_transform(RELAY_SEED)`\n   - From tests/relay_test.cpp: `assert relay_value equals the definition-derived result`\n   - Calculation:",
+      "source_path": "128k/retrieval/q8-q4/load-only.json",
+      "manifest_path": "context-prompts/context_128k.markers.json",
+      "prompt_source_path": "context-prompts/context_128k.txt"
+    },
+    {
+      "evidence_source": "Measured",
+      "context_label": "192k",
+      "n_ctx": 196608,
+      "prompt_tokens": 195563,
+      "kv_profile": "q4-q4",
+      "cache_type_k": "q4_0",
+      "cache_type_v": "q4_0",
+      "measured_decode_tokens": 383,
+      "restored_decode_tok_s": 6.84586116393,
+      "passed_cases": 5,
+      "total_cases": 5,
+      "all_cases_passed": true,
+      "evaluation_cases": [
+        {
+          "id": "beginning_recall",
+          "marker_ids": [
+            "begin_fact"
+          ],
+          "expected_answer": {
+            "bootstrap_region": "cedar-north",
+            "owner": "team-orchid"
+          },
+          "expected_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "matched_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "middle_recall",
+          "marker_ids": [
+            "middle_fact"
+          ],
+          "expected_answer": {
+            "deployment_color": "ultraviolet",
+            "retry_budget": 13
+          },
+          "expected_values": [
+            "ultraviolet",
+            13
+          ],
+          "matched_values": [
+            "ultraviolet",
+            13
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "end_recall",
+          "marker_ids": [
+            "end_fact"
+          ],
+          "expected_answer": {
+            "release_channel": "saffron-echo",
+            "ticket": "CTX-8842"
+          },
+          "expected_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "matched_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "multi_location_25_75",
+          "marker_ids": [
+            "multi_left",
+            "multi_right"
+          ],
+          "expected_answer": 13897,
+          "expected_values": [
+            13897
+          ],
+          "matched_values": [
+            13897
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "cross_file_chain_12_58_86",
+          "marker_ids": [
+            "cross_definition",
+            "cross_implementation",
+            "cross_test"
+          ],
+          "expected_answer": 21974,
+          "expected_values": [
+            21974
+          ],
+          "matched_values": [
+            21974
+          ],
+          "missing_values": [],
+          "passed": true
+        }
+      ],
+      "generated_text": "<think>\nLet me extract the marked records from the repository context:\n\n1. **begin_fact** (from config/bootstrap.yaml): `bootstrap_region=cedar-north; owner=team-orchid.`\n2. **middle_fact** (from docs/architecture.md): `deployment_color=ultraviolet; retry_budget=13.`\n3. **end_fact** (from release/manifest.txt): `release_channel=saffron-echo; ticket=CTX-8842.`\n4. **multi_location_sum**: \n   - shard_alpha_code=4821 (from src/shard_alpha.cpp)\n   - shard_omega_code=9076 (from src/shard_omega.cpp)\n   - Sum: 4821 + 9076 = 13897\n5. **cross_file_result**:\n   - From include/relay_contract.h: `RELAY_SEED=7319; transform=(seed*3)+17.`\n   - From src/relay.cpp: `relay_value=apply_transform(RELAY_SEED).`\n   - From tests/relay_test.cpp: `assert relay_value equals the definition-derived result.`\n   - Calculation: (7319 * 3) + 17 = 21957 + 17 = 21974\n\nNow let me format the JSON response.\n</think>\n\n```json\n{\n  \"begin_fact\": \"bootstrap_region=cedar-north; owner=team-orchid.\",\n  \"middle_fact\": \"deployment_color=ultraviolet; retry_budget=13.\",\n  \"end_fact\": \"release_channel=saffron-echo; ticket=CTX-8842.\",\n  \"multi_location_sum\": 13897,",
+      "source_path": "192k/retrieval/q4-q4/load-only-384.json",
+      "manifest_path": "context-prompts/context_192k.markers.json",
+      "prompt_source_path": "context-prompts/context_192k.txt"
+    },
+    {
+      "evidence_source": "Measured",
+      "context_label": "192k",
+      "n_ctx": 196608,
+      "prompt_tokens": 195563,
+      "kv_profile": "q8-q4",
+      "cache_type_k": "q8_0",
+      "cache_type_v": "q4_0",
+      "measured_decode_tokens": 383,
+      "restored_decode_tok_s": 6.84622545184,
+      "passed_cases": 5,
+      "total_cases": 5,
+      "all_cases_passed": true,
+      "evaluation_cases": [
+        {
+          "id": "beginning_recall",
+          "marker_ids": [
+            "begin_fact"
+          ],
+          "expected_answer": {
+            "bootstrap_region": "cedar-north",
+            "owner": "team-orchid"
+          },
+          "expected_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "matched_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "middle_recall",
+          "marker_ids": [
+            "middle_fact"
+          ],
+          "expected_answer": {
+            "deployment_color": "ultraviolet",
+            "retry_budget": 13
+          },
+          "expected_values": [
+            "ultraviolet",
+            13
+          ],
+          "matched_values": [
+            "ultraviolet",
+            13
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "end_recall",
+          "marker_ids": [
+            "end_fact"
+          ],
+          "expected_answer": {
+            "release_channel": "saffron-echo",
+            "ticket": "CTX-8842"
+          },
+          "expected_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "matched_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "multi_location_25_75",
+          "marker_ids": [
+            "multi_left",
+            "multi_right"
+          ],
+          "expected_answer": 13897,
+          "expected_values": [
+            13897
+          ],
+          "matched_values": [
+            13897
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "cross_file_chain_12_58_86",
+          "marker_ids": [
+            "cross_definition",
+            "cross_implementation",
+            "cross_test"
+          ],
+          "expected_answer": 21974,
+          "expected_values": [
+            21974
+          ],
+          "matched_values": [
+            21974
+          ],
+          "missing_values": [],
+          "passed": true
+        }
+      ],
+      "generated_text": "<think>\nLet me extract the marked records from the repository context:\n\n1. **begin_fact** (from config/bootstrap.yaml): `bootstrap_region=cedar-north; owner=team-orchid`\n2. **middle_fact** (from docs/architecture.md): `deployment_color=ultraviolet; retry_budget=13`\n3. **end_fact** (from release/manifest.txt): `release_channel=saffron-echo; ticket=CTX-8842`\n4. **multi_location_sum**: \n   - shard_alpha_code=4821 (from src/shard_alpha.cpp)\n   - shard_omega_code=9076 (from src/shard_omega.cpp)\n   - Sum: 4821 + 9076 = 13897\n5. **cross_file_result**:\n   - From include/relay_contract.h: `RELAY_SEED=7319; transform=(seed*3)+17`\n   - From src/relay.cpp: `relay_value=apply_transform(RELAY_SEED)`\n   - From tests/relay_test.cpp: `assert relay_value equals the definition-derived result`\n   - Calculation: (7319 * 3) + 17 = 21957 + 17 = 21974\n\nNow let me format the JSON response.\n</think>\n\n{\n  \"begin_fact\": \"bootstrap_region=cedar-north; owner=team-orchid\",\n  \"middle_fact\": \"deployment_color=ultraviolet; retry_budget=13\",\n  \"end_fact\": \"release_channel=saffron-echo; ticket=CTX-8842\",\n  \"multi_location_sum\": 13897,\n  \"cross",
+      "source_path": "192k/retrieval/q8-q4/load-only-384.json",
+      "manifest_path": "context-prompts/context_192k.markers.json",
+      "prompt_source_path": "context-prompts/context_192k.txt"
+    },
+    {
+      "evidence_source": "Measured",
+      "context_label": "262k",
+      "n_ctx": 262144,
+      "prompt_tokens": 261099,
+      "kv_profile": "q4-q4",
+      "cache_type_k": "q4_0",
+      "cache_type_v": "q4_0",
+      "measured_decode_tokens": 384,
+      "restored_decode_tok_s": 5.40068509716,
+      "passed_cases": 4,
+      "total_cases": 5,
+      "all_cases_passed": false,
+      "evaluation_cases": [
+        {
+          "id": "beginning_recall",
+          "marker_ids": [
+            "begin_fact"
+          ],
+          "expected_answer": {
+            "bootstrap_region": "cedar-north",
+            "owner": "team-orchid"
+          },
+          "expected_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "matched_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "middle_recall",
+          "marker_ids": [
+            "middle_fact"
+          ],
+          "expected_answer": {
+            "deployment_color": "ultraviolet",
+            "retry_budget": 13
+          },
+          "expected_values": [
+            "ultraviolet",
+            13
+          ],
+          "matched_values": [
+            "ultraviolet",
+            13
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "end_recall",
+          "marker_ids": [
+            "end_fact"
+          ],
+          "expected_answer": {
+            "release_channel": "saffron-echo",
+            "ticket": "CTX-8842"
+          },
+          "expected_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "matched_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "multi_location_25_75",
+          "marker_ids": [
+            "multi_left",
+            "multi_right"
+          ],
+          "expected_answer": 13897,
+          "expected_values": [
+            13897
+          ],
+          "matched_values": [
+            13897
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "cross_file_chain_12_58_86",
+          "marker_ids": [
+            "cross_definition",
+            "cross_implementation",
+            "cross_test"
+          ],
+          "expected_answer": 21974,
+          "expected_values": [
+            21974
+          ],
+          "matched_values": [],
+          "missing_values": [
+            21974
+          ],
+          "passed": false
+        }
+      ],
+      "generated_text": "<think>\nThe user wants me to extract specific facts from the marked records in the repository context and return a JSON object. Let me identify each piece:\n\n1. **begin_fact**: From `[[SSCTX_BEGIN_FACT_6F29]]` in `config/bootstrap.yaml`: `bootstrap_region=cedar-north; owner=team-orchid.`\n\n2. **middle_fact**: From `[[SSCTX_MIDDLE_FACT_44D8]]` in `docs/architecture.md`: `deployment_color=ultraviolet; retry_budget=13.`\n\n3. **end_fact**: From `[[SSCTX_END_FACT_0BC6]]` in `release/manifest.txt`: `release_channel=saffron-echo; ticket=CTX-8842.`\n\n4. **multi_location_sum**: \n   - From `[[SSCTX_MULTI_LEFT_C271]]` in `src/shard_alpha.cpp`: `shard_alpha_code=4821`\n   - From `[[SSCTX_MULTI_RIGHT_A5E0]]` in `src/shard_omega.cpp`: `shard_omega_code=9076`\n   - Sum: 4821 + 9076 = 13897\n\n5. **cross_file_result**: \n   - From `[[SSCTX_CROSS_DEF_18A4]]` in `include/relay_contract.h`: `RELAY_SEED=7319; transform=(seed*3)+17.`\n   - From `[[SSCTX_CROSS_IMPL_93B2]]` in `src/relay.cpp`: `relay_value=apply_transform(RELAY_SEED).`\n   - From `[[SSCTX_CROSS_TEST_E713]]` in `tests/relay_test.cpp`: `assert relay_value equals the",
+      "source_path": "262k/retrieval/q4-q4/load-only-384.json",
+      "manifest_path": "context-prompts/context_262k.markers.json",
+      "prompt_source_path": "context-prompts/context_262k.txt"
+    },
+    {
+      "evidence_source": "Measured",
+      "context_label": "262k",
+      "n_ctx": 262144,
+      "prompt_tokens": 261099,
+      "kv_profile": "q8-q4",
+      "cache_type_k": "q8_0",
+      "cache_type_v": "q4_0",
+      "measured_decode_tokens": 384,
+      "restored_decode_tok_s": 5.294076798,
+      "passed_cases": 5,
+      "total_cases": 5,
+      "all_cases_passed": true,
+      "evaluation_cases": [
+        {
+          "id": "beginning_recall",
+          "marker_ids": [
+            "begin_fact"
+          ],
+          "expected_answer": {
+            "bootstrap_region": "cedar-north",
+            "owner": "team-orchid"
+          },
+          "expected_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "matched_values": [
+            "cedar-north",
+            "team-orchid"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "middle_recall",
+          "marker_ids": [
+            "middle_fact"
+          ],
+          "expected_answer": {
+            "deployment_color": "ultraviolet",
+            "retry_budget": 13
+          },
+          "expected_values": [
+            "ultraviolet",
+            13
+          ],
+          "matched_values": [
+            "ultraviolet",
+            13
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "end_recall",
+          "marker_ids": [
+            "end_fact"
+          ],
+          "expected_answer": {
+            "release_channel": "saffron-echo",
+            "ticket": "CTX-8842"
+          },
+          "expected_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "matched_values": [
+            "saffron-echo",
+            "CTX-8842"
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "multi_location_25_75",
+          "marker_ids": [
+            "multi_left",
+            "multi_right"
+          ],
+          "expected_answer": 13897,
+          "expected_values": [
+            13897
+          ],
+          "matched_values": [
+            13897
+          ],
+          "missing_values": [],
+          "passed": true
+        },
+        {
+          "id": "cross_file_chain_12_58_86",
+          "marker_ids": [
+            "cross_definition",
+            "cross_implementation",
+            "cross_test"
+          ],
+          "expected_answer": 21974,
+          "expected_values": [
+            21974
+          ],
+          "matched_values": [
+            21974
+          ],
+          "missing_values": [],
+          "passed": true
+        }
+      ],
+      "generated_text": "<think>\nLet me extract the marked records from the repository context:\n\n1. **begin_fact** (from config/bootstrap.yaml): `bootstrap_region=cedar-north; owner=team-orchid.`\n2. **middle_fact** (from docs/architecture.md): `deployment_color=ultraviolet; retry_budget=13.`\n3. **end_fact** (from release/manifest.txt): `release_channel=saffron-echo; ticket=CTX-8842.`\n4. **multi_location_sum**: \n   - shard_alpha_code=4821 (from src/shard_alpha.cpp)\n   - shard_omega_code=9076 (from src/shard_omega.cpp)\n   - Sum: 4821 + 9076 = 13897\n5. **cross_file_result**:\n   - From include/relay_contract.h: `RELAY_SEED=7319; transform=(seed*3)+17.`\n   - From src/relay.cpp: `relay_value=apply_transform(RELAY_SEED).`\n   - From tests/relay_test.cpp: `assert relay_value equals the definition-derived result.`\n   - Calculation: (7319 * 3) + 17 = 21957 + 17 = 21974\n\nNow let me format the JSON response.\n</think>\n\n```json\n{\n  \"begin_fact\": \"bootstrap_region=cedar-north; owner=team-orchid.\",\n  \"middle_fact\": \"deployment_color=ultraviolet; retry_budget=13.\",\n  \"end_fact\": \"release_channel=saffron-echo; ticket=CTX-8842.\",\n  \"multi_location_sum\": 13897,\n",
+      "source_path": "262k/retrieval/q8-q4/load-only-384.json",
+      "manifest_path": "context-prompts/context_262k.markers.json",
+      "prompt_source_path": "context-prompts/context_262k.txt"
+    }
+  ]
+}

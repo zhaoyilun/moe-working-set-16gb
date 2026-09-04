@@ -1,0 +1,335 @@
+{
+  "format": "slotstream-integration-gate-summary-v1",
+  "trace": {
+    "workloads": 5,
+    "decode_tokens": 5000,
+    "routed_layer_decisions": 240000,
+    "expert_requests": 2400000,
+    "max_routing_weight_sum_error": 2.384185791015625e-07,
+    "adjacent_top10_intersection_mean_by_workload": {
+      "zh_technical": 3.432745245245245,
+      "en_technical": 3.593280780780781,
+      "code": 3.376668335001668,
+      "math_logic": 3.1853728728728727,
+      "long_context": 3.194507007007007
+    },
+    "working_sets_by_workload": {
+      "zh_technical": {
+        "W50": 1975,
+        "W80": 5540,
+        "W90": 7974,
+        "W95": 10073,
+        "W99": 13805
+      },
+      "en_technical": {
+        "W50": 1933,
+        "W80": 5368,
+        "W90": 7519,
+        "W95": 9333,
+        "W99": 12654
+      },
+      "code": {
+        "W50": 1691,
+        "W80": 4959,
+        "W90": 7262,
+        "W95": 9255,
+        "W99": 12742
+      },
+      "math_logic": {
+        "W50": 1737,
+        "W80": 5217,
+        "W90": 7750,
+        "W95": 9920,
+        "W99": 13685
+      },
+      "long_context": {
+        "W50": 2023,
+        "W80": 5295,
+        "W90": 7416,
+        "W95": 9295,
+        "W99": 12739
+      }
+    },
+    "cross_workload_frequency_cosine_mean": 0.7406710528760841,
+    "cross_workload_hot_jaccard_mean": 0.31738713804441304
+  },
+  "cache_8gb": {
+    "highest_hit_policy": "LRU",
+    "hit_rate": 0.7053479166666666,
+    "miss_histogram": {
+      "0": {
+        "count": 25572,
+        "fraction": 0.1331875,
+        "percent": 13.31875
+      },
+      "1": {
+        "count": 36515,
+        "fraction": 0.19018229166666667,
+        "percent": 19.018229166666668
+      },
+      "2": {
+        "count": 35471,
+        "fraction": 0.18474479166666666,
+        "percent": 18.474479166666665
+      },
+      "3": {
+        "count": 28740,
+        "fraction": 0.1496875,
+        "percent": 14.96875
+      },
+      "4": {
+        "count": 21444,
+        "fraction": 0.1116875,
+        "percent": 11.16875
+      },
+      "5": {
+        "count": 15355,
+        "fraction": 0.07997395833333333,
+        "percent": 7.997395833333333
+      },
+      "6": {
+        "count": 10796,
+        "fraction": 0.05622916666666666,
+        "percent": 5.622916666666667
+      },
+      "7": {
+        "count": 7568,
+        "fraction": 0.03941666666666667,
+        "percent": 3.941666666666667
+      },
+      "8": {
+        "count": 5125,
+        "fraction": 0.026692708333333332,
+        "percent": 2.6692708333333335
+      },
+      "9": {
+        "count": 3388,
+        "fraction": 0.017645833333333333,
+        "percent": 1.7645833333333334
+      },
+      "10": {
+        "count": 2026,
+        "fraction": 0.010552083333333333,
+        "percent": 1.0552083333333333
+      }
+    },
+    "scheduler_bands": {
+      "miss_0_to_4": 0.7694895833333333,
+      "miss_5_to_7": 0.17561979166666664,
+      "miss_8_to_10": 0.054890625
+    },
+    "selected_static_dynamic_split": {
+      "policy": "Hybrid policy (adaptive)",
+      "static_gb_nominal": 2,
+      "dynamic_gb_nominal": 6,
+      "hit_rate": 0.6845322916666666,
+      "simulated_p50_ms": 25.48570201249999,
+      "simulated_p95_ms": 46.72904140000001,
+      "selection_basis": "lowest p50 among adaptive hybrid configurations with both pools",
+      "p95_best_split": {
+        "static_gb_nominal": 4,
+        "dynamic_gb_nominal": 4,
+        "simulated_p95_ms": 46.629374100000014
+      }
+    }
+  },
+  "hybrid_layer": {
+    "composition": {
+      "GPU_resident": 4,
+      "H2D_promotion_then_GPU": 2,
+      "CPU_direct_KTransformers_AVX2": 4
+    },
+    "correctness": {
+      "gpu_partial_vs_fp32_reference": {
+        "max_abs": 2.8893351554870605e-05,
+        "relative_l1": 0.00026060605969406857,
+        "relative_rmse": 0.0002543515585782832,
+        "cosine": 1.0
+      },
+      "cpu_partial_vs_fp32_reference": {
+        "max_abs": 4.8939138650894165e-05,
+        "relative_l1": 0.0034247847434417827,
+        "relative_rmse": 0.003525153231198631,
+        "cosine": 0.999994158744812
+      },
+      "mixed_vs_fp32_reference": {
+        "max_abs": 3.692135214805603e-05,
+        "relative_l1": 0.0005769807755538935,
+        "relative_rmse": 0.0005570027555417217,
+        "cosine": 0.9999996423721313
+      }
+    },
+    "branch_host_p50_ms": 1.038023,
+    "branch_host_p95_ms": 1.3952421499999998,
+    "routed_layer_composite_p50_ms": 1.122623,
+    "routed_layer_composite_p95_ms": 1.6247421499999999,
+    "timeline": {
+      "gpu_hot_with_h2d": {
+        "p50_ms": 0.37012800574302673,
+        "p95_ms": 0.3848335951566696
+      },
+      "gpu_hot_with_cpu": {
+        "p50_ms": 0.07630249904155731,
+        "p95_ms": 0.35629835
+      },
+      "cpu_with_h2d": {
+        "p50_ms": 0.0,
+        "p95_ms": 0.1541338565209389
+      },
+      "triple_cpu_gpu_h2d": {
+        "p50_ms": 0.0,
+        "p95_ms": 0.1541338565209389
+      },
+      "cpu_with_gpu_critical_span": {
+        "p50_ms": 0.1894754857902527,
+        "p95_ms": 0.40112792980327605
+      },
+      "host_total": {
+        "p50_ms": 1.038023,
+        "p95_ms": 1.3952421499999998
+      },
+      "gpu_idle_waiting_for_cpu_before_merge": {
+        "p50_ms": 0.2396320030093193,
+        "p95_ms": 0.48931839317083353
+      },
+      "host_merge_and_finalize": {
+        "p50_ms": 0.18859450203847888,
+        "p95_ms": 0.4497322062765363
+      },
+      "cpu_idle_or_gpu_wait_p50_ms": 0.611716,
+      "dma_exposed_after_resident_compute_p50_ms": 0.0,
+      "critical_path": "host launch submission delays CPU start; the CPU cold branch finishes after the GPU branch, then CPU return/merge closes the p50 critical path"
+    },
+    "vs_ram_to_vram_gpu": {
+      "baseline_branch_p50_ms": 1.1718,
+      "saved_p50_ms": 0.13377700000000003,
+      "speedup_percent_p50": 12.887672045802457
+    },
+    "vs_pure_cpu_routed": {
+      "baseline_p50_ms": 0.8816115,
+      "baseline_p95_ms": 1.17376135,
+      "slower_percent_p50": 27.337608459054795,
+      "slower_percent_p95": 38.42184784837224
+    },
+    "multi_layer_replay": {
+      "2": {
+        "p50_ms": 2.12111,
+        "p95_ms": 2.7984116500000003,
+        "per_layer_p50_ms": 1.060555,
+        "runs": 40
+      },
+      "4": {
+        "p50_ms": 4.3342185,
+        "p95_ms": 4.774696149999998,
+        "per_layer_p50_ms": 1.083554625,
+        "runs": 40
+      },
+      "8": {
+        "p50_ms": 8.798525,
+        "p95_ms": 9.43408425,
+        "per_layer_p50_ms": 1.099815625,
+        "runs": 40
+      }
+    }
+  },
+  "projection": {
+    "format": "slotstream-end-to-end-projection-v1",
+    "classification": {
+      "measured": [
+        "five instrumented llama.cpp decode runtimes",
+        "single-layer hybrid timeline",
+        "prior isolated CPU/H2D/router curves"
+      ],
+      "simulated_from_real_trace": [
+        "cache state and per-layer CPU/H2D decisions for 4000 held-out decode tokens"
+      ],
+      "projected": [
+        "48-layer routed-MoE latency",
+        "complete decode latency and throughput"
+      ]
+    },
+    "selected_policy": {
+      "budget_gb": 8,
+      "policy": "Hybrid policy (adaptive)",
+      "static_gb_nominal": 2,
+      "dynamic_gb_nominal": 6,
+      "calibration_fraction": 0.2,
+      "future_route_knowledge": false
+    },
+    "workloads": [
+      {
+        "workload": "zh_technical",
+        "tokens": 800,
+        "ideal_overlap_p50_ms": 25.15708143749999,
+        "ideal_overlap_p95_ms": 46.56572212500001,
+        "current_prototype_calibrated_p50_ms": 26.429114499999997,
+        "current_prototype_calibrated_p95_ms": 56.09162285750002
+      },
+      {
+        "workload": "en_technical",
+        "tokens": 800,
+        "ideal_overlap_p50_ms": 25.321161749999987,
+        "ideal_overlap_p95_ms": 46.695760375000006,
+        "current_prototype_calibrated_p50_ms": 26.756491999999987,
+        "current_prototype_calibrated_p95_ms": 57.52089780750003
+      },
+      {
+        "workload": "code",
+        "tokens": 800,
+        "ideal_overlap_p50_ms": 25.150411312499987,
+        "ideal_overlap_p95_ms": 46.427137750000014,
+        "current_prototype_calibrated_p50_ms": 26.225776749999994,
+        "current_prototype_calibrated_p95_ms": 55.82847440000004
+      },
+      {
+        "workload": "math_logic",
+        "tokens": 800,
+        "ideal_overlap_p50_ms": 25.39226412499999,
+        "ideal_overlap_p95_ms": 47.052432374999995,
+        "current_prototype_calibrated_p50_ms": 26.81446824999999,
+        "current_prototype_calibrated_p95_ms": 58.34061541500002
+      },
+      {
+        "workload": "long_context",
+        "tokens": 800,
+        "ideal_overlap_p50_ms": 26.407591437499992,
+        "ideal_overlap_p95_ms": 46.90415437500002,
+        "current_prototype_calibrated_p50_ms": 28.52968374999999,
+        "current_prototype_calibrated_p95_ms": 58.56046170750003
+      }
+    ],
+    "routed_moe_48_layers": {
+      "ideal_overlap_cost_model": {
+        "p50_ms": 25.45928637499999,
+        "p95_ms": 46.73092462500001
+      },
+      "current_prototype_calibrated": {
+        "p50_ms": 26.92119649999999,
+        "p95_ms": 57.391179950000016,
+        "calibration_rule": "layers using GPU and CPU together receive the measured three-path host span; GPU-only and CPU-only layers use measured isolated curves",
+        "caveat": "the measured three-path span is conservative for two-path mixes with fewer branches"
+      }
+    },
+    "complete_decode": {
+      "instrumented_trace_runtime_median_ms_per_token": 180.09,
+      "instrumented_trace_runtime_tokens_per_second": 5.552779165972569,
+      "non_moe_trunk_proxy_ms": 137.772648,
+      "trunk_proxy_method": "instrumented median minus 48 times the previously measured pure-CPU routed-layer p50; trace callback overhead remains inside the proxy",
+      "ideal_overlap_projection": {
+        "p50_ms_per_token": 163.23193437499998,
+        "p95_ms_per_token": 184.503572625,
+        "p50_tokens_per_second": 6.12625221791868,
+        "p95_tokens_per_second": 5.419949249614158
+      },
+      "current_prototype_projection": {
+        "p50_ms_per_token": 164.69384449999998,
+        "p95_ms_per_token": 195.16382795,
+        "p50_tokens_per_second": 6.071872346145883,
+        "p95_tokens_per_second": 5.123900317512705
+      }
+    },
+    "decision": "C",
+    "decision_reason": "real traces put most layers in the low-miss GPU-favorable band, while the measured three-path mid-band loses to whole-layer CPU; phase- and cost-adaptive selection preserves the former and avoids the latter"
+  },
+  "decision": "C"
+}

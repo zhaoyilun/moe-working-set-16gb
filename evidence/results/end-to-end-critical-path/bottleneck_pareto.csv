@@ -1,0 +1,14 @@
+rank,category,ms_per_token,percent_of_wall,cumulative_percent,evidence
+1,CPU FFN residual + next-layer prep,52.59875,34.387898982984886,34.387898982984886,Measured
+2,CPU routed MoE combined,37.51415,24.52592125540136,58.91382023838625,Measured
+3,CPU hyperconnection + attention,25.564,16.71317758693934,75.62699782532559,Measured
+4,CPU attention residual + FFN hyperconnection,10.68895,6.9881990129836975,82.61519683830927,Measured
+5,CPU shared expert,5.8901,3.8508170593346667,86.46601389764395,Measured
+6,CUDA synchronization critical partition,5.309,3.470906736389491,89.93692063403344,Projection from Nsight exclusive partition scaled to non-CPU residual
+7,sampling,4.7225611,3.0875059587494755,93.02442659278292,Measured
+8,CUDA memcpy API critical partition,3.942,2.5771923817757347,95.60161897455866,Projection from Nsight exclusive partition scaled to non-CPU residual
+9,CUDA graph API critical partition,2.57,1.6802091377888475,97.28182811234748,Projection from Nsight exclusive partition scaled to non-CPU residual
+10,GPU active critical partition,1.515,0.9904734800584063,98.27230159240588,Projection; physical GPU active union is 4.498 ms/token
+11,input embedding + initial prep,1.5025,0.9823012566255812,99.25460284903147,Measured
+12,CPU MoE/shared merge,0.61885,0.40459043771230674,99.65919328674379,Measured
+13,CUDA kernel launch API critical partition,0.522,0.34127205055477766,100.00046533729856,Projection from Nsight exclusive partition scaled to non-CPU residual

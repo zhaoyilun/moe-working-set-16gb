@@ -1,0 +1,69 @@
+{
+  "trace": "work\\pc-slotstream-hybrid-gate\\research\\raw\\router_sample.jsonl",
+  "locality": {
+    "requests": 10,
+    "unique_layer_experts": 10,
+    "w50": 5,
+    "w90": 9,
+    "normalized_entropy": 1.0,
+    "mean_topk_overlap_with_previous": null,
+    "reuse_distance_p50_records": null
+  },
+  "policies": [
+    {
+      "policy": "clock",
+      "slots": 4,
+      "hit_rate": 0.0,
+      "miss_rate": 1.0,
+      "cpu_expert_fraction": 0.0,
+      "streamed_expert_fraction": 1.0,
+      "evictions": 6,
+      "promotions": 0,
+      "estimated_critical_path_ms": 1.1725
+    },
+    {
+      "policy": "lru",
+      "slots": 4,
+      "hit_rate": 0.0,
+      "miss_rate": 1.0,
+      "cpu_expert_fraction": 0.0,
+      "streamed_expert_fraction": 1.0,
+      "evictions": 6,
+      "promotions": 0,
+      "estimated_critical_path_ms": 1.1725
+    },
+    {
+      "policy": "lfu",
+      "slots": 4,
+      "hit_rate": 0.0,
+      "miss_rate": 1.0,
+      "cpu_expert_fraction": 0.0,
+      "streamed_expert_fraction": 1.0,
+      "evictions": 6,
+      "promotions": 0,
+      "estimated_critical_path_ms": 1.1725
+    },
+    {
+      "policy": "static_hot",
+      "slots": 4,
+      "hit_rate": 0.4,
+      "miss_rate": 0.6,
+      "cpu_expert_fraction": 0.0,
+      "streamed_expert_fraction": 0.6,
+      "evictions": 0,
+      "promotions": 0,
+      "estimated_critical_path_ms": 0.7075
+    },
+    {
+      "policy": "hybrid",
+      "slots": 4,
+      "hit_rate": 0.1,
+      "miss_rate": 0.9,
+      "cpu_expert_fraction": 0.9,
+      "streamed_expert_fraction": 0.0,
+      "evictions": 0,
+      "promotions": 0,
+      "estimated_critical_path_ms": 0.7568280000000001
+    }
+  ]
+}

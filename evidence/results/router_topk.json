@@ -1,0 +1,8 @@
+{
+  "weight": "real layer-0 BF16 router [512,2560]",
+  "path": "BF16 cuBLAS GEMV -> CUDA top10 softmax -> pinned D2H ids+weights",
+  "runs": 3000,
+  "p50_us": 84.6,
+  "p95_us": 229.5,
+  "top10_ids": [134, 322, 439, 103, 339, 481, 500, 1, 72, 174]
+}

@@ -1,0 +1,97 @@
+NVIDIA CUDA sample bandwidthTest independent cross-check
+
+=== memory=pinned bytes=2764800 ===
+[CUDA Bandwidth Test] - Starting...
+Running on...
+
+ Device 0: NVIDIA GeForce RTX 4080 SUPER
+ Range Mode
+
+ Host to Device Bandwidth, 1 Device(s)
+ PINNED Memory Transfers
+   Transfer Size (Bytes)	Bandwidth(MB/s)
+   2764800			16972.6
+
+Result = PASS
+
+NOTE: The CUDA Samples are not meant for performance measurements. Results may vary when GPU Boost is enabled.
+
+=== memory=pinned bytes=27648000 ===
+[CUDA Bandwidth Test] - Starting...
+Running on...
+
+ Device 0: NVIDIA GeForce RTX 4080 SUPER
+ Range Mode
+
+ Host to Device Bandwidth, 1 Device(s)
+ PINNED Memory Transfers
+   Transfer Size (Bytes)	Bandwidth(MB/s)
+   27648000			21309.2
+
+Result = PASS
+
+NOTE: The CUDA Samples are not meant for performance measurements. Results may vary when GPU Boost is enabled.
+
+=== memory=pinned bytes=55296000 ===
+[CUDA Bandwidth Test] - Starting...
+Running on...
+
+ Device 0: NVIDIA GeForce RTX 4080 SUPER
+ Range Mode
+
+ Host to Device Bandwidth, 1 Device(s)
+ PINNED Memory Transfers
+   Transfer Size (Bytes)	Bandwidth(MB/s)
+   55296000			21571.2
+
+Result = PASS
+
+NOTE: The CUDA Samples are not meant for performance measurements. Results may vary when GPU Boost is enabled.
+
+=== memory=pageable bytes=2764800 ===
+[CUDA Bandwidth Test] - Starting...
+Running on...
+
+ Device 0: NVIDIA GeForce RTX 4080 SUPER
+ Range Mode
+
+ Host to Device Bandwidth, 1 Device(s)
+ PAGEABLE Memory Transfers
+   Transfer Size (Bytes)	Bandwidth(MB/s)
+   2764800			10829.9
+
+Result = PASS
+
+NOTE: The CUDA Samples are not meant for performance measurements. Results may vary when GPU Boost is enabled.
+
+=== memory=pageable bytes=27648000 ===
+[CUDA Bandwidth Test] - Starting...
+Running on...
+
+ Device 0: NVIDIA GeForce RTX 4080 SUPER
+ Range Mode
+
+ Host to Device Bandwidth, 1 Device(s)
+ PAGEABLE Memory Transfers
+   Transfer Size (Bytes)	Bandwidth(MB/s)
+   27648000			10054.3
+
+Result = PASS
+
+NOTE: The CUDA Samples are not meant for performance measurements. Results may vary when GPU Boost is enabled.
+
+=== memory=pageable bytes=55296000 ===
+[CUDA Bandwidth Test] - Starting...
+Running on...
+
+ Device 0: NVIDIA GeForce RTX 4080 SUPER
+ Range Mode
+
+ Host to Device Bandwidth, 1 Device(s)
+ PAGEABLE Memory Transfers
+   Transfer Size (Bytes)	Bandwidth(MB/s)
+   55296000			10698.4
+
+Result = PASS
+
+NOTE: The CUDA Samples are not meant for performance measurements. Results may vary when GPU Boost is enabled.

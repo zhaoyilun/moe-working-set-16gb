@@ -1,0 +1,3 @@
+priority,bottleneck,control,candidate,control_tok_s,candidate_tok_s,tok_s_change_percent,control_wall_ms,candidate_wall_ms,sample,evidence
+Top 1,coarse whole-layer placement,-ngl 10; layers 0-38 entirely CPU,all non-expert tensors GPU; routed experts CPU/RAM,6.537778746260108,15.094117984030568,130.87532585383155,152.95714933333332,66.2509728,3 runs x 500 measured tokens per placement,Measured
+Top 2,GPU launch/runtime overhead after placement fix,CUDA Graph disabled,CUDA Graph enabled,12.440758755208233,17.062779257763438,37.152239614165254,80.3809494,58.6070994,same prompt/position; 1 run x 500 measured tokens each,Measured

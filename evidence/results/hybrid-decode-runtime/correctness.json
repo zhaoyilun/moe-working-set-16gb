@@ -1,0 +1,22 @@
+{
+  "evidence": "Measured",
+  "context": "canonical-16k-session",
+  "native_mode": "Native expert-only CPU offload",
+  "hybrid_mode": "4 GiB fixed GPU expert cache hit plus Native CPU miss",
+  "first_logits_count": 248320,
+  "logits_rmse": 0.13917524197485623,
+  "logits_max_abs": 0.74729323387146,
+  "logits_cosine": 0.9992393115022045,
+  "selected_expert_events": 1632,
+  "selected_expert_ids_equal": false,
+  "routing_weight_events": 1632,
+  "routing_weights_max_abs": 0.03055852600000003,
+  "routing_weights_rmse": 0.002580600345708353,
+  "routing_weights_equal_exact": false,
+  "first_token_equal": true,
+  "first_n_tokens": 32,
+  "first_n_token_sequence_equal": true,
+  "full_captured_token_sequence_equal": true,
+  "hybrid_4g_hit_rate_over_capture": 0.26060049,
+  "hybrid_4g_cpu_fallback_layers_per_token": 48
+}

@@ -35,11 +35,20 @@ struct Options {
     int n_threads = 24;
     int n_gpu_layers = -2;
     int n_batch = 2048;
-    int n_ubatch = 512;
+    int n_ubatch = 16;
+    std::string cache_type_k = "f16";
+    std::string cache_type_v = "f16";
 };
 
 double elapsed_ms(clock_type::time_point begin, clock_type::time_point end) {
     return std::chrono::duration<double, std::milli>(end - begin).count();
+}
+
+ggml_type cache_type_from_name(const std::string & name) {
+    if (name == "f16") return GGML_TYPE_F16;
+    if (name == "q8_0") return GGML_TYPE_Q8_0;
+    if (name == "q4_0") return GGML_TYPE_Q4_0;
+    throw std::runtime_error("invalid KV cache type: " + name);
 }
 
 Options parse_options(int argc, char ** argv) {
@@ -69,6 +78,8 @@ Options parse_options(int argc, char ** argv) {
         else if (std::strcmp(argv[i], "-ngl") == 0) options.n_gpu_layers = std::stoi(value("-ngl"));
         else if (std::strcmp(argv[i], "--n-batch") == 0) options.n_batch = std::stoi(value("--n-batch"));
         else if (std::strcmp(argv[i], "--n-ubatch") == 0) options.n_ubatch = std::stoi(value("--n-ubatch"));
+        else if (std::strcmp(argv[i], "--cache-type-k") == 0) options.cache_type_k = value("--cache-type-k");
+        else if (std::strcmp(argv[i], "--cache-type-v") == 0) options.cache_type_v = value("--cache-type-v");
         else throw std::runtime_error(std::string("unknown option: ") + argv[i]);
     }
     if (options.model.empty() || options.state_file.empty() || options.output_json.empty()) {
@@ -79,6 +90,8 @@ Options parse_options(int argc, char ** argv) {
             options.promote_threshold < -1 || options.promote_threshold > 10) {
         throw std::runtime_error("invalid measurement options");
     }
+    cache_type_from_name(options.cache_type_k);
+    cache_type_from_name(options.cache_type_v);
     return options;
 }
 
@@ -318,6 +331,8 @@ int main(int argc, char ** argv) {
         context_params.n_ctx = options.n_ctx;
         context_params.n_batch = (std::min)(static_cast<uint32_t>(options.n_ctx), static_cast<uint32_t>(options.n_batch));
         context_params.n_ubatch = (std::min)(context_params.n_batch, static_cast<uint32_t>(options.n_ubatch));
+        context_params.type_k = cache_type_from_name(options.cache_type_k);
+        context_params.type_v = cache_type_from_name(options.cache_type_v);
         context_params.no_perf = false;
         if (!options.routing_json.empty()) {
             context_params.cb_eval = routing_callback;
@@ -426,13 +441,17 @@ int main(int argc, char ** argv) {
                 options.promote_threshold > 0 ? "hybrid-predictive-promotion" :
                 options.promote_threshold == 0 ? "hybrid-instrumented-fixed-cache" : "hybrid-fixed-cache";
         output << "  \"mode\": \"" << mode << "\",\n";
-        output << "  \"revision\": \"4e97ac86ebe2c4cb8212d98d2641ad6768810896\",\n";
+        output << "  \"revision\": \"2d4f3154a2d93c3a4d6d4a415c404f1b397d8dcb\",\n";
         output << "  \"state_file\": " << json_string(options.state_file) << ",\n";
         output << "  \"cache_plan\": " << (options.hybrid_cache_plan.empty() ? "null" : json_string(options.hybrid_cache_plan)) << ",\n";
         output << "  \"promote_threshold\": " << options.promote_threshold << ",\n";
         output << "  \"forced_input_tokens\": " << (forced_tokens.empty() ? "false" : "true") << ",\n";
         output << "  \"cuda_graphs\": " << (cuda_graphs ? "true" : "false") << ",\n";
         output << "  \"n_ctx\": " << options.n_ctx << ",\n";
+        output << "  \"n_batch\": " << context_params.n_batch << ",\n";
+        output << "  \"n_ubatch\": " << context_params.n_ubatch << ",\n";
+        output << "  \"cache_type_k\": " << json_string(options.cache_type_k) << ",\n";
+        output << "  \"cache_type_v\": " << json_string(options.cache_type_v) << ",\n";
         output << "  \"state_tokens\": " << state_tokens.size() << ",\n";
         output << "  \"verify_tokens\": " << options.verify_tokens << ",\n";
         output << "  \"warmup_tokens\": " << options.warmup_tokens << ",\n";

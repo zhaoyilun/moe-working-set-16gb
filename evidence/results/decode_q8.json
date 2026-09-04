@@ -1,0 +1,20 @@
+{
+  "cpu": "Intel Core i9-14900KF",
+  "kernel": "KTransformers AVX2RawInt4_MOE with exact MLX affine group bias",
+  "pid": 1238,
+  "results": [
+    {
+      "threads": 24,
+      "topk": 10,
+      "qlen": 8,
+      "cache_mode": "warm",
+      "runs": 30,
+      "p50_ms": 3.959722,
+      "p95_ms": 4.1940896,
+      "min_ms": 3.735153,
+      "effective_weight_bandwidth_gbps_p50": 7.758120393300337,
+      "skip_all_cpu_experts": false,
+      "output_checksum": 0.0012284567346796393
+    }
+  ]
+}

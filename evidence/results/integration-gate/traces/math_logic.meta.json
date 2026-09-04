@@ -1,0 +1,39 @@
+{
+  "format": "slotstream-routing-trace-v1",
+  "workload": "math_logic",
+  "model_path": "E:\\AI\\Models\\Qwen3.8-Flash-Next-UD-IQ4_XS\\Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf",
+  "runtime": "llama.cpp b10666 / 4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "prompt": "Solve and thoroughly explain the following mathematical modeling problem. A decoder has 48 sequential layers. At each layer a token chooses 10 of 512 experts. Each expert occupies 2,764,800 bytes. A GPU cache has budget B in {2,4,6,8,10,12} decimal GB. Loading k missing experts costs a measured nonlinear function H(k), CPU execution costs C(k), and GPU-resident execution costs G(k). Formulate the optimal offline schedule, prove its relationship to weighted caching, identify why exact online optimality is unavailable without future routes, derive practical lower and upper bounds, then construct and analyze an online cost-aware policy that uses frequency and reuse distance. Include at least two theorems with proofs, one adversarial sequence, one stochastic model, numerical examples, pseudocode, and a sensitivity analysis. Make the answer at least 1,800 words and show every reasoning step.\r\n",
+  "prompt_tokens": 209,
+  "decode_tokens": 1000,
+  "seed": 0,
+  "sampling": {
+    "strategy": "greedy"
+  },
+  "routing": {
+    "experts": 512,
+    "top_k": 10,
+    "normalization": "top-k softmax",
+    "shared_expert": true,
+    "routed_scaling_factor": 1.0,
+    "group_routing": false,
+    "correction_bias": false
+  },
+  "n_layers": 48,
+  "records": 57824,
+  "hidden_state_trace": null,
+  "hidden_state_layer": 0,
+  "n_gpu_layers": 10,
+  "threads": 24,
+  "model_repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+  "model_revision": "38bb39ee97821de2c9009abb7e93950eec396e66",
+  "runtime_commit": "4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "trace_timestamp_utc": "2026-09-03T09:30:13.618978+00:00",
+  "trace_runtime": {
+    "decode_total_ms": 181264.77,
+    "decode_runs": 1000,
+    "decode_ms_per_token": 181.26,
+    "decode_tokens_per_second": 5.52,
+    "note": "instrumented trace runtime; synchronous callback copies are included"
+  }
+}

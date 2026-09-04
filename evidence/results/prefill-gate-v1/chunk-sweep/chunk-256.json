@@ -1,0 +1,14 @@
+{
+  "evidence": "Measured",
+  "mode": "cold-only",
+  "revision": "4e97ac86ebe2c4cb8212d98d2641ad6768810896",
+  "prompt_tokens": 2048,
+  "n_ctx": 2304,
+  "n_batch": 256,
+  "n_ubatch": 256,
+  "model_load_ms": 6706.4217,
+  "context_init_ms": 32.8068,
+  "cold_prefill_ms": 26944.2419,
+  "cold_prefill_tok_s": 76.0088187896,
+  "first_token": 248046
+}

@@ -8,7 +8,10 @@ param(
     [int] $PromptTokens = 16363,
     [int] $ContextSize = 17408,
     [int] $Threads = 24,
-    [int] $Ubatch = 8192
+    [int] $Ubatch = 8192,
+    [ValidateSet('f16', 'q8_0', 'q4_0')][string] $CacheTypeK = 'f16',
+    [ValidateSet('f16', 'q8_0', 'q4_0')][string] $CacheTypeV = 'f16',
+    [int] $DecodeUbatch = 16
 )
 
 $ErrorActionPreference = 'Stop'
@@ -22,6 +25,7 @@ if (-not (Get-Command cl.exe -ErrorAction SilentlyContinue)) {
 cmake -G Ninja -S $toolsDir -B $BuildDir `
     -DLLAMA_CPP_DIR=$LlamaDir `
     -DGGML_CUDA=ON `
+    -DGGML_CUDA_FA_ALL_QUANTS=ON `
     '-DCMAKE_CUDA_FLAGS=--allow-unsupported-compiler -Xcompiler=/D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH' `
     -DCMAKE_BUILD_TYPE=Release
 cmake --build $BuildDir -j 10
@@ -47,7 +51,9 @@ $state = Join-Path $OutputDir 'session.bin'
     -c $ContextSize `
     -t $Threads `
     --n-batch $Ubatch `
-    --n-ubatch $Ubatch
+    --n-ubatch $Ubatch `
+    --cache-type-k $CacheTypeK `
+    --cache-type-v $CacheTypeV
 
 for ($run = 1; $run -le 3; $run++) {
     & $decodeRunner `
@@ -62,7 +68,9 @@ for ($run = 1; $run -le 3; $run++) {
         -c $ContextSize `
         -t $Threads `
         --n-batch 2048 `
-        --n-ubatch 512
+        --n-ubatch $DecodeUbatch `
+        --cache-type-k $CacheTypeK `
+        --cache-type-v $CacheTypeV
 }
 
 Get-ChildItem -LiteralPath $OutputDir -File -Filter '*.json' | Select-Object Name, Length, LastWriteTime

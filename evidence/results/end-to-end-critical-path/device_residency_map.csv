@@ -1,0 +1,9 @@
+scope,layers,coarse_ngl10,native_expert_only_cpu,measurement,evidence
+input embedding / initial prep,pre-layer,CPU,GPU-oriented placement; tiny host setup remains,1.5025 ms/token CPU graph in coarse path,Measured
+"attention, recurrent attention, norm/rope, hyperconnection",0-38,CPU,GPU,coarse CPU categories are in per_layer_attribution.csv,Measured
+router,0-38,CPU,GPU,5.363 ms/token scaled split in coarse path,Measured ratio applied to measured combined span
+routed expert tensors,0-38,CPU,CPU/RAM,32.151 ms/token scaled split in coarse path,Measured ratio applied to measured combined span
+shared/dense FFN and residual path,0-38,CPU,GPU,"69.797 ms/token across shared, merge, residual and next prep",Measured
+all layer operators,39-47,GPU,GPU except routed expert tensors on CPU/RAM,3.728 ms/token layer spans; 4.709 ms/token including lm_head,Measured
+output / lm_head,post-layer,GPU,GPU,0.980 ms/token GPU active,Measured
+KV cache,attention state,CPU 49.50 MiB + GPU 16.50 MiB at n_ctx=2048,GPU 66.00 MiB at n_ctx=2048; context sweep uses n_ctx=target+64,24.75-536.25 MiB across native 512-16K sweep,Measured

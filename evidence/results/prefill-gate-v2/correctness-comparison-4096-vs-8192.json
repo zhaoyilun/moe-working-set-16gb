@@ -1,0 +1,16 @@
+{
+  "evidence": "Measured",
+  "prompt_tokens": 16363,
+  "ubatch_a": 4096,
+  "ubatch_b": 8192,
+  "elements": 248320,
+  "cosine": 0.9926799893535647,
+  "max_abs": 3.5428061485290527,
+  "mean_abs": 0.2578614117555019,
+  "rmse": 0.33687093439908294,
+  "argmax_a": 321,
+  "argmax_b": 321,
+  "first_token_equal": true,
+  "verify_32_tokens_equal": true,
+  "common_greedy_prefix_tokens": 32
+}

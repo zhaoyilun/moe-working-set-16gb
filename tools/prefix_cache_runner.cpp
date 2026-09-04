@@ -32,10 +32,19 @@ struct Options {
     int n_gpu_layers = -2;
     int n_batch = 2048;
     int n_ubatch = 512;
+    std::string cache_type_k = "f16";
+    std::string cache_type_v = "f16";
     bool cpu_moe = true;
     bool load_only = false;
     bool cold_only = false;
 };
+
+ggml_type cache_type_from_name(const std::string & name) {
+    if (name == "f16") return GGML_TYPE_F16;
+    if (name == "q8_0") return GGML_TYPE_Q8_0;
+    if (name == "q4_0") return GGML_TYPE_Q4_0;
+    throw std::runtime_error("invalid KV cache type: " + name);
+}
 
 double elapsed_ms(clock_type::time_point begin, clock_type::time_point end) {
     return std::chrono::duration<double, std::milli>(end - begin).count();
@@ -62,6 +71,8 @@ Options parse_options(int argc, char ** argv) {
         else if (std::strcmp(argv[i], "-ngl") == 0) options.n_gpu_layers = std::stoi(value("-ngl"));
         else if (std::strcmp(argv[i], "--n-batch") == 0) options.n_batch = std::stoi(value("--n-batch"));
         else if (std::strcmp(argv[i], "--n-ubatch") == 0) options.n_ubatch = std::stoi(value("--n-ubatch"));
+        else if (std::strcmp(argv[i], "--cache-type-k") == 0) options.cache_type_k = value("--cache-type-k");
+        else if (std::strcmp(argv[i], "--cache-type-v") == 0) options.cache_type_v = value("--cache-type-v");
         else if (std::strcmp(argv[i], "--no-cpu-moe") == 0) options.cpu_moe = false;
         else if (std::strcmp(argv[i], "--load-only") == 0) options.load_only = true;
         else if (std::strcmp(argv[i], "--cold-only") == 0) options.cold_only = true;
@@ -79,6 +90,8 @@ Options parse_options(int argc, char ** argv) {
             options.prompt_tokens + options.measured_tokens + verification_budget >= options.n_ctx) {
         throw std::runtime_error("invalid token or context count");
     }
+    cache_type_from_name(options.cache_type_k);
+    cache_type_from_name(options.cache_type_v);
     return options;
 }
 
@@ -124,6 +137,8 @@ llama_context * create_context(llama_model * model, const Options & options, dou
     params.n_ctx = options.n_ctx;
     params.n_batch = (std::min)(static_cast<uint32_t>(options.n_ctx), static_cast<uint32_t>(options.n_batch));
     params.n_ubatch = (std::min)(params.n_batch, static_cast<uint32_t>(options.n_ubatch));
+    params.type_k = cache_type_from_name(options.cache_type_k);
+    params.type_v = cache_type_from_name(options.cache_type_v);
     params.no_perf = false;
     const auto begin = clock_type::now();
     llama_context * context = llama_init_from_model(model, params);
@@ -173,6 +188,51 @@ std::vector<llama_token> generate_tokens(llama_context * context, int count) {
         }
         token = sample_greedy(context);
     }
+    return result;
+}
+
+std::string detokenize(const llama_vocab * vocab, const std::vector<llama_token> & tokens) {
+    if (tokens.empty()) return {};
+    std::string text(tokens.size(), '\0');
+    int32_t size = llama_detokenize(
+        vocab, tokens.data(), static_cast<int32_t>(tokens.size()), text.data(), static_cast<int32_t>(text.size()),
+        false, true);
+    if (size < 0) {
+        text.resize(-size);
+        size = llama_detokenize(
+            vocab, tokens.data(), static_cast<int32_t>(tokens.size()), text.data(), static_cast<int32_t>(text.size()),
+            false, true);
+    }
+    if (size < 0) throw std::runtime_error("detokenization failed");
+    text.resize(size);
+    return text;
+}
+
+std::string json_string(const std::string & value) {
+    static const char hex[] = "0123456789abcdef";
+    std::string result;
+    result.reserve(value.size() + 2);
+    result.push_back('"');
+    for (const unsigned char ch : value) {
+        switch (ch) {
+            case '\\': result += "\\\\"; break;
+            case '"':  result += "\\\""; break;
+            case '\b': result += "\\b"; break;
+            case '\f': result += "\\f"; break;
+            case '\n': result += "\\n"; break;
+            case '\r': result += "\\r"; break;
+            case '\t': result += "\\t"; break;
+            default:
+                if (ch < 0x20) {
+                    result += "\\u00";
+                    result.push_back(hex[ch >> 4]);
+                    result.push_back(hex[ch & 0x0f]);
+                } else {
+                    result.push_back(static_cast<char>(ch));
+                }
+        }
+    }
+    result.push_back('"');
     return result;
 }
 
@@ -257,6 +317,7 @@ int main(int argc, char ** argv) {
             const auto prefill_end = clock_type::now();
             const double prefill_ms = elapsed_ms(prefill_begin, prefill_end);
             const std::vector<llama_token> verification_sequence = generate_tokens(cold_context, options.verify_tokens);
+            const std::string verification_text = detokenize(vocab, verification_sequence);
 
             if (!options.logits_file.empty()) {
                 std::ofstream logits_output(options.logits_file, std::ios::binary | std::ios::trunc);
@@ -270,11 +331,13 @@ int main(int argc, char ** argv) {
             output << "{\n";
             output << "  \"evidence\": \"Measured\",\n";
             output << "  \"mode\": \"cold-only\",\n";
-            output << "  \"revision\": \"4e97ac86ebe2c4cb8212d98d2641ad6768810896\",\n";
+            output << "  \"revision\": \"2d4f3154a2d93c3a4d6d4a415c404f1b397d8dcb\",\n";
             output << "  \"prompt_tokens\": " << prompt.size() << ",\n";
             output << "  \"n_ctx\": " << options.n_ctx << ",\n";
             output << "  \"n_batch\": " << options.n_batch << ",\n";
             output << "  \"n_ubatch\": " << options.n_ubatch << ",\n";
+            output << "  \"cache_type_k\": \"" << options.cache_type_k << "\",\n";
+            output << "  \"cache_type_v\": \"" << options.cache_type_v << "\",\n";
             output << "  \"model_load_ms\": " << model_load_ms << ",\n";
             output << "  \"context_init_ms\": " << context_init_ms << ",\n";
             output << "  \"cold_prefill_ms\": " << prefill_ms << ",\n";
@@ -282,7 +345,8 @@ int main(int argc, char ** argv) {
             output << "  \"first_token\": " << first_token << ",\n";
             output << "  \"verify_tokens\": ";
             write_token_array(output, verification_sequence);
-            output << "\n";
+            output << ",\n";
+            output << "  \"verify_text\": " << json_string(verification_text) << "\n";
             output << "}\n";
             std::fprintf(stderr,
                 "PREFILL_COLD_ONLY prompt=%zu n_batch=%d n_ubatch=%d prefill_ms=%.3f tok_s=%.3f\n",
@@ -319,6 +383,8 @@ int main(int argc, char ** argv) {
 
             std::vector<double> token_ms;
             token_ms.reserve(options.measured_tokens);
+            std::vector<llama_token> generated_tokens(options.measured_tokens + 1);
+            generated_tokens[0] = first_token;
             const auto measured_begin = clock_type::now();
             for (int i = 0; i < options.measured_tokens; ++i) {
                 const auto begin = clock_type::now();
@@ -328,8 +394,10 @@ int main(int argc, char ** argv) {
                 token = sample_greedy(warm_context);
                 const auto end = clock_type::now();
                 token_ms.push_back(elapsed_ms(begin, end));
+                generated_tokens[i + 1] = token;
             }
             const auto measured_end = clock_type::now();
+            const std::string generated_text = detokenize(vocab, generated_tokens);
 
             auto ordered = token_ms;
             std::sort(ordered.begin(), ordered.end());
@@ -350,9 +418,13 @@ int main(int argc, char ** argv) {
             output << "{\n";
             output << "  \"evidence\": \"Measured\",\n";
             output << "  \"mode\": \"load-only\",\n";
-            output << "  \"revision\": \"4e97ac86ebe2c4cb8212d98d2641ad6768810896\",\n";
+            output << "  \"revision\": \"2d4f3154a2d93c3a4d6d4a415c404f1b397d8dcb\",\n";
             output << "  \"prompt_tokens\": " << loaded_tokens.size() << ",\n";
             output << "  \"n_ctx\": " << options.n_ctx << ",\n";
+            output << "  \"n_batch\": " << options.n_batch << ",\n";
+            output << "  \"n_ubatch\": " << options.n_ubatch << ",\n";
+            output << "  \"cache_type_k\": \"" << options.cache_type_k << "\",\n";
+            output << "  \"cache_type_v\": \"" << options.cache_type_v << "\",\n";
             output << "  \"model_load_ms\": " << model_load_ms_local << ",\n";
             output << "  \"context_init_ms\": " << context_init_ms << ",\n";
             output << "  \"cache_load_ms\": " << load_ms << ",\n";
@@ -371,7 +443,11 @@ int main(int argc, char ** argv) {
                    << model_load_ms_local + context_init_ms + warm_ready_ms + measured_ms << ",\n";
             output << "  \"cache_file_bytes\": " << state_file_bytes << ",\n";
             output << "  \"prompt_tokens_equal\": " << (prompt_tokens_equal ? "true" : "false") << ",\n";
-            output << "  \"first_token\": " << first_token << "\n";
+            output << "  \"first_token\": " << first_token << ",\n";
+            output << "  \"generated_tokens\": ";
+            write_token_array(output, generated_tokens);
+            output << ",\n";
+            output << "  \"generated_text\": " << json_string(generated_text) << "\n";
             output << "}\n";
 
             std::fprintf(stderr,
@@ -408,7 +484,13 @@ int main(int argc, char ** argv) {
         const llama_token cold_first_token = sample_greedy(cold_context);
         const auto cold_sample_end = clock_type::now();
         const std::vector<float> cold_logits = copy_logits(cold_context, vocabulary_size);
+        if (!options.logits_file.empty()) {
+            std::ofstream logits_output(options.logits_file, std::ios::binary | std::ios::trunc);
+            if (!logits_output) throw std::runtime_error("logits output open failed");
+            logits_output.write(reinterpret_cast<const char *>(cold_logits.data()), cold_logits.size() * sizeof(float));
+        }
         const std::vector<llama_token> cold_sequence = generate_tokens(cold_context, options.verify_tokens);
+        const std::string cold_verify_text = detokenize(vocab, cold_sequence);
 
         llama_free(cold_context);
         cold_context = nullptr;
@@ -433,6 +515,7 @@ int main(int argc, char ** argv) {
         const std::vector<float> warm_logits = copy_logits(warm_context, vocabulary_size);
         const LogitComparison logit_comparison = compare_logits(cold_logits, warm_logits);
         const std::vector<llama_token> warm_sequence = generate_tokens(warm_context, options.verify_tokens);
+        const std::string warm_verify_text = detokenize(vocab, warm_sequence);
 
         const bool prompt_tokens_equal = loaded_tokens == prompt;
         const bool generated_tokens_equal = warm_sequence == cold_sequence;
@@ -480,9 +563,13 @@ int main(int argc, char ** argv) {
         output << "{\n";
         output << "  \"evidence\": \"Measured\",\n";
         output << "  \"mode\": \"roundtrip\",\n";
-        output << "  \"revision\": \"4e97ac86ebe2c4cb8212d98d2641ad6768810896\",\n";
+        output << "  \"revision\": \"2d4f3154a2d93c3a4d6d4a415c404f1b397d8dcb\",\n";
         output << "  \"prompt_tokens\": " << prompt.size() << ",\n";
         output << "  \"n_ctx\": " << options.n_ctx << ",\n";
+        output << "  \"n_batch\": " << options.n_batch << ",\n";
+        output << "  \"n_ubatch\": " << options.n_ubatch << ",\n";
+        output << "  \"cache_type_k\": \"" << options.cache_type_k << "\",\n";
+        output << "  \"cache_type_v\": \"" << options.cache_type_v << "\",\n";
         output << "  \"model_load_ms\": " << model_load_ms << ",\n";
         output << "  \"cold_context_init_ms\": " << cold_context_init_ms << ",\n";
         output << "  \"cold_prefill_ms_excluding_save\": " << cold_prefill_ms << ",\n";
@@ -514,6 +601,8 @@ int main(int argc, char ** argv) {
         write_token_array(output, cold_sequence);
         output << ",\n  \"warm_verify_tokens\": ";
         write_token_array(output, warm_sequence);
+        output << ",\n  \"cold_verify_text\": " << json_string(cold_verify_text);
+        output << ",\n  \"warm_verify_text\": " << json_string(warm_verify_text);
         output << "\n}\n";
 
         std::fprintf(stderr,

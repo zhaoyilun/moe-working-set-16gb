@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "fixture": "synthetic_public_long_context",
+  "model_file": "Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf",
+  "reserved_tail_tokens": 1045,
+  "contexts": [
+    {
+      "context": 32768,
+      "actual_prompt_tokens": 31723,
+      "reserved_tail_tokens": 1045,
+      "prompt_file": "context_32k.txt",
+      "markers_manifest": "context_32k.markers.json",
+      "tokenization": "context_32k.tokenization.json",
+      "prompt_bytes": 157764,
+      "iteration_count": 2,
+      "markers": [
+        {
+          "id": "begin_fact",
+          "offset": 634,
+          "target_fraction": 0.02
+        },
+        {
+          "id": "cross_definition",
+          "offset": 3807,
+          "target_fraction": 0.12
+        },
+        {
+          "id": "multi_left",
+          "offset": 7931,
+          "target_fraction": 0.25
+        },
+        {
+          "id": "middle_fact",
+          "offset": 15862,
+          "target_fraction": 0.5
+        },
+        {
+          "id": "cross_implementation",
+          "offset": 18399,
+          "target_fraction": 0.58
+        },
+        {
+          "id": "multi_right",
+          "offset": 23792,
+          "target_fraction": 0.75
+        },
+        {
+          "id": "cross_test",
+          "offset": 27282,
+          "target_fraction": 0.86
+        },
+        {
+          "id": "end_fact",
+          "offset": 30137,
+          "target_fraction": 0.95
+        }
+      ]
+    },
+    {
+      "context": 65536,
+      "actual_prompt_tokens": 64491,
+      "reserved_tail_tokens": 1045,
+      "prompt_file": "context_64k.txt",
+      "markers_manifest": "context_64k.markers.json",
+      "tokenization": "context_64k.tokenization.json",
+      "prompt_bytes": 321604,
+      "iteration_count": 2,
+      "markers": [
+        {
+          "id": "begin_fact",
+          "offset": 1290,
+          "target_fraction": 0.02
+        },
+        {
+          "id": "cross_definition",
+          "offset": 7739,
+          "target_fraction": 0.12
+        },
+        {
+          "id": "multi_left",
+          "offset": 16123,
+          "target_fraction": 0.25
+        },
+        {
+          "id": "middle_fact",
+          "offset": 32246,
+          "target_fraction": 0.5
+        },
+        {
+          "id": "cross_implementation",
+          "offset": 37405,
+          "target_fraction": 0.58
+        },
+        {
+          "id": "multi_right",
+          "offset": 48368,
+          "target_fraction": 0.75
+        },
+        {
+          "id": "cross_test",
+          "offset": 55462,
+          "target_fraction": 0.86
+        },
+        {
+          "id": "end_fact",
+          "offset": 61266,
+          "target_fraction": 0.95
+        }
+      ]
+    },
+    {
+      "context": 131072,
+      "actual_prompt_tokens": 130027,
+      "reserved_tail_tokens": 1045,
+      "prompt_file": "context_128k.txt",
+      "markers_manifest": "context_128k.markers.json",
+      "tokenization": "context_128k.tokenization.json",
+      "prompt_bytes": 649284,
+      "iteration_count": 2,
+      "markers": [
+        {
+          "id": "begin_fact",
+          "offset": 2601,
+          "target_fraction": 0.02
+        },
+        {
+          "id": "cross_definition",
+          "offset": 15603,
+          "target_fraction": 0.12
+        },
+        {
+          "id": "multi_left",
+          "offset": 32507,
+          "target_fraction": 0.25
+        },
+        {
+          "id": "middle_fact",
+          "offset": 65014,
+          "target_fraction": 0.5
+        },
+        {
+          "id": "cross_implementation",
+          "offset": 75416,
+          "target_fraction": 0.58
+        },
+        {
+          "id": "multi_right",
+          "offset": 97520,
+          "target_fraction": 0.75
+        },
+        {
+          "id": "cross_test",
+          "offset": 111823,
+          "target_fraction": 0.86
+        },
+        {
+          "id": "end_fact",
+          "offset": 123526,
+          "target_fraction": 0.95
+        }
+      ]
+    },
+    {
+      "context": 196608,
+      "actual_prompt_tokens": 195563,
+      "reserved_tail_tokens": 1045,
+      "prompt_file": "context_192k.txt",
+      "markers_manifest": "context_192k.markers.json",
+      "tokenization": "context_192k.tokenization.json",
+      "prompt_bytes": 976964,
+      "iteration_count": 2,
+      "markers": [
+        {
+          "id": "begin_fact",
+          "offset": 3911,
+          "target_fraction": 0.02
+        },
+        {
+          "id": "cross_definition",
+          "offset": 23468,
+          "target_fraction": 0.12
+        },
+        {
+          "id": "multi_left",
+          "offset": 48891,
+          "target_fraction": 0.25
+        },
+        {
+          "id": "middle_fact",
+          "offset": 97782,
+          "target_fraction": 0.5
+        },
+        {
+          "id": "cross_implementation",
+          "offset": 113427,
+          "target_fraction": 0.58
+        },
+        {
+          "id": "multi_right",
+          "offset": 146672,
+          "target_fraction": 0.75
+        },
+        {
+          "id": "cross_test",
+          "offset": 168184,
+          "target_fraction": 0.86
+        },
+        {
+          "id": "end_fact",
+          "offset": 185785,
+          "target_fraction": 0.95
+        }
+      ]
+    },
+    {
+      "context": 262144,
+      "actual_prompt_tokens": 261099,
+      "reserved_tail_tokens": 1045,
+      "prompt_file": "context_262k.txt",
+      "markers_manifest": "context_262k.markers.json",
+      "tokenization": "context_262k.tokenization.json",
+      "prompt_bytes": 1304644,
+      "iteration_count": 2,
+      "markers": [
+        {
+          "id": "begin_fact",
+          "offset": 5222,
+          "target_fraction": 0.02
+        },
+        {
+          "id": "cross_definition",
+          "offset": 31332,
+          "target_fraction": 0.12
+        },
+        {
+          "id": "multi_left",
+          "offset": 65275,
+          "target_fraction": 0.25
+        },
+        {
+          "id": "middle_fact",
+          "offset": 130550,
+          "target_fraction": 0.5
+        },
+        {
+          "id": "cross_implementation",
+          "offset": 151437,
+          "target_fraction": 0.58
+        },
+        {
+          "id": "multi_right",
+          "offset": 195824,
+          "target_fraction": 0.75
+        },
+        {
+          "id": "cross_test",
+          "offset": 224545,
+          "target_fraction": 0.86
+        },
+        {
+          "id": "end_fact",
+          "offset": 248044,
+          "target_fraction": 0.95
+        }
+      ]
+    }
+  ]
+}

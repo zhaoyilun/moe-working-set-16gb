@@ -1,0 +1,8 @@
+expert_cache_gib,mean_lru_hit_rate,routed_path_p50_ms,projected_full_wall_p50_ms,projected_decode_tok_s,global_peak_vram_mib,headroom_mib,fits_16gb,evidence
+0,0,39.2841,66.2509728,15.094117984030568,6973.0,9403.0,True,Measured native expert-only CPU baseline
+2.0,0.3566713541666667,41.31619175,68.28306395,14.644919869621638,9021.0,7355.0,True,Trace simulation for hit rate + prior routed-path projection + measured native common path
+4.0,0.5403078125,31.94491649999999,58.911788699999995,16.974531279169938,11069.0,5307.0,True,Trace simulation for hit rate + prior routed-path projection + measured native common path
+6.0,0.6359869791666667,27.984853999999995,54.951726199999996,18.197790481784722,13117.0,3259.0,True,Trace simulation for hit rate + prior routed-path projection + measured native common path
+8.0,0.7053479166666666,25.45017374999999,52.417045949999995,19.077763385481287,15165.0,1211.0,True,Trace simulation for hit rate + prior routed-path projection + measured native common path
+10.0,0.7622703125,23.97766899999999,50.944541199999996,19.629188455622014,17213.0,-837.0,False,Trace simulation for hit rate + prior routed-path projection + measured native common path
+12.0,0.8045604166666667,23.16313774999999,50.130009949999994,19.948130890007935,19261.0,-2885.0,False,Trace simulation for hit rate + prior routed-path projection + measured native common path

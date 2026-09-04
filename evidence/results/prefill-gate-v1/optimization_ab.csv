@@ -1,0 +1,5 @@
+evidence,comparison,baseline,candidate,baseline_value,candidate_value,unit,change_percent,note
+Measured,16K controlled same-harness physical ubatch,n_ubatch=512,n_ubatch=2048,158.359121016,352.433189761,tok/s,122.5531358723515,"Same revision, placement, prompt-token count and n_batch"
+Measured,16K historical headline to Prefill v1,inherited end-to-end runner,n_ubatch=2048 cold-only runner,115.63383759146596,352.433189761,tok/s,204.7837874292,Cross-harness headline comparison; controlled A/B above is the causal estimate
+Measured,16K plus 500 development loop,approximately 171 s,warm prefix restore,170.81019260305925,37.6229139,seconds,-77.97384727067735,Candidate is directly measured; baseline combines measured components
+Measured,2K ubatch logits and deterministic sequence,n_ubatch=512,n_ubatch=2048,1.0,0.9936328336078923,logits cosine,,"RMSE 0.264350, max abs 1.500296, argmax and 32-token greedy sequence equal"

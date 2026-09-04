@@ -1,0 +1,91 @@
+{
+  "evidence": "Measured",
+  "scope": "2,027-token Native expert-only CPU/RAM placement, n_batch=2048, n_ubatch=512",
+  "nsight_prefill_wall_s": 19.23236051,
+  "cuda_device_activity": {
+    "h2d_time_s": 9.335432934,
+    "h2d_total_mb_decimal": 101173.45,
+    "h2d_copy_count": 68159,
+    "h2d_mb_per_prompt_token": 49.91290083867785,
+    "h2d_copies_per_prompt_token": 33.6255550074001,
+    "h2d_effective_gb_s": 10.837574509428745,
+    "h2d_median_copy_mb": 0.922,
+    "h2d_mean_copy_mb": 1.484,
+    "h2d_max_copy_mb": 26.113,
+    "d2h_time_ms": 7.750348,
+    "d2h_total_mb_decimal": 195.737,
+    "d2d_time_ms": 3.983262,
+    "d2d_total_mb_decimal": 2508.724,
+    "all_kernel_time_s": 1.063729402,
+    "all_kernel_instances": 20710,
+    "kernel_interval_share_of_wall_percent": 5.530935224757806,
+    "h2d_interval_share_of_wall_percent": 48.54023472129683,
+    "kernel_categories": {
+      "matmul_routed_and_dense_combined": {
+        "time_ms": 675.526204,
+        "instances": 4468
+      },
+      "linear_attention": {
+        "time_ms": 117.239791,
+        "instances": 288
+      },
+      "router_and_dispatch": {
+        "time_ms": 86.877648,
+        "instances": 768
+      },
+      "other_gpu_kernels": {
+        "time_ms": 149.984987,
+        "instances": 14072
+      },
+      "norm": {
+        "time_ms": 23.089351,
+        "instances": 1018
+      },
+      "full_attention": {
+        "time_ms": 11.011421,
+        "instances": 96
+      }
+    }
+  },
+  "cuda_host_api": {
+    "cudaMemcpyAsync_total_s": 17.846463967,
+    "cudaMemcpyAsync_calls": 68636,
+    "cudaStreamSynchronize_total_s": 0.945972557,
+    "cudaStreamSynchronize_calls": 917,
+    "cudaLaunchKernel_total_ms": 144.064906,
+    "cudaLaunchKernel_calls": 20710,
+    "cudaMalloc_total_ms": 0.19558,
+    "cudaFree_total_ms": 16.079192
+  },
+  "cpu_operator_instrumentation": {
+    "worker_ms_observed": 3.668,
+    "barrier_ms_observed": 0.326,
+    "graph_elapsed_ms_observed": 6.237,
+    "interpretation": "Batched expert work is scheduled on CUDA after selected CPU-resident weights are copied; broad CPU expert compute is not the prefill critical path"
+  },
+  "nvml_16k_control": {
+    "scope": "Approximate 16K prefill interval selected from one-second process/NVML samples",
+    "samples": 96,
+    "mean_gpu_util_percent": 50.520833333333336,
+    "peak_gpu_util_percent": 61.0,
+    "peak_total_vram_mib": 8188.0,
+    "peak_process_working_set_gib": 47.163,
+    "mean_host_cpu_percent_of_32_logical_processors": 3.4817708333333326
+  },
+  "classification": {
+    "primary": "fragmented H2D of selected expert weights plus host-side copy/synchronization overhead",
+    "secondary": "GPU underutilization caused by transfer-dominated serial staging",
+    "not_primary": [
+      "CPU expert arithmetic",
+      "full attention",
+      "memory allocation"
+    ],
+    "codes": [
+      "C",
+      "D",
+      "E",
+      "F"
+    ]
+  },
+  "measurement_boundary": "CUDA API durations are host-side and are not added to device durations; device copy and kernel intervals may overlap"
+}

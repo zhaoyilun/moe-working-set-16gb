@@ -1,0 +1,94 @@
+{
+  "rounds": [
+    "work\\pc-slotstream\\results\\full_round2",
+    "work\\pc-slotstream\\results\\full_round3",
+    "work\\pc-slotstream\\results\\full_round4"
+  ],
+  "single_expert_pinned_contiguous": {
+    "p50_ms": 0.1261,
+    "p95_ms": 0.1302,
+    "effective_gbps": 21.742223
+  },
+  "sustained_pinned_contiguous_batches_8_10_20": {
+    "effective_gbps": 23.457196,
+    "range": [
+      23.27294,
+      23.594596
+    ]
+  },
+  "sustained_pinned_nine_piece_batches_8_10_20": {
+    "effective_gbps": 20.603084
+  },
+  "pageable_contiguous_batches_8_10_20": {
+    "effective_gbps": 14.276844
+  },
+  "top10_overlap": {
+    "pool_gb": "4.000000",
+    "batch_experts": "10",
+    "bytes": "27648000",
+    "pipeline_cycles": "80",
+    "pipeline_rounds": "9",
+    "rounds": 3,
+    "copy_only_ms": 1.16967,
+    "compute_only_ms": 0.133886,
+    "serial_ms": 1.387102,
+    "double_buffer_serial_ms": 1.386657,
+    "overlap_mean_ms": 1.171835,
+    "overlap_p50_ms": 1.17184,
+    "overlap_p95_ms": 1.174216,
+    "exposed_copy_ms": 1.040189,
+    "hidden_copy_percent": 11.077299,
+    "equivalent_gemm_flops": 98304000.0
+  },
+  "bytes_per_token_at_zero_hit": 1327104000,
+  "cache_hit_table": [
+    {
+      "hit_rate": 0,
+      "h2d_gb_per_token": 1.327104,
+      "h2d_ms_per_token": 56.57556001152056,
+      "raw_h2d_ceiling_tps": 17.675476827739196,
+      "surrogate_moe_compute_ms": 6.426528,
+      "ideal_exposed_copy_ms": 50.14903201152056
+    },
+    {
+      "hit_rate": 0.25,
+      "h2d_gb_per_token": 0.995328,
+      "h2d_ms_per_token": 42.43167000864042,
+      "raw_h2d_ceiling_tps": 23.5673024369856,
+      "surrogate_moe_compute_ms": 6.426528,
+      "ideal_exposed_copy_ms": 36.00514200864042
+    },
+    {
+      "hit_rate": 0.5,
+      "h2d_gb_per_token": 0.663552,
+      "h2d_ms_per_token": 28.28778000576028,
+      "raw_h2d_ceiling_tps": 35.35095365547839,
+      "surrogate_moe_compute_ms": 6.426528,
+      "ideal_exposed_copy_ms": 21.861252005760278
+    },
+    {
+      "hit_rate": 0.75,
+      "h2d_gb_per_token": 0.331776,
+      "h2d_ms_per_token": 14.14389000288014,
+      "raw_h2d_ceiling_tps": 70.70190731095678,
+      "surrogate_moe_compute_ms": 6.426528,
+      "ideal_exposed_copy_ms": 7.717362002880139
+    },
+    {
+      "hit_rate": 0.9,
+      "h2d_gb_per_token": 0.13271039999999998,
+      "h2d_ms_per_token": 5.657556001152055,
+      "raw_h2d_ceiling_tps": 176.754768277392,
+      "surrogate_moe_compute_ms": 6.426528,
+      "ideal_exposed_copy_ms": 0
+    },
+    {
+      "hit_rate": 0.95,
+      "h2d_gb_per_token": 0.06635520000000006,
+      "h2d_ms_per_token": 2.8287780005760306,
+      "raw_h2d_ceiling_tps": 353.5095365547836,
+      "surrogate_moe_compute_ms": 6.426528,
+      "ideal_exposed_copy_ms": 0
+    }
+  ]
+}

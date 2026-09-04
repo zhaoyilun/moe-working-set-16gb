@@ -1,0 +1,66 @@
+{
+  "schema": "pc-slotstream.cache-runtime-stats.v1",
+  "stage": "Stage 1 fixed GPU expert cache plus Native CPU misses",
+  "canonical_context_tokens": 16363,
+  "experts_per_layer": 10,
+  "layers": 48,
+  "runtime_measurement": {
+    "evidence": "Measured",
+    "pool_gib": 4,
+    "window_tokens": 34,
+    "expert_requests": 16320,
+    "hit_rate": 0.26060049,
+    "cpu_fallback_layers_per_token": 48.0,
+    "source": "correctness.json",
+    "collection_note": "The graph callback repeatedly warms CUDA graphs, so this instrumented short window is excluded from throughput conclusions."
+  },
+  "canonical_route_replay": [
+    {
+      "evidence": "Trace simulation from Measured routing IDs",
+      "pool_gib": 4,
+      "window_tokens": 34,
+      "layer_decisions": 1632,
+      "expert_requests": 16320,
+      "hit_rate": 0.2611519608,
+      "miss_count_histogram_0_to_10": [0, 6, 22, 54, 87, 128, 212, 250, 296, 302, 275],
+      "cpu_fallback_layers_per_token": 48.0,
+      "cpu_fallback_experts_per_token": 354.6470588
+    },
+    {
+      "evidence": "Trace simulation from Measured routing IDs",
+      "pool_gib": 6,
+      "window_tokens": 34,
+      "layer_decisions": 1632,
+      "expert_requests": 16320,
+      "hit_rate": 0.3650122549,
+      "miss_count_histogram_0_to_10": [4, 35, 78, 121, 159, 201, 205, 220, 255, 182, 172],
+      "cpu_fallback_layers_per_token": 47.88235294,
+      "cpu_fallback_experts_per_token": 304.7941176
+    },
+    {
+      "evidence": "Trace simulation from Measured routing IDs",
+      "pool_gib": 8,
+      "window_tokens": 34,
+      "layer_decisions": 1632,
+      "expert_requests": 16320,
+      "hit_rate": 0.4431985294,
+      "miss_count_histogram_0_to_10": [31, 103, 135, 157, 167, 188, 191, 193, 195, 142, 130],
+      "cpu_fallback_layers_per_token": 47.08823529,
+      "cpu_fallback_experts_per_token": 267.2647059
+    }
+  ],
+  "full_window_counter_status": "The existing per-op callback perturbs graph execution; the uninstrumented 500-token runs are the authoritative performance measurements.",
+  "held_out_workload_reference": {
+    "evidence": "Trace simulation",
+    "tokens": 5000,
+    "layer_decisions": 240000,
+    "expert_requests": 2400000,
+    "pool_gib": 8,
+    "hit_rate": 0.70535,
+    "miss_count_groups_percent": {
+      "0_to_4": 76.949,
+      "5_to_7": 17.562,
+      "8_to_10": 5.489
+    }
+  }
+}

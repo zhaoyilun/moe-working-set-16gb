@@ -1,0 +1,31 @@
+{
+  "evidence": "Measured",
+  "context": 131072,
+  "actual_prompt_tokens": 130027,
+  "reference": "f16-f16",
+  "vocab_logits": 248320,
+  "comparisons": [
+    {
+      "profile": "q8-q4",
+      "rmse": 0.31353279924936484,
+      "max_abs": 1.6466445922851562,
+      "cosine": 0.9842787979588474,
+      "reference_argmax": 248068,
+      "candidate_argmax": 248068,
+      "argmax_equal": true,
+      "top5_overlap": 5,
+      "top10_overlap": 10
+    },
+    {
+      "profile": "q4-q4",
+      "rmse": 0.4729311779464878,
+      "max_abs": 2.527310609817505,
+      "cosine": 0.9634709745443163,
+      "reference_argmax": 248068,
+      "candidate_argmax": 248068,
+      "argmax_equal": true,
+      "top5_overlap": 5,
+      "top10_overlap": 9
+    }
+  ]
+}

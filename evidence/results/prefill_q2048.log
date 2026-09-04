@@ -1,0 +1,42 @@
+CPUInfer[0x561d2711b9b0]: Hello
+WorkerPool[0x561d27149050] 1 subpools, [numa:threads][0:24] 
+===========In NumaPool============
+In Numa Worker Pool at NUMA -1, 24 threads
+Core 16 inside NUMA node 0 not found
+Core 17 inside NUMA node 0 not found
+Core 18 inside NUMA node 0 not found
+Core 19 inside NUMA node 0 not found
+hwloc_set_membind_nodeset: Function not implemented
+Core 20 inside NUMA node 0 not found
+Core 21 inside NUMA node 0 not found
+Core 22 inside NUMA node 0 not found
+Core 23 inside NUMA node 0 not found
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+hwloc_set_membind_nodeset: Function not implemented
+TP MOE layer 0, pool: 0x561d27149050, expert num: 10, num_experts_per_tok: 10
+alloc 0 from other numa for 7fb5bc0254d0
+Created AVX2_RAW_INT4_MOE_TP 0 at numa -1 (group_size=64)
+AVX2 RAWINT4 TP 0 load weight done.
+CPUInfer[0x561d2711b9b0]: Goodbye
+{"threads": 24, "topk": 10, "qlen": 2048, "cache_mode": "warm", "runs": 5, "p50_ms": 1016.764958, "p95_ms": 1041.3885533999999, "min_ms": 937.344585, "effective_weight_bandwidth_gbps_p50": 0.02719212516369983, "skip_all_cpu_experts": false, "output_checksum": 0.4329676330089569}

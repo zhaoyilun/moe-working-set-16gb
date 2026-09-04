@@ -1,0 +1,11 @@
+{
+  "evidence": "Measured",
+  "native_logits_count": 248320,
+  "logits_rmse": 0.17398894253765126,
+  "logits_max_abs": 0.9014072418212891,
+  "logits_cosine": 0.9988817567607812,
+  "first_token_equal": true,
+  "verification_tokens": 32,
+  "verification_sequence_equal": true,
+  "all_continuation_tokens_equal": true
+}

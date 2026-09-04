@@ -1,0 +1,53 @@
+<think>
+The user wants a self-contained architecture review of at least 1,600 words based on a project note about a sparse Mixture-of-Experts (MoE) decoder. Let me carefully parse the requirements:
+
+1. Separate confirmed measurements, simulated results, projected results, and assumptions
+2. Explain which conclusions transfer from a single routed layer to a 48-layer decoder and which do not
+3. Reconstruct information flow: token → router → cache lookup → per-expert execution → weighted merge
+4. Identify dominant bottlenecks
+5. Explain purpose of every validation gate
+6. Propose an experiment matrix
+7. Give acceptance criteria
+8. End with a decision among GPU-only, CPU-only, static partitioning, or dynamic hybrid architecture
+9. At least 1,600 words
+10. Self-contained
+
+Let me structure this carefully and ensure I hit all the requirements. The project note describes:
+- High-end desktop CPU + one consumer NVIDIA GPU + PCIe link
+- 48 routed layers, each selecting 10 experts from 512 candidates
+- Each expert: 3 quantized affine matrices, ~2.76 MB
+- GPU can hold only a subset of layer-expert pairs
+- Three execution modes: GPU-resident, copy-from-pinned-host-then-GPU, CPU-direct
+- Transfer and CPU curves cross → no single global choice
+- Prior synthetic cache study: ~8 GB aggregate cache → ~60% hit rate (but synthetic, not real router output)
+- Present study: captures real top-10 IDs and normalized weights, analyzes temporal/cross-workload locality, simulates cache policies without future knowledge, validates mixed-path layer numerically, measures overlap of GPU compute / H2D promotion / CPU expert work
+- Final design: per-layer per-token decision, static hot region + dynamic region, measured costs + recent reuse as inputs, no exact future-route prefetching
+
+Let me write a thorough architecture review.
+</think>
+
+# Architecture Review: Sparse Mixture-of-Experts Decoder on a Single-GPU Desktop Workstation
+
+## 1. Scope and Classification of Evidence
+
+Before any architectural conclusion is drawn, every quantitative claim in the project note must be tagged by its epistemic status. This separation prevents a simulated hit-rate from being mistaken for a measured throughput and keeps the review honest about what the hardware has actually demonstrated.
+
+**Confirmed measurements (already obtained on the target workstation):**
+- Each expert occupies approximately 2.76 MB of device memory (three quantized affine matrices).
+- The GPU's usable memory accommodates only a strict subset of the 48 × 512 = 24,576 possible layer-expert pairs.
+- Three execution modes exist and have been profiled in isolation: (a) expert resident on GPU, (b) expert copied from pinned host memory then executed on GPU, (c) expert executed on CPU workers with only activation and output crossing PCIe.
+- The transfer-cost curve and the CPU-execution-cost curve cross as a function of the number of missing experts per layer, confirming that no single global routing policy is optimal.
+- GPU compute, host-to-device (H2D) promotion, and CPU expert work can overlap in wall-clock time (measured via CUDA events and CPU thread timestamps).
+
+**Simulated results (produced by software models, not yet validated end-to-end on hardware):**
+- A prior synthetic cache study reported that an aggregate cache near 8 GB could reach roughly 60 % hit rate. Critically, this study used synthetic router outputs, not real per-token top-10 selections.
+- The present study simulates several cache-eviction policies (LRU, LFU, FIFO, and a reuse-distance-aware variant) without future knowledge, using captured real top-10 IDs and normalized weights.
+
+**Projected results (extrapolated or analytically estimated, not yet measured):**
+- The 48-layer aggregate memory footprint of all experts is approximately 24,576 × 2.76 MB ≈ 67.8 GB, far exceeding any consumer GPU's VRAM (typically 8–24 GB).
+- Expected per-token latency under the proposed dynamic hybrid policy, derived from the overlap measurements and simulated hit rates, is projected but not yet confirmed in a full 48-layer forward pass.
+
+**Assumptions (stated or implicit in the note):**
+- The PCIe link is the sole host-device interconnect; no NVLink or CXL path exists.
+- Quantization is fixed (the 2.76 MB figure bakes in the chosen bit-width); no further compression is assumed.
+- Router outputs are deterministic given the input token sequence; no stochastic top-k sampling

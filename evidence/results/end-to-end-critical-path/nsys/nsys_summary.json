@@ -1,0 +1,134 @@
+{
+  "token_count": 20,
+  "mean_wall_ms": 161.80776955000002,
+  "mean_gpu_kernel_active_ms": 4.15148285,
+  "mean_gpu_copy_active_ms": 0.34677069999999993,
+  "mean_gpu_total_active_ms": 4.498253549999999,
+  "mean_gpu_first_last_span_ms": 159.1431637,
+  "mean_gpu_idle_within_token_ms": 157.309516,
+  "mean_gpu_idle_within_span_ms": 154.64491015000002,
+  "mean_cuda_stream_sync_api_ms": 8.77401465,
+  "mean_cuda_sync_activity_ms": 8.41457255,
+  "mean_cuda_memcpy_api_ms": 4.179065,
+  "mean_cuda_graph_launch_api_ms": 3.4205176,
+  "mean_cuda_kernel_launch_api_ms": 0.63779135,
+  "mean_gpu_ops": 1013.3,
+  "critical_path_partition_ms": {
+    "sampling": 3.6518842499999993,
+    "gpu_active": 1.55598005,
+    "cuda_sync": 5.45606805,
+    "cuda_memcpy_api": 4.05056155,
+    "cuda_graph_api": 2.63929175,
+    "cuda_kernel_launch_api": 0.5368644,
+    "cuda_other_api": 0.0,
+    "host_non_cuda": 143.91711949999996
+  },
+  "mean_h2d_count": 90.0,
+  "mean_h2d_mb": 1.1268832,
+  "mean_d2h_count": 40.0,
+  "mean_d2h_mb": 2.0549632,
+  "mean_d2d_count": 58.0,
+  "mean_d2d_mb": 2.118784,
+  "top_kernels": [
+    {
+      "name": "void mul_mat_vec_q<(ggml_type)8, (int)1, (bool)0, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, unsigned int)",
+      "total_ms": 24.141612,
+      "mean_ms_per_token": 1.2070805999999998
+    },
+    {
+      "name": "void mul_mat_vec_q<(ggml_type)14, (int)1, (bool)0, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, unsigned int)",
+      "total_ms": 19.609685,
+      "mean_ms_per_token": 0.98048425
+    },
+    {
+      "name": "void mul_mat_vec_q<(ggml_type)8, (int)1, (bool)0, (bool)1, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, unsigned int)",
+      "total_ms": 6.014118,
+      "mean_ms_per_token": 0.30070589999999997
+    },
+    {
+      "name": "void mul_mat_vec_q<(ggml_type)21, (int)1, (bool)1, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, unsigned int)",
+      "total_ms": 4.942283,
+      "mean_ms_per_token": 0.24711414999999998
+    },
+    {
+      "name": "void k_bin_bcast<&op_add, float, float, float, const float *>(const T2 *, const T3 *, T4 *, unsigned int, unsigned int, unsigned int, uint3, uint3, uint3, uint3, uint3, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, T5...)",
+      "total_ms": 3.677506,
+      "mean_ms_per_token": 0.18387530000000002
+    },
+    {
+      "name": "void mul_mat_vec_f<float, float, (int)1, (int)256, (bool)0, (bool)0>(const T1 *, const float *, const int *, ggml_cuda_mm_fusion_args_device, float *, int, uint3, int, int, int, uint3, int, int, int, uint3, int, int, int, int)",
+      "total_ms": 3.481593,
+      "mean_ms_per_token": 0.17407965
+    },
+    {
+      "name": "void k_bin_bcast<&op_mul, float, float, float, const float *>(const T2 *, const T3 *, T4 *, unsigned int, unsigned int, unsigned int, uint3, uint3, uint3, uint3, uint3, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, T5...)",
+      "total_ms": 3.257943,
+      "mean_ms_per_token": 0.16289715
+    },
+    {
+      "name": "void mul_mat_vec_q<(ggml_type)20, (int)1, (bool)0, (bool)1, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, unsigned int)",
+      "total_ms": 2.66973,
+      "mean_ms_per_token": 0.1334865
+    },
+    {
+      "name": "quantize_q8_1(const float *, void *, long long, long long, long long, long long, long long, unsigned int, uint3)",
+      "total_ms": 2.11566,
+      "mean_ms_per_token": 0.105783
+    },
+    {
+      "name": "void mul_mat_vec_q<(ggml_type)8, (int)1, (bool)1, (bool)0, (bool)0>(const void *, const void *, const int *, ggml_cuda_mm_fusion_args_device, float *, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, uint3, unsigned int, unsigned int, unsigned int, unsigned int)",
+      "total_ms": 1.588259,
+      "mean_ms_per_token": 0.07941295000000001
+    },
+    {
+      "name": "scale_f32(const float *, float *, float, float, long long)",
+      "total_ms": 1.415464,
+      "mean_ms_per_token": 0.07077320000000001
+    },
+    {
+      "name": "void unary_gated_op_kernel<&op_sigmoid, float>(const T2 *, const T2 *, T2 *, long long, long long, long long, long long)",
+      "total_ms": 1.07793,
+      "mean_ms_per_token": 0.0538965
+    },
+    {
+      "name": "void k_get_rows_float_vec<float>(const T1 *, const int *, T1 *, long long, long long, uint3, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long)",
+      "total_ms": 1.026861,
+      "mean_ms_per_token": 0.05134305
+    },
+    {
+      "name": "void rms_norm_f32<(int)1024, (bool)0, (bool)0>(const float *, float *, int, long long, long long, long long, float, const float *, long long, long long, long long, uint3, uint3, uint3, uint3, const float *, long long, long long, long long, uint3, uint3, uint3, uint3)",
+      "total_ms": 0.715117,
+      "mean_ms_per_token": 0.03575585
+    },
+    {
+      "name": "void topk_moe_cuda<(int)512, (bool)0>(const float *, float *, int *, float *, int, int, float, float, topk_moe_config)",
+      "total_ms": 0.599665,
+      "mean_ms_per_token": 0.02998325
+    },
+    {
+      "name": "void unary_op_kernel<&op_sigmoid, float>(const T2 *, T2 *, int)",
+      "total_ms": 0.546858,
+      "mean_ms_per_token": 0.027342899999999996
+    },
+    {
+      "name": "void mul_mat_vec_f<__nv_bfloat16, float, (int)1, (int)256, (bool)0, (bool)0>(const T1 *, const float *, const int *, ggml_cuda_mm_fusion_args_device, float *, int, uint3, int, int, int, uint3, int, int, int, uint3, int, int, int, int)",
+      "total_ms": 0.5126,
+      "mean_ms_per_token": 0.025629999999999997
+    },
+    {
+      "name": "void rms_norm_f32<(int)256, (bool)1, (bool)0>(const float *, float *, int, long long, long long, long long, float, const float *, long long, long long, long long, uint3, uint3, uint3, uint3, const float *, long long, long long, long long, uint3, uint3, uint3, uint3)",
+      "total_ms": 0.504652,
+      "mean_ms_per_token": 0.0252326
+    },
+    {
+      "name": "void rope_multi<(bool)1, (bool)0, float>(const T3 *, T3 *, int, int, int, int, int, int, int, int, int, int, int, const int *, float, float, float, rope_corr_dims, float, const float *, mrope_sections, bool, bool)",
+      "total_ms": 0.497861,
+      "mean_ms_per_token": 0.02489305
+    },
+    {
+      "name": "void l2_norm_f32<(int)32>(const float *, float *, int, long long, long long, long long, float)",
+      "total_ms": 0.462865,
+      "mean_ms_per_token": 0.02314325
+    }
+  ]
+}

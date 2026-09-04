@@ -1,0 +1,6 @@
+built_utc=2026-09-03T05:43:01Z
+source=benchmarks/pcie_expert_bench.cu
+compiler=MSVC 19.44.35222 + NVCC 12.3.107
+cuda_architecture=sm_89
+binary=bin/slotstream_bench.exe
+copy_validation=pass

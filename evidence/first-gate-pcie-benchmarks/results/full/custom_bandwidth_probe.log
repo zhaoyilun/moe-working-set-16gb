@@ -1,0 +1,4 @@
+default_fixed 23.615 GB/s 1.170760 ms/copy
+nonblocking_fixed 23.576 GB/s 1.172717 ms/copy
+nonblocking_two_buffers 23.540 GB/s 1.174524 ms/copy
+nonblocking_rotating_pool 23.612 GB/s 1.170944 ms/copy

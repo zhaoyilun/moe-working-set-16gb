@@ -1,0 +1,7 @@
+chunk=16 rows=3008 unique_mean=83.57 unique_p95=103.00 per_expert_p50_mean=1.14
+chunk=32 rows=1504 unique_mean=119.84 unique_p95=149.85 per_expert_p50_mean=1.81
+chunk=64 rows=752 unique_mean=141.62 unique_p95=176.00 per_expert_p50_mean=2.73
+chunk=128 rows=376 unique_mean=167.23 unique_p95=209.25 per_expert_p50_mean=4.33
+chunk=256 rows=188 unique_mean=197.13 unique_p95=247.65 per_expert_p50_mean=6.90
+chunk=512 rows=94 unique_mean=234.99 unique_p95=293.05 per_expert_p50_mean=11.02
+chunk=1024 rows=47 unique_mean=291.62 unique_p95=336.10 per_expert_p50_mean=15.32

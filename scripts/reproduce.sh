@@ -13,11 +13,15 @@ PROMPT_TOKENS="${PROMPT_TOKENS:-16363}"
 CONTEXT_SIZE="${CONTEXT_SIZE:-17408}"
 THREADS="${THREADS:-24}"
 UBATCH="${UBATCH:-8192}"
+CACHE_TYPE_K="${CACHE_TYPE_K:-f16}"
+CACHE_TYPE_V="${CACHE_TYPE_V:-f16}"
+DECODE_UBATCH="${DECODE_UBATCH:-16}"
 
 mkdir -p "$BUILD_DIR" "$OUTPUT_DIR"
 cmake -G Ninja -S "$ROOT/tools" -B "$BUILD_DIR" \
   -DLLAMA_CPP_DIR="$LLAMA_DIR" \
   -DGGML_CUDA=ON \
+  -DGGML_CUDA_FA_ALL_QUANTS=ON \
   -DCMAKE_BUILD_TYPE=Release
 cmake --build "$BUILD_DIR" -j
 
@@ -36,7 +40,9 @@ STATE="$OUTPUT_DIR/session.bin"
   -c "$CONTEXT_SIZE" \
   -t "$THREADS" \
   --n-batch "$UBATCH" \
-  --n-ubatch "$UBATCH"
+  --n-ubatch "$UBATCH" \
+  --cache-type-k "$CACHE_TYPE_K" \
+  --cache-type-v "$CACHE_TYPE_V"
 
 for run in 1 2 3; do
   "$DECODE_RUNNER" \
@@ -51,7 +57,9 @@ for run in 1 2 3; do
     -c "$CONTEXT_SIZE" \
     -t "$THREADS" \
     --n-batch 2048 \
-    --n-ubatch 512
+    --n-ubatch "$DECODE_UBATCH" \
+    --cache-type-k "$CACHE_TYPE_K" \
+    --cache-type-v "$CACHE_TYPE_V"
 done
 
 printf 'Results: %s\n' "$OUTPUT_DIR"

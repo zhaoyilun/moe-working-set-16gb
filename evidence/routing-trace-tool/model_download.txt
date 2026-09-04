@@ -1,0 +1,9 @@
+https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/resolve/38bb39ee97821de2c9009abb7e93950eec396e66/UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf?download=true
+  dir=E:\AI\Models\Qwen3.8-Flash-Next-UD-IQ4_XS
+  out=Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf
+https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/resolve/38bb39ee97821de2c9009abb7e93950eec396e66/UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00002-of-00003.gguf?download=true
+  dir=E:\AI\Models\Qwen3.8-Flash-Next-UD-IQ4_XS
+  out=Qwen3.8-Flash-Next-UD-IQ4_XS-00002-of-00003.gguf
+https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/resolve/38bb39ee97821de2c9009abb7e93950eec396e66/UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00003-of-00003.gguf?download=true
+  dir=E:\AI\Models\Qwen3.8-Flash-Next-UD-IQ4_XS
+  out=Qwen3.8-Flash-Next-UD-IQ4_XS-00003-of-00003.gguf
