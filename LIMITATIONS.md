@@ -8,5 +8,5 @@
 6. Prefill throughput depends strongly on prompt routing. The 524.003 tok/s headline is a strict same-prompt three-run series; the earlier 352.433 tok/s v1 number used another prompt seed.
 7. Quantized Prefill is batch-partition dependent. Larger ubatches preserve the tested first-token argmax, while 2K versus 8K greedy sequences diverge after six tokens on the tested prompt.
 8. Nsight Systems 2023.3.3 did not produce a usable Stage-2 report after target exit; Stage-2 attribution uses internal counters.
-9. 64K/128K contexts, other GPUs, DDR5 frequency changes, and multi-prompt quality evaluation are outside this snapshot.
+9. Long-context cells left unmeasured: q4-q4 KV with the 4 GiB pool and f16-f16 KV at 262K context. Other GPUs, DDR5 frequency changes, and multi-prompt quality evaluation are outside this snapshot.
 10. Model weights, session files, raw prompts, token continuations, full routing traces, hostnames, and personal filesystem paths are excluded from this staging area.
