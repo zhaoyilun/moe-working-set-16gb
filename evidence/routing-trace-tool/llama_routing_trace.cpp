@@ -130,7 +130,16 @@ public:
         const bool hidden = hidden_.is_open() && starts_with(tensor->name, "ffn_moe_inp-") &&
             layer_from_name(tensor->name) == hidden_layer_;
         if (ask) {
+            // Empty reshaped views (e.g. the output-only layer 47 path for
+            // ubatches without logits) carry no readable rows. Skip them:
+            // observing must never abort graph evaluation.
+            if ((ids || weights) && ggml_nbytes(tensor) == 0) {
+                return false;
+            }
             return ids || weights || hidden;
+        }
+        if (ggml_nbytes(tensor) == 0) {
+            return true;
         }
         if (ids) {
             collect_ids(tensor);
@@ -478,7 +487,9 @@ int main(int argc, char ** argv) {
         llama_context_params context_params = llama_context_default_params();
         context_params.n_ctx = options.n_ctx;
         context_params.n_batch = std::min(options.n_ctx, 2048);
-        context_params.n_ubatch = (std::min)(context_params.n_batch, 1024u);
+        // The TraceWriter emits each layer once per set_batch, i.e. per
+        // ubatch. Make chunk == ubatch so every chunk's records are kept.
+        context_params.n_ubatch = context_params.n_batch;
         context_params.no_perf = false;
         context_params.cb_eval = trace_callback;
         context_params.cb_eval_user_data = &trace;
@@ -493,13 +504,14 @@ int main(int argc, char ** argv) {
         llama_sampler * sampler = llama_sampler_chain_init(sampler_params);
         llama_sampler_chain_add(sampler, llama_sampler_init_greedy());
 
-        trace.set_batch(Phase::prefill, 0, prompt_tokens);
-        // n_tokens_all must not exceed n_batch, so submit the prompt in
-        // n_batch-sized chunks. layer_offsets_ accumulates across calls, so
-        // token positions in the trace stay contiguous for the whole prompt.
+        // Submit the prompt in n_batch-sized chunks (n_tokens_all must not
+        // exceed n_batch); each chunk is one ubatch and one set_batch window.
         for (size_t offset = 0; offset < prompt_tokens.size(); ) {
             const int32_t n_chunk = static_cast<int32_t>(
                 std::min<size_t>(context_params.n_batch, prompt_tokens.size() - offset));
+            std::vector<llama_token> chunk_tokens(
+                prompt_tokens.begin() + offset, prompt_tokens.begin() + offset + n_chunk);
+            trace.set_batch(Phase::prefill, static_cast<uint32_t>(offset), chunk_tokens);
             llama_batch batch = llama_batch_get_one(prompt_tokens.data() + offset, n_chunk);
             if (llama_decode(context, batch) != 0) {
                 throw std::runtime_error("prefill evaluation failed");

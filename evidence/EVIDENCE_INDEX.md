@@ -27,6 +27,13 @@ metadata.
     calibration and CUDA Graph isolation runs.
   - `prefill-gate-v1/` (and `v2`, `v3`) — Prefill ubatch scaling, critical-path
     analysis, prefix-cache runs, routing traces.
+  - `prefill-grouped-gate/` — first round of the expert-staging prefill
+    runtime (v4: eval-callback barrier, shared VRAM windows, pinned pack/DMA):
+    A/B runs, staging runs, design notes (`GROUPED_RUNTIME_DESIGN.md`,
+    `CODE_NOTES.md`), and routing captures. Headline: 16K prompt at physical
+    ubatch 6144 = 720.8 tok/s (+27.3% over same-condition control, cosine
+    0.9999928). The 52.8 MB `routing/prefill-16k.sstrace` is excluded
+    (regenerable via `profiling-scripts/capture_routing_trace.ps1`).
   - `economic-adaptation/` — ubatch knee, workspace sizing, and stability
     confirmation runs.
   - `integration-gate/` — router-trace fixtures and smoke checks used to
@@ -37,8 +44,12 @@ metadata.
 - `first-gate-pcie-benchmarks/` — the very first gate: PCIe bandwidth,
   host-to-device copy, and copy/compute overlap micro-benchmarks that sized
   the expert-transfer budget before any runtime work started.
-- `routing-trace-tool/` — the routing-trace patch source, trace-format
-  definitions, and the analysis script used to inspect expert selection.
+- `profiling-scripts/` — the driver scripts behind the gates: 262K context
+  gate, prefill staging runtime, prefill A/B comparisons, short-context
+  repeats/diagnostics, and routing-trace capture.
+- `routing-trace-tool/` — the routing-trace patch source (updated with the
+  grouped-runtime fixes), trace-format definitions, and the analysis script
+  used to inspect expert selection.
 
 ## Sanitization (what changed, and what did not)
 

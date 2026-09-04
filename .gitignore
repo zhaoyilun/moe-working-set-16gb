@@ -18,3 +18,4 @@ session.bin
 *-session.bin
 *.hidden.f32
 *_qweight.bin
+evidence/results/prefill-grouped-gate/routing/prefill-16k.sstrace
